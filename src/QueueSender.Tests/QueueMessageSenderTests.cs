@@ -63,12 +63,7 @@ namespace QueueSender.Tests
                     await m_proxy.Object.WriteAsync(messages, streamName);
                 }
             });
-            
-            m_sut.AddMessageHandler(new ChannelSpecificMessageHandler
-            {
-                Action = async (messages, streamName) => {}
-            });
-
+           
             for (var i = 0; i < msgCount; i++) m_sut.Enqueue("a message", "channel");
 
             m_sut.WaitForIdle();
