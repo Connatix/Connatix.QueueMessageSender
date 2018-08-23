@@ -1,9 +1,6 @@
-using System;
 using System.Collections.Generic;
-using System.Threading;
 using System.Threading.Tasks;
-using Amazon.Kinesis;
-using Amazon.Kinesis.Model;
+using Microsoft.Extensions.Logging;
 using Moq;
 using Xunit;
 
@@ -12,11 +9,10 @@ namespace QueueSender.Tests
     public class QueueMessageSenderTests
     {
         private QueueMessageSender m_sut;
-        private readonly Mock<IKinesisProxy> m_kinesisProxy = new Mock<IKinesisProxy>();
+        private readonly Mock<IProxy> m_proxy = new Mock<IProxy>();                
         private readonly Mock<ILogger> m_logger = new Mock<ILogger>();
-        private readonly Mock<IAmazonKinesis> m_kinesis = new Mock<IAmazonKinesis>();
         private readonly QueueSenderAppSettings m_settings = new QueueSenderAppSettings {
-            StatisticsEnabled = false,
+            StatisticsEnabled = true,
             MaxThreadCount = 2,
             RequestsPerThread = 100
         };
@@ -24,23 +20,26 @@ namespace QueueSender.Tests
         [Fact]
         public void LargeNumberOfMessagesAreHandled()
         {
-            var sendToKinesisHasBeenCalled = false;
+            var writeHasBeenCalled = false;
             const int msgCount = 30000;
-            m_kinesisProxy.Setup(x => x.PutRecordsAsync(It.IsAny<List<QueueMessage>>(), It.IsAny<string>()))
+            m_proxy.Setup(x => x.WriteAsync(It.IsAny<List<QueueMessage>>(), It.IsAny<string>()))
                 .ReturnsAsync(new List<QueueMessage>());
 
-            m_sut = new QueueMessageSender(async (messages, streamName)
-                =>
+            m_sut = new QueueMessageSender(m_settings, m_logger.Object);            
+            m_sut.AddMessageHandler(new GlobalMessageHandler
             {
-                sendToKinesisHasBeenCalled = true;
-                return await m_kinesisProxy.Object.PutRecordsAsync(messages, streamName);
-            }, m_settings);
+                Action = async messages =>
+                {
+                    writeHasBeenCalled = true;
+                    await m_proxy.Object.WriteAsync(messages, "stream");
+                }
+            });
             
             for (var i = 0; i < msgCount; i++) m_sut.Enqueue("a message", "channel");
 
             m_sut.WaitForIdle();
 
-            Assert.True(sendToKinesisHasBeenCalled);
+            Assert.True(writeHasBeenCalled);
             Assert.Equal(0, m_sut.GetPendingMessageCount());
             Assert.Equal(msgCount, m_sut.EnqueuedMessageCount);
             Assert.Equal(msgCount, m_sut.SentMessageCount);
@@ -48,10 +47,46 @@ namespace QueueSender.Tests
         }
 
         [Fact]
+        public void ChannelSpecificHandler()
+        {
+            var writeHasBeenCalled = false;
+            const int msgCount = 30000;
+            m_proxy.Setup(x => x.WriteAsync(It.IsAny<List<QueueMessage>>(), It.IsAny<string>()))
+                .ReturnsAsync(new List<QueueMessage>());
+
+            m_sut = new QueueMessageSender( m_settings, m_logger.Object);            
+            m_sut.AddMessageHandler(new ChannelSpecificMessageHandler
+            {
+                Action = async (messages, streamName) =>
+                {
+                    writeHasBeenCalled = true;
+                    await m_proxy.Object.WriteAsync(messages, streamName);
+                }
+            });
+            
+            m_sut.AddMessageHandler(new ChannelSpecificMessageHandler
+            {
+                Action = async (messages, streamName) => {}
+            });
+
+            for (var i = 0; i < msgCount; i++) m_sut.Enqueue("a message", "channel");
+
+            m_sut.WaitForIdle();
+
+            Assert.True(writeHasBeenCalled);
+            Assert.Equal(0, m_sut.GetPendingMessageCount());
+            Assert.Equal(msgCount, m_sut.EnqueuedMessageCount);
+            Assert.Equal(msgCount, m_sut.SentMessageCount);
+            m_sut.Dispose();
+        }
+        
+        
+
+        [Fact]
         public void LargeNumberOfMessagesWithRetries()
         {
             var messagesFailed = false;
-            var sendToKinesisHasBeenCalled = false;
+            var writeHasBeenCalled = false;
             var tempList = new List<QueueMessage>();
             const int msgCount = 30000;
             const int failedMsgCount = 500;
@@ -59,7 +94,7 @@ namespace QueueSender.Tests
             for (var i = 0; i < failedMsgCount; i++) tempList.Add(new QueueMessage {Payload = "payload"});
 
             var iteration = 0;
-            m_kinesisProxy.Setup(x => x.PutRecordsAsync(It.IsAny<List<QueueMessage>>(), It.IsAny<string>()))
+            m_proxy.Setup(x => x.WriteAsync(It.IsAny<List<QueueMessage>>(), It.IsAny<string>()))
                 .ReturnsAsync(() =>
                 {
                     if (iteration++ < retryCount)
@@ -71,149 +106,45 @@ namespace QueueSender.Tests
                     return new List<QueueMessage>();
                 });
 
-            m_sut = new QueueMessageSender(async (messages, streamName)
-                =>
+            m_sut = new QueueMessageSender(m_settings, m_logger.Object);            
+            m_sut.AddMessageHandler(new CustomMessageHandler
             {
-                sendToKinesisHasBeenCalled = true;
-                return await m_kinesisProxy.Object.PutRecordsAsync(messages, streamName);
-            }, m_settings);
-            
+                Func = async (messages, streamName) =>
+                {
+                    writeHasBeenCalled = true;
+                    return await m_proxy.Object.WriteAsync(messages, streamName);
+                }
+            });
 
             for (var i = 0; i < msgCount; i++) m_sut.Enqueue("a message", "channel");
 
             m_sut.WaitForIdle();
 
             Assert.True(messagesFailed);
-            Assert.True(sendToKinesisHasBeenCalled);
+            Assert.True(writeHasBeenCalled);
             Assert.Equal(0, m_sut.GetPendingMessageCount());
             Assert.Equal(msgCount + retryCount * failedMsgCount, m_sut.EnqueuedMessageCount);
             Assert.Equal(msgCount, m_sut.SentMessageCount);
             m_sut.Dispose();
         }
 
-        [Fact]
-        public void LogLevelFatalForHighRetries()
-        {
-            var messagesFailed = false;
-            var sendToKinesisHasBeenCalled = false;
-
-            const int msgCount = 1000;
-            const int failedMsgCount = 3;
-            const int retryCount = 15;
-
-            var records = new List<PutRecordsResultEntry>();
-
-            for (var i = 0; i < failedMsgCount; i++)
-                records.Add(new PutRecordsResultEntry
-                {
-                    ErrorMessage = "a message"
-                });
-
-            var iteration = 0;
-            m_kinesis.Setup(x => x.PutRecordsAsync(It.IsAny<PutRecordsRequest>(), It.IsAny<CancellationToken>()))
-                .ReturnsAsync(() =>
-                {
-                    if (iteration++ < retryCount)
-                    {
-                        messagesFailed = true;
-                        return new PutRecordsResponse
-                        {
-                            FailedRecordCount = 1,
-                            Records = records
-                        };
-                    }
-
-                    return new PutRecordsResponse();
-                });
-            var kinesisProxy = new KinesisProxy(m_kinesis.Object, m_logger.Object);
-
-            m_sut = new QueueMessageSender(async (messages, streamName)
-                =>
-            {
-                sendToKinesisHasBeenCalled = true;
-                return await kinesisProxy.PutRecordsAsync(messages, streamName);
-            }, m_settings);
-
-            for (var i = 0; i < msgCount; i++) m_sut.Enqueue("a message", "channel");
-
-            m_sut.WaitForIdle();
-
-            Assert.True(messagesFailed);
-            Assert.True(sendToKinesisHasBeenCalled);
-            Assert.Equal(0, m_sut.GetPendingMessageCount());
-            Assert.Equal(msgCount + retryCount * failedMsgCount, m_sut.EnqueuedMessageCount);
-            Assert.Equal(msgCount, m_sut.SentMessageCount);
-            m_sut.Dispose();
-        }
-
-        [Fact]
-        public void LogLevelWarnForLowRetries()
-        {
-            var messagesFailed = false;
-            var sendToKinesisHasBeenCalled = false;
-
-            const int msgCount = 1000;
-            const int failedMsgCount = 3;
-            const int retryCount = 9;
-
-            var records = new List<PutRecordsResultEntry>();
-
-            for (var i = 0; i < failedMsgCount; i++)
-                records.Add(new PutRecordsResultEntry
-                {
-                    ErrorMessage = "a message"
-                });
-
-            var iteration = 0;
-            m_kinesis.Setup(x => x.PutRecordsAsync(It.IsAny<PutRecordsRequest>(), It.IsAny<CancellationToken>()))
-                .ReturnsAsync(() =>
-                {
-                    if (iteration++ < retryCount)
-                    {
-                        messagesFailed = true;
-                        return new PutRecordsResponse
-                        {
-                            FailedRecordCount = 1,
-                            Records = records
-                        };
-                    }
-
-                    return new PutRecordsResponse();
-                });
-            var kinesisProxy = new KinesisProxy(m_kinesis.Object, m_logger.Object);
-
-            m_sut = new QueueMessageSender(async (messages, streamName)
-                =>
-            {
-                sendToKinesisHasBeenCalled = true;
-                return await kinesisProxy.PutRecordsAsync(messages, streamName);
-            }, m_settings);
-
-            for (var i = 0; i < msgCount; i++) m_sut.Enqueue("a message", "channel");
-
-            m_sut.WaitForIdle();
-
-            Assert.True(messagesFailed);
-            Assert.True(sendToKinesisHasBeenCalled);
-            Assert.Equal(0, m_sut.GetPendingMessageCount());
-            Assert.Equal(msgCount + retryCount * failedMsgCount, m_sut.EnqueuedMessageCount);
-            Assert.Equal(msgCount, m_sut.SentMessageCount);
-            m_sut.Dispose();
-        }
-
+        
         [Fact]
         public void MessagesAreSent()
         {
             var sendToKinesisHasBeenCalled = false;
-            m_kinesisProxy.Setup(x => x.PutRecordsAsync(It.IsAny<List<QueueMessage>>(), It.IsAny<string>()))
+            m_proxy.Setup(x => x.WriteAsync(It.IsAny<List<QueueMessage>>(), It.IsAny<string>()))
                 .ReturnsAsync(new List<QueueMessage>());
 
-            m_sut = new QueueMessageSender(async (messages, streamName)
-                =>
+            m_sut = new QueueMessageSender(m_settings, m_logger.Object);            
+            m_sut.AddMessageHandler(new GlobalMessageHandler
             {
-                sendToKinesisHasBeenCalled = true;
-                return await m_kinesisProxy.Object.PutRecordsAsync(messages, streamName);
-            }, m_settings);
+                Action = async messages =>
+                {
+                    sendToKinesisHasBeenCalled = true;
+                    await m_proxy.Object.WriteAsync(messages, "stream");
+                }
+            });
 
             m_sut.Enqueue("a message", "channel");
             m_sut.WaitForIdle();
@@ -228,15 +159,20 @@ namespace QueueSender.Tests
         {
             var sendToKinesisHasBeenCalled = false;
             const int msgCount = 30000;
-            m_kinesisProxy.Setup(x => x.PutRecordsAsync(It.IsAny<List<QueueMessage>>(), It.IsAny<string>()))
+            m_proxy.Setup(x => x.WriteAsync(It.IsAny<List<QueueMessage>>(), It.IsAny<string>()))
                 .ReturnsAsync(new List<QueueMessage>());
 
-            m_sut = new QueueMessageSender(async (messages, streamName)
-                =>
+            m_sut = new QueueMessageSender(m_settings, m_logger.Object);            
+            m_sut.AddMessageHandler(new GlobalMessageHandler()
             {
-                sendToKinesisHasBeenCalled = true;
-                return await m_kinesisProxy.Object.PutRecordsAsync(messages, streamName);
-            }, m_settings);
+                Action = async messages
+                    =>
+                {
+                    sendToKinesisHasBeenCalled = true;
+                    await m_proxy.Object.WriteAsync(messages, "stream");
+                }
+            });
+            
 
             Parallel.For(0, msgCount, (i, state) =>
             {
@@ -258,15 +194,19 @@ namespace QueueSender.Tests
         {
             var sendToKinesisHasBeenCalled = false;
             const int msgCount = 10000;
-            m_kinesisProxy.Setup(x => x.PutRecordsAsync(It.IsAny<List<QueueMessage>>(), It.IsAny<string>()))
+            m_proxy.Setup(x => x.WriteAsync(It.IsAny<List<QueueMessage>>(), It.IsAny<string>()))
                 .ReturnsAsync(new List<QueueMessage>());
 
-            m_sut = new QueueMessageSender(async (messages, streamName)
-                =>
+            m_sut = new QueueMessageSender(m_settings, m_logger.Object);            
+            m_sut.AddMessageHandler(new ChannelSpecificMessageHandler
             {
-                sendToKinesisHasBeenCalled = true;
-                return await m_kinesisProxy.Object.PutRecordsAsync(messages, streamName);
-            }, m_settings);
+                Action = async (messages, streamName)
+                    =>
+                {
+                    sendToKinesisHasBeenCalled = true;
+                    await m_proxy.Object.WriteAsync(messages, streamName);
+                }
+            });
 
             m_sut.SetShardWeight(1.5f, "kinesis");
             m_sut.SetShardWeight(2, "another_kinesis");

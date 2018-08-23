@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using NLog;
+using Microsoft.Extensions.Logging;
 
 namespace QueueSender
 {
@@ -16,7 +16,7 @@ namespace QueueSender
     public class QueueMessageSender : IQueueMessageSender
     {
         private const int MIN_THREADS = 1;
-        private readonly Func<List<QueueMessage>, string, Task<List<QueueMessage>>> m_batchAction;
+        private Func<List<QueueMessage>, string, Task<List<QueueMessage>>> m_batchAction;
         private readonly CancellationTokenSource m_cancellationTokenSource = new CancellationTokenSource();
         private readonly AutoResetEvent m_coreInUseFreedFlag;
         private readonly Dictionary<Guid, int> m_coresInUse = new Dictionary<Guid, int>();
@@ -24,8 +24,7 @@ namespace QueueSender
         private readonly object m_enqueueSync = new object();
         private readonly List<WaitHandle> m_flags = new List<WaitHandle>();
         private readonly object m_flagsSync = new object();
-        private readonly ManualResetEvent m_idle;
-        private readonly ILogger m_logger = LogManager.GetCurrentClassLogger();
+        private readonly ManualResetEvent m_idle;        
         private readonly TimeSpan m_sendLoopCycleDuration = TimeSpan.FromMilliseconds(20);
 
         private readonly ConcurrentDictionary<string, QueueShard> m_shardQueues
@@ -35,38 +34,97 @@ namespace QueueSender
         private int m_enqueuedMessageCount;
         private int m_failedMessageCount;
         private int m_sentMessageCount;
-        private QueueSenderAppSettings _settings;
+        private readonly QueueSenderAppSettings m_settings;
+        private readonly ILogger m_logger;
 
         /// <summary>
         ///     Initializes a new instance of the <see cref="QueueMessageSender" /> class.
-        /// </summary>
-        /// <param name="batchAction">
-        ///     A function that has arguments: 1) a list of messages to be sent, 2) the name of the shard.
-        ///     The function must return a list of messages that could not be sent
-        /// </param>        
-        public QueueMessageSender(
-            Func<List<QueueMessage>, string, Task<List<QueueMessage>>> batchAction, 
-            QueueSenderAppSettings settings)
-        {
-            m_batchAction = batchAction;
+        /// </summary>        
+        /// <param name="settings"></param>
+        /// <param name="logger"></param>        
+        public QueueMessageSender(QueueSenderAppSettings settings, ILogger logger)
+        {            
             m_flags.Add(m_cancellationTokenSource.Token.WaitHandle);
             m_idle = new ManualResetEvent(true);
             m_coreInUseFreedFlag = new AutoResetEvent(false);
             m_taskRunner = Task.Run(() => { TaskRunner(); }, m_cancellationTokenSource.Token);
             SentMessageCount = 0;
-            _settings = settings;
+            m_settings = settings;
+            m_logger = logger;
         }
 
-        /// <summary>
-        ///     Initializes a new instance of the <see cref="QueueMessageSender" /> class.
-        /// </summary>
-        /// <param name="batchAction"></param>
-        public QueueMessageSender(
-            Func<List<QueueMessage>, string, List<QueueMessage>> batchAction, 
-            QueueSenderAppSettings settings)
-            : this((messages, shardName) => { return Task.Run(() => batchAction(messages, shardName));}, 
-            settings)
+        public void AddMessageHandler(GlobalMessageHandler msgHandler)
         {
+            m_batchAction = async (list, s) =>
+            {
+                try
+                {
+                    await msgHandler.Action(list);
+                    return new List<QueueMessage>();
+                }
+                catch (Exception)
+                {
+                    try
+                    {
+                        await msgHandler.HandleError(list);
+                    }
+                    catch
+                    {
+                        // ignored
+                    }
+
+                    return list;
+                }                
+            };
+        }
+
+        public void AddMessageHandler(ChannelSpecificMessageHandler msgHandler)
+        {
+            m_batchAction = async (list, s) =>
+            {
+                try
+                {
+                    await msgHandler.Action(list, s);
+                    return new List<QueueMessage>();
+                }
+                catch (Exception)
+                {
+                    try
+                    {
+                       await msgHandler.HandleError(list, s);
+                    }
+                    catch
+                    {
+                        // ignored
+                    }
+                    return list;
+                }
+            };
+        }
+        
+        public void AddMessageHandler(CustomMessageHandler msgHandler)
+        {
+            m_batchAction = async (list, s) =>
+            {
+                List<QueueMessage> failedMessages =new List<QueueMessage>();
+                try
+                {
+                    failedMessages.AddRange(await msgHandler.Func(list, s));
+                    return failedMessages;
+                }
+                catch (Exception)
+                {
+                    try
+                    {                        
+                        await msgHandler.HandleError(list, s);
+                    }
+                    catch
+                    {
+                        // ignored
+                    }
+                    return list;
+                }
+            };
         }
        
         public int SentMessageCount
@@ -111,11 +169,13 @@ namespace QueueSender
                 {
                     shardQueue = new QueueShard(shardName, weight);
                     var newOrExistingQueueShard = m_shardQueues.GetOrAdd(shardName, shardQueue);
-                    if (newOrExistingQueueShard.GetHashCode() == shardQueue.GetHashCode())
-                        lock (m_flagsSync)
-                        {
-                            m_flags.Add(shardQueue.HasMessages);
-                        }
+                    if (newOrExistingQueueShard.GetHashCode() != shardQueue.GetHashCode()) 
+                        return;
+                    
+                    lock (m_flagsSync)
+                    {
+                        m_flags.Add(shardQueue.HasMessages);
+                    }
                 }
             else
                 shardQueue.Weight = weight;
@@ -206,17 +266,17 @@ namespace QueueSender
                                 Parallel.ForEach(shard.TakeBatches(), options, shardBatch =>
                                 {
                                     var failedMessages =  ExecuteBatchAction(shardBatch.Item2, shardBatch.Item1.Name);
-                                    if (_settings.StatisticsEnabled)                                     
+                                    if (m_settings.StatisticsEnabled)                                     
                                         Interlocked.Add(ref m_enqueuedMessageCount, shardBatch.Item2.Count);
                                     if (failedMessages.Count > 0)
                                     {                                        
-                                        if (_settings.StatisticsEnabled)
+                                        if (m_settings.StatisticsEnabled)
                                             Interlocked.Add(ref m_failedMessageCount, failedMessages.Count);
                                         //TODO: later, use a max retry, or a message expiration so that it can be moved to a dead-letter queue
                                         shardBatch.Item1.AddFailedRequests(failedMessages);
                                     }
                                     
-                                    if (_settings.StatisticsEnabled)
+                                    if (m_settings.StatisticsEnabled)
                                         Interlocked.Add(ref m_sentMessageCount,
                                             shardBatch.Item2.Count - failedMessages.Count);
                                 });
@@ -240,7 +300,7 @@ namespace QueueSender
                 }
                 catch (Exception ex)
                 {
-                    m_logger.Fatal(ex, "An exception occurred into QueueMessageSender.TaskRunner");
+                    m_logger.LogCritical(ex, "An exception occurred into QueueMessageSender.TaskRunner");
                 }
         }
 
@@ -291,10 +351,10 @@ namespace QueueSender
         /// <returns></returns>
         private ParallelOptions GetParallelDegree(int messageCount, QueueShard queueShard, float queueShardsTotalWeight)
         {            
-            var maxThreadCount = _settings.MaxThreadCount;
+            var maxThreadCount = m_settings.MaxThreadCount;
             //calculate the number of needed cores based on the weight of the QueueShard
             var requiredThreadCount = Math.Ceiling(queueShard.Weight / queueShardsTotalWeight) * maxThreadCount;         
-            var requestsPerThread = _settings.RequestsPerThread;
+            var requestsPerThread = m_settings.RequestsPerThread;
 
             //requestedThreadCount is a number between MinThreads and the requiredThreadCount number
             var requestedThreadCount = messageCount / requestsPerThread;
@@ -327,7 +387,7 @@ namespace QueueSender
         private int GetRemainingThreadCount(int requestedThreadCount)
         {
             int remainingThreadCount;
-            var maxThreadCount = _settings.MaxThreadCount;
+            var maxThreadCount = m_settings.MaxThreadCount;
             lock (m_coresInUseSync)
             {
                 var totalCoresInUse = m_coresInUse.Sum(x => x.Value);
@@ -447,7 +507,7 @@ namespace QueueSender
             }
         }
 
-        private static List<List<QueueMessage>> Split<QueueMessage>(List<QueueMessage> collection, int size)
+        private static List<List<QueueMessage>> Split(List<QueueMessage> collection, int size)
         {   
             if (size == 0)
                 throw new ArgumentException();
