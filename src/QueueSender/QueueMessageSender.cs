@@ -177,6 +177,12 @@ namespace QueueSender
         /// <param name="channelName">Name of the channel.</param>
         public void Enqueue(object message, string channelName)
         {
+            if (null == message)
+                throw new ArgumentException("The argument cannot be null or empty", nameof(message));
+            
+            if(string.IsNullOrEmpty(channelName))
+                throw new ArgumentException("The argument cannot be null or empty", nameof(channelName));
+            
             m_idle.Reset();
             if (!m_channels.TryGetValue(channelName, out var channel))
                 lock (m_enqueueSync)
@@ -353,6 +359,9 @@ namespace QueueSender
         /// <returns>The messages that failed to be delivered</returns>
         private List<Message> ExecuteBatchAction(List<Message> batch, string channelName)
         {
+            if(null == m_batchAction)
+                return new List<Message>();
+            
             var failedMessages = new List<Message>();
             try
             {
