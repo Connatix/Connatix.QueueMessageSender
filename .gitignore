@@ -330,3 +330,13 @@ ASALocalRun/
 
 # Local History for Visual Studio
 .localhistory/
+
+###############
+#    folder   #
+###############
+/**/DROP/
+/**/TEMP/
+/**/packages/
+/**/bin/
+/**/obj/
+_site

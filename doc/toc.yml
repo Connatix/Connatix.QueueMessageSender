@@ -1,0 +1,25 @@
+### YamlMime:TableOfContent
+- uid: QueueSender
+  name: QueueSender
+  items:
+  - uid: QueueSender.ChannelSpecificMessageHandler
+    name: ChannelSpecificMessageHandler
+  - uid: QueueSender.CustomMessageHandler
+    name: CustomMessageHandler
+  - uid: QueueSender.GlobalMessageHandler
+    name: GlobalMessageHandler
+  - uid: QueueSender.IQueueMessageSender
+    name: IQueueMessageSender
+  - uid: QueueSender.Message
+    name: Message
+  - uid: QueueSender.QueueMessageSender
+    name: QueueMessageSender
+  - uid: QueueSender.QueueSenderAppSettings
+    name: QueueSenderAppSettings
+- uid: QueueSender.Tests
+  name: QueueSender.Tests
+  items:
+  - uid: QueueSender.Tests.IProxy
+    name: IProxy
+  - uid: QueueSender.Tests.QueueMessageSenderTests
+    name: QueueMessageSenderTests

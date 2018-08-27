@@ -1,0 +1,1130 @@
+### YamlMime:ManagedReference
+items:
+- uid: QueueSender.QueueMessageSender
+  commentId: T:QueueSender.QueueMessageSender
+  id: QueueMessageSender
+  parent: QueueSender
+  children:
+  - QueueSender.QueueMessageSender.#ctor(QueueSender.QueueSenderAppSettings,Microsoft.Extensions.Logging.ILogger)
+  - QueueSender.QueueMessageSender.AddMessageHandler(QueueSender.ChannelSpecificMessageHandler)
+  - QueueSender.QueueMessageSender.AddMessageHandler(QueueSender.CustomMessageHandler)
+  - QueueSender.QueueMessageSender.AddMessageHandler(QueueSender.GlobalMessageHandler)
+  - QueueSender.QueueMessageSender.Dispose
+  - QueueSender.QueueMessageSender.Enqueue(System.Object,System.String)
+  - QueueSender.QueueMessageSender.EnqueuedMessageCount
+  - QueueSender.QueueMessageSender.FailedMessageCount
+  - QueueSender.QueueMessageSender.GetPendingMessageCount
+  - QueueSender.QueueMessageSender.SentMessageCount
+  - QueueSender.QueueMessageSender.SetChannelWeight(System.Single,System.String)
+  - QueueSender.QueueMessageSender.WaitForIdle
+  langs:
+  - csharp
+  - vb
+  name: QueueMessageSender
+  nameWithType: QueueMessageSender
+  fullName: QueueSender.QueueMessageSender
+  type: Class
+  source:
+    remote:
+      path: src/QueueSender/QueueMessageSender.cs
+      branch: master
+      repo: git@github.com:Connatix/QueueMessageSender.git
+    id: QueueMessageSender
+    path: src/QueueSender/QueueMessageSender.cs
+    startLine: 15
+  assemblies:
+  - QueueSender
+  namespace: QueueSender
+  summary: "\nThis class provides a thread-safe mechanism to send messages to a external stream writer \nsuch as AWS Kinesis or RabbitMQ\n"
+  example: []
+  syntax:
+    content: 'public class QueueMessageSender : IQueueMessageSender, IDisposable'
+    content.vb: >-
+      Public Class QueueMessageSender
+
+          Implements IQueueMessageSender, IDisposable
+  seealso:
+  - linkId: System.IDisposable
+    commentId: T:System.IDisposable
+  inheritance:
+  - System.Object
+  implements:
+  - QueueSender.IQueueMessageSender
+  - System.IDisposable
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+  modifiers.csharp:
+  - public
+  - class
+  modifiers.vb:
+  - Public
+  - Class
+- uid: QueueSender.QueueMessageSender.#ctor(QueueSender.QueueSenderAppSettings,Microsoft.Extensions.Logging.ILogger)
+  commentId: M:QueueSender.QueueMessageSender.#ctor(QueueSender.QueueSenderAppSettings,Microsoft.Extensions.Logging.ILogger)
+  id: '#ctor(QueueSender.QueueSenderAppSettings,Microsoft.Extensions.Logging.ILogger)'
+  parent: QueueSender.QueueMessageSender
+  langs:
+  - csharp
+  - vb
+  name: QueueMessageSender(QueueSenderAppSettings, ILogger)
+  nameWithType: QueueMessageSender.QueueMessageSender(QueueSenderAppSettings, ILogger)
+  fullName: QueueSender.QueueMessageSender.QueueMessageSender(QueueSender.QueueSenderAppSettings, Microsoft.Extensions.Logging.ILogger)
+  type: Constructor
+  source:
+    remote:
+      path: src/QueueSender/QueueMessageSender.cs
+      branch: master
+      repo: git@github.com:Connatix/QueueMessageSender.git
+    id: .ctor
+    path: src/QueueSender/QueueMessageSender.cs
+    startLine: 44
+  assemblies:
+  - QueueSender
+  namespace: QueueSender
+  summary: "\nInitializes a new instance of the <xref href=\"QueueSender.QueueMessageSender\" data-throw-if-not-resolved=\"false\"></xref> class.\n"
+  example: []
+  syntax:
+    content: public QueueMessageSender(QueueSenderAppSettings settings, ILogger logger)
+    parameters:
+    - id: settings
+      type: QueueSender.QueueSenderAppSettings
+      description: ''
+    - id: logger
+      type: Microsoft.Extensions.Logging.ILogger
+      description: ''
+    content.vb: Public Sub New(settings As QueueSenderAppSettings, logger As ILogger)
+  overload: QueueSender.QueueMessageSender.#ctor*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: QueueSender.QueueMessageSender.AddMessageHandler(QueueSender.GlobalMessageHandler)
+  commentId: M:QueueSender.QueueMessageSender.AddMessageHandler(QueueSender.GlobalMessageHandler)
+  id: AddMessageHandler(QueueSender.GlobalMessageHandler)
+  parent: QueueSender.QueueMessageSender
+  langs:
+  - csharp
+  - vb
+  name: AddMessageHandler(GlobalMessageHandler)
+  nameWithType: QueueMessageSender.AddMessageHandler(GlobalMessageHandler)
+  fullName: QueueSender.QueueMessageSender.AddMessageHandler(QueueSender.GlobalMessageHandler)
+  type: Method
+  source:
+    remote:
+      path: src/QueueSender/QueueMessageSender.cs
+      branch: master
+      repo: git@github.com:Connatix/QueueMessageSender.git
+    id: AddMessageHandler
+    path: src/QueueSender/QueueMessageSender.cs
+    startLine: 60
+  assemblies:
+  - QueueSender
+  namespace: QueueSender
+  summary: "\nThis function assigns a message handler for all the enqueued messages. For further details,\nsee <xref href=\"QueueSender.GlobalMessageHandler\" data-throw-if-not-resolved=\"false\"></xref> as the \n"
+  example: []
+  syntax:
+    content: public void AddMessageHandler(GlobalMessageHandler msgHandler)
+    parameters:
+    - id: msgHandler
+      type: QueueSender.GlobalMessageHandler
+      description: ''
+    content.vb: Public Sub AddMessageHandler(msgHandler As GlobalMessageHandler)
+  overload: QueueSender.QueueMessageSender.AddMessageHandler*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: QueueSender.QueueMessageSender.AddMessageHandler(QueueSender.ChannelSpecificMessageHandler)
+  commentId: M:QueueSender.QueueMessageSender.AddMessageHandler(QueueSender.ChannelSpecificMessageHandler)
+  id: AddMessageHandler(QueueSender.ChannelSpecificMessageHandler)
+  parent: QueueSender.QueueMessageSender
+  langs:
+  - csharp
+  - vb
+  name: AddMessageHandler(ChannelSpecificMessageHandler)
+  nameWithType: QueueMessageSender.AddMessageHandler(ChannelSpecificMessageHandler)
+  fullName: QueueSender.QueueMessageSender.AddMessageHandler(QueueSender.ChannelSpecificMessageHandler)
+  type: Method
+  source:
+    remote:
+      path: src/QueueSender/QueueMessageSender.cs
+      branch: master
+      repo: git@github.com:Connatix/QueueMessageSender.git
+    id: AddMessageHandler
+    path: src/QueueSender/QueueMessageSender.cs
+    startLine: 90
+  assemblies:
+  - QueueSender
+  namespace: QueueSender
+  summary: "\nThis function assigns a message handler for all the enqueued messages. For further details,\nsee <xref href=\"QueueSender.ChannelSpecificMessageHandler\" data-throw-if-not-resolved=\"false\"></xref> as the \n"
+  example: []
+  syntax:
+    content: public void AddMessageHandler(ChannelSpecificMessageHandler msgHandler)
+    parameters:
+    - id: msgHandler
+      type: QueueSender.ChannelSpecificMessageHandler
+      description: ''
+    content.vb: Public Sub AddMessageHandler(msgHandler As ChannelSpecificMessageHandler)
+  overload: QueueSender.QueueMessageSender.AddMessageHandler*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: QueueSender.QueueMessageSender.AddMessageHandler(QueueSender.CustomMessageHandler)
+  commentId: M:QueueSender.QueueMessageSender.AddMessageHandler(QueueSender.CustomMessageHandler)
+  id: AddMessageHandler(QueueSender.CustomMessageHandler)
+  parent: QueueSender.QueueMessageSender
+  langs:
+  - csharp
+  - vb
+  name: AddMessageHandler(CustomMessageHandler)
+  nameWithType: QueueMessageSender.AddMessageHandler(CustomMessageHandler)
+  fullName: QueueSender.QueueMessageSender.AddMessageHandler(QueueSender.CustomMessageHandler)
+  type: Method
+  source:
+    remote:
+      path: src/QueueSender/QueueMessageSender.cs
+      branch: master
+      repo: git@github.com:Connatix/QueueMessageSender.git
+    id: AddMessageHandler
+    path: src/QueueSender/QueueMessageSender.cs
+    startLine: 119
+  assemblies:
+  - QueueSender
+  namespace: QueueSender
+  summary: "\nThis function assigns a message handler for all the enqueued messages. For further details,\nsee <xref href=\"QueueSender.CustomMessageHandler\" data-throw-if-not-resolved=\"false\"></xref> as the \n"
+  example: []
+  syntax:
+    content: public void AddMessageHandler(CustomMessageHandler msgHandler)
+    parameters:
+    - id: msgHandler
+      type: QueueSender.CustomMessageHandler
+      description: ''
+    content.vb: Public Sub AddMessageHandler(msgHandler As CustomMessageHandler)
+  overload: QueueSender.QueueMessageSender.AddMessageHandler*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: QueueSender.QueueMessageSender.SentMessageCount
+  commentId: P:QueueSender.QueueMessageSender.SentMessageCount
+  id: SentMessageCount
+  parent: QueueSender.QueueMessageSender
+  langs:
+  - csharp
+  - vb
+  name: SentMessageCount
+  nameWithType: QueueMessageSender.SentMessageCount
+  fullName: QueueSender.QueueMessageSender.SentMessageCount
+  type: Property
+  source:
+    remote:
+      path: src/QueueSender/QueueMessageSender.cs
+      branch: master
+      repo: git@github.com:Connatix/QueueMessageSender.git
+    id: SentMessageCount
+    path: src/QueueSender/QueueMessageSender.cs
+    startLine: 150
+  assemblies:
+  - QueueSender
+  namespace: QueueSender
+  summary: "\nThis field keeps the count of all messages that were successfully sent\n"
+  remarks: "\nIf the configuration flag StatisticsEnabled is set to false then SentMessageCount value is 0\n"
+  example: []
+  syntax:
+    content: public int SentMessageCount { get; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public ReadOnly Property SentMessageCount As Integer
+  overload: QueueSender.QueueMessageSender.SentMessageCount*
+  implements:
+  - QueueSender.IQueueMessageSender.SentMessageCount
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: QueueSender.QueueMessageSender.EnqueuedMessageCount
+  commentId: P:QueueSender.QueueMessageSender.EnqueuedMessageCount
+  id: EnqueuedMessageCount
+  parent: QueueSender.QueueMessageSender
+  langs:
+  - csharp
+  - vb
+  name: EnqueuedMessageCount
+  nameWithType: QueueMessageSender.EnqueuedMessageCount
+  fullName: QueueSender.QueueMessageSender.EnqueuedMessageCount
+  type: Property
+  source:
+    remote:
+      path: src/QueueSender/QueueMessageSender.cs
+      branch: master
+      repo: git@github.com:Connatix/QueueMessageSender.git
+    id: EnqueuedMessageCount
+    path: src/QueueSender/QueueMessageSender.cs
+    startLine: 162
+  assemblies:
+  - QueueSender
+  namespace: QueueSender
+  summary: "\nThis field keeps the count of the enqueued messages\n"
+  remarks: "\nIf the configuration flag StatisticsEnabled is set to false then SentMessageCount value is 0\n"
+  example: []
+  syntax:
+    content: public int EnqueuedMessageCount { get; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public ReadOnly Property EnqueuedMessageCount As Integer
+  overload: QueueSender.QueueMessageSender.EnqueuedMessageCount*
+  implements:
+  - QueueSender.IQueueMessageSender.EnqueuedMessageCount
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: QueueSender.QueueMessageSender.FailedMessageCount
+  commentId: P:QueueSender.QueueMessageSender.FailedMessageCount
+  id: FailedMessageCount
+  parent: QueueSender.QueueMessageSender
+  langs:
+  - csharp
+  - vb
+  name: FailedMessageCount
+  nameWithType: QueueMessageSender.FailedMessageCount
+  fullName: QueueSender.QueueMessageSender.FailedMessageCount
+  type: Property
+  source:
+    remote:
+      path: src/QueueSender/QueueMessageSender.cs
+      branch: master
+      repo: git@github.com:Connatix/QueueMessageSender.git
+    id: FailedMessageCount
+    path: src/QueueSender/QueueMessageSender.cs
+    startLine: 170
+  assemblies:
+  - QueueSender
+  namespace: QueueSender
+  summary: "\nThis field keeps the count of all messages that failed to be sent\n"
+  remarks: "\nIf the configuration flag StatisticsEnabled is set to false then SentMessageCount value is 0\n"
+  example: []
+  syntax:
+    content: public int FailedMessageCount { get; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public ReadOnly Property FailedMessageCount As Integer
+  overload: QueueSender.QueueMessageSender.FailedMessageCount*
+  implements:
+  - QueueSender.IQueueMessageSender.FailedMessageCount
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: QueueSender.QueueMessageSender.Enqueue(System.Object,System.String)
+  commentId: M:QueueSender.QueueMessageSender.Enqueue(System.Object,System.String)
+  id: Enqueue(System.Object,System.String)
+  parent: QueueSender.QueueMessageSender
+  langs:
+  - csharp
+  - vb
+  name: Enqueue(Object, String)
+  nameWithType: QueueMessageSender.Enqueue(Object, String)
+  fullName: QueueSender.QueueMessageSender.Enqueue(System.Object, System.String)
+  type: Method
+  source:
+    remote:
+      path: src/QueueSender/QueueMessageSender.cs
+      branch: master
+      repo: git@github.com:Connatix/QueueMessageSender.git
+    id: Enqueue
+    path: src/QueueSender/QueueMessageSender.cs
+    startLine: 177
+  assemblies:
+  - QueueSender
+  namespace: QueueSender
+  summary: "\nEnqueues a message to be delivered to a named writer stream\n"
+  example: []
+  syntax:
+    content: public void Enqueue(object message, string channelName)
+    parameters:
+    - id: message
+      type: System.Object
+      description: The payload.
+    - id: channelName
+      type: System.String
+      description: Name of the channel.
+    content.vb: Public Sub Enqueue(message As Object, channelName As String)
+  overload: QueueSender.QueueMessageSender.Enqueue*
+  implements:
+  - QueueSender.IQueueMessageSender.Enqueue(System.Object,System.String)
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: QueueSender.QueueMessageSender.SetChannelWeight(System.Single,System.String)
+  commentId: M:QueueSender.QueueMessageSender.SetChannelWeight(System.Single,System.String)
+  id: SetChannelWeight(System.Single,System.String)
+  parent: QueueSender.QueueMessageSender
+  langs:
+  - csharp
+  - vb
+  name: SetChannelWeight(Single, String)
+  nameWithType: QueueMessageSender.SetChannelWeight(Single, String)
+  fullName: QueueSender.QueueMessageSender.SetChannelWeight(System.Single, System.String)
+  type: Method
+  source:
+    remote:
+      path: src/QueueSender/QueueMessageSender.cs
+      branch: master
+      repo: git@github.com:Connatix/QueueMessageSender.git
+    id: SetChannelWeight
+    path: src/QueueSender/QueueMessageSender.cs
+    startLine: 210
+  assemblies:
+  - QueueSender
+  namespace: QueueSender
+  summary: "\nEach new channel has a default weight of 1. If you need to increase or decrease the threads allocated\nto a specific channel, use this function. The higher the number the more resources are dedicated to\na channel. Bear in mind that the MaxThreadCount setting (default is 2) is still considered. \n"
+  example: []
+  syntax:
+    content: public void SetChannelWeight(float weight, string channelName)
+    parameters:
+    - id: weight
+      type: System.Single
+      description: ''
+    - id: channelName
+      type: System.String
+      description: ''
+    content.vb: Public Sub SetChannelWeight(weight As Single, channelName As String)
+  overload: QueueSender.QueueMessageSender.SetChannelWeight*
+  implements:
+  - QueueSender.IQueueMessageSender.SetChannelWeight(System.Single,System.String)
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: QueueSender.QueueMessageSender.WaitForIdle
+  commentId: M:QueueSender.QueueMessageSender.WaitForIdle
+  id: WaitForIdle
+  parent: QueueSender.QueueMessageSender
+  langs:
+  - csharp
+  - vb
+  name: WaitForIdle()
+  nameWithType: QueueMessageSender.WaitForIdle()
+  fullName: QueueSender.QueueMessageSender.WaitForIdle()
+  type: Method
+  source:
+    remote:
+      path: src/QueueSender/QueueMessageSender.cs
+      branch: master
+      repo: git@github.com:Connatix/QueueMessageSender.git
+    id: WaitForIdle
+    path: src/QueueSender/QueueMessageSender.cs
+    startLine: 232
+  assemblies:
+  - QueueSender
+  namespace: QueueSender
+  summary: "\nWaits for all the messages to be sent by the message handler\n"
+  example: []
+  syntax:
+    content: public void WaitForIdle()
+    content.vb: Public Sub WaitForIdle
+  overload: QueueSender.QueueMessageSender.WaitForIdle*
+  implements:
+  - QueueSender.IQueueMessageSender.WaitForIdle
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: QueueSender.QueueMessageSender.Dispose
+  commentId: M:QueueSender.QueueMessageSender.Dispose
+  id: Dispose
+  parent: QueueSender.QueueMessageSender
+  langs:
+  - csharp
+  - vb
+  name: Dispose()
+  nameWithType: QueueMessageSender.Dispose()
+  fullName: QueueSender.QueueMessageSender.Dispose()
+  type: Method
+  source:
+    remote:
+      path: src/QueueSender/QueueMessageSender.cs
+      branch: master
+      repo: git@github.com:Connatix/QueueMessageSender.git
+    id: Dispose
+    path: src/QueueSender/QueueMessageSender.cs
+    startLine: 247
+  assemblies:
+  - QueueSender
+  namespace: QueueSender
+  summary: "\nPerforms application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.\n"
+  example: []
+  syntax:
+    content: public void Dispose()
+    content.vb: Public Sub Dispose
+  overload: QueueSender.QueueMessageSender.Dispose*
+  implements:
+  - System.IDisposable.Dispose
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: QueueSender.QueueMessageSender.GetPendingMessageCount
+  commentId: M:QueueSender.QueueMessageSender.GetPendingMessageCount
+  id: GetPendingMessageCount
+  parent: QueueSender.QueueMessageSender
+  langs:
+  - csharp
+  - vb
+  name: GetPendingMessageCount()
+  nameWithType: QueueMessageSender.GetPendingMessageCount()
+  fullName: QueueSender.QueueMessageSender.GetPendingMessageCount()
+  type: Method
+  source:
+    remote:
+      path: src/QueueSender/QueueMessageSender.cs
+      branch: master
+      repo: git@github.com:Connatix/QueueMessageSender.git
+    id: GetPendingMessageCount
+    path: src/QueueSender/QueueMessageSender.cs
+    startLine: 461
+  assemblies:
+  - QueueSender
+  namespace: QueueSender
+  summary: "\nGets the queue size all channels\n"
+  example: []
+  syntax:
+    content: public int GetPendingMessageCount()
+    return:
+      type: System.Int32
+      description: ''
+    content.vb: Public Function GetPendingMessageCount As Integer
+  overload: QueueSender.QueueMessageSender.GetPendingMessageCount*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+references:
+- uid: System.IDisposable
+  commentId: T:System.IDisposable
+  parent: System
+  isExternal: true
+  name: IDisposable
+  nameWithType: IDisposable
+  fullName: System.IDisposable
+- uid: QueueSender
+  commentId: N:QueueSender
+  name: QueueSender
+  nameWithType: QueueSender
+  fullName: QueueSender
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: QueueSender.IQueueMessageSender
+  commentId: T:QueueSender.IQueueMessageSender
+  parent: QueueSender
+  name: IQueueMessageSender
+  nameWithType: IQueueMessageSender
+  fullName: QueueSender.IQueueMessageSender
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object)
+  nameWithType: Object.Equals(Object)
+  fullName: System.Object.Equals(System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object, Object)
+  nameWithType: Object.Equals(Object, Object)
+  fullName: System.Object.Equals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  name: GetHashCode()
+  nameWithType: Object.GetHashCode()
+  fullName: System.Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  name: GetType()
+  nameWithType: Object.GetType()
+  fullName: System.Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  name: MemberwiseClone()
+  nameWithType: Object.MemberwiseClone()
+  fullName: System.Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: ReferenceEquals(Object, Object)
+  nameWithType: Object.ReferenceEquals(Object, Object)
+  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  name: ToString()
+  nameWithType: Object.ToString()
+  fullName: System.Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: QueueSender.QueueMessageSender
+  commentId: T:QueueSender.QueueMessageSender
+  name: QueueMessageSender
+  nameWithType: QueueMessageSender
+  fullName: QueueSender.QueueMessageSender
+- uid: QueueSender.QueueMessageSender.#ctor*
+  commentId: Overload:QueueSender.QueueMessageSender.#ctor
+  name: QueueMessageSender
+  nameWithType: QueueMessageSender.QueueMessageSender
+  fullName: QueueSender.QueueMessageSender.QueueMessageSender
+- uid: QueueSender.QueueSenderAppSettings
+  commentId: T:QueueSender.QueueSenderAppSettings
+  parent: QueueSender
+  name: QueueSenderAppSettings
+  nameWithType: QueueSenderAppSettings
+  fullName: QueueSender.QueueSenderAppSettings
+- uid: Microsoft.Extensions.Logging.ILogger
+  commentId: T:Microsoft.Extensions.Logging.ILogger
+  parent: Microsoft.Extensions.Logging
+  isExternal: true
+  name: ILogger
+  nameWithType: ILogger
+  fullName: Microsoft.Extensions.Logging.ILogger
+- uid: Microsoft.Extensions.Logging
+  commentId: N:Microsoft.Extensions.Logging
+  isExternal: true
+  name: Microsoft.Extensions.Logging
+  nameWithType: Microsoft.Extensions.Logging
+  fullName: Microsoft.Extensions.Logging
+- uid: QueueSender.GlobalMessageHandler
+  commentId: T:QueueSender.GlobalMessageHandler
+  parent: QueueSender
+  name: GlobalMessageHandler
+  nameWithType: GlobalMessageHandler
+  fullName: QueueSender.GlobalMessageHandler
+- uid: QueueSender.QueueMessageSender.AddMessageHandler*
+  commentId: Overload:QueueSender.QueueMessageSender.AddMessageHandler
+  name: AddMessageHandler
+  nameWithType: QueueMessageSender.AddMessageHandler
+  fullName: QueueSender.QueueMessageSender.AddMessageHandler
+- uid: QueueSender.ChannelSpecificMessageHandler
+  commentId: T:QueueSender.ChannelSpecificMessageHandler
+  parent: QueueSender
+  name: ChannelSpecificMessageHandler
+  nameWithType: ChannelSpecificMessageHandler
+  fullName: QueueSender.ChannelSpecificMessageHandler
+- uid: QueueSender.CustomMessageHandler
+  commentId: T:QueueSender.CustomMessageHandler
+  parent: QueueSender
+  name: CustomMessageHandler
+  nameWithType: CustomMessageHandler
+  fullName: QueueSender.CustomMessageHandler
+- uid: QueueSender.QueueMessageSender.SentMessageCount*
+  commentId: Overload:QueueSender.QueueMessageSender.SentMessageCount
+  name: SentMessageCount
+  nameWithType: QueueMessageSender.SentMessageCount
+  fullName: QueueSender.QueueMessageSender.SentMessageCount
+- uid: QueueSender.IQueueMessageSender.SentMessageCount
+  commentId: P:QueueSender.IQueueMessageSender.SentMessageCount
+  parent: QueueSender.IQueueMessageSender
+  name: SentMessageCount
+  nameWithType: IQueueMessageSender.SentMessageCount
+  fullName: QueueSender.IQueueMessageSender.SentMessageCount
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  name: Int32
+  nameWithType: Int32
+  fullName: System.Int32
+- uid: QueueSender.QueueMessageSender.EnqueuedMessageCount*
+  commentId: Overload:QueueSender.QueueMessageSender.EnqueuedMessageCount
+  name: EnqueuedMessageCount
+  nameWithType: QueueMessageSender.EnqueuedMessageCount
+  fullName: QueueSender.QueueMessageSender.EnqueuedMessageCount
+- uid: QueueSender.IQueueMessageSender.EnqueuedMessageCount
+  commentId: P:QueueSender.IQueueMessageSender.EnqueuedMessageCount
+  parent: QueueSender.IQueueMessageSender
+  name: EnqueuedMessageCount
+  nameWithType: IQueueMessageSender.EnqueuedMessageCount
+  fullName: QueueSender.IQueueMessageSender.EnqueuedMessageCount
+- uid: QueueSender.QueueMessageSender.FailedMessageCount*
+  commentId: Overload:QueueSender.QueueMessageSender.FailedMessageCount
+  name: FailedMessageCount
+  nameWithType: QueueMessageSender.FailedMessageCount
+  fullName: QueueSender.QueueMessageSender.FailedMessageCount
+- uid: QueueSender.IQueueMessageSender.FailedMessageCount
+  commentId: P:QueueSender.IQueueMessageSender.FailedMessageCount
+  parent: QueueSender.IQueueMessageSender
+  name: FailedMessageCount
+  nameWithType: IQueueMessageSender.FailedMessageCount
+  fullName: QueueSender.IQueueMessageSender.FailedMessageCount
+- uid: QueueSender.QueueMessageSender.Enqueue*
+  commentId: Overload:QueueSender.QueueMessageSender.Enqueue
+  name: Enqueue
+  nameWithType: QueueMessageSender.Enqueue
+  fullName: QueueSender.QueueMessageSender.Enqueue
+- uid: QueueSender.IQueueMessageSender.Enqueue(System.Object,System.String)
+  commentId: M:QueueSender.IQueueMessageSender.Enqueue(System.Object,System.String)
+  parent: QueueSender.IQueueMessageSender
+  isExternal: true
+  name: Enqueue(Object, String)
+  nameWithType: IQueueMessageSender.Enqueue(Object, String)
+  fullName: QueueSender.IQueueMessageSender.Enqueue(System.Object, System.String)
+  spec.csharp:
+  - uid: QueueSender.IQueueMessageSender.Enqueue(System.Object,System.String)
+    name: Enqueue
+    nameWithType: IQueueMessageSender.Enqueue
+    fullName: QueueSender.IQueueMessageSender.Enqueue
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: QueueSender.IQueueMessageSender.Enqueue(System.Object,System.String)
+    name: Enqueue
+    nameWithType: IQueueMessageSender.Enqueue
+    fullName: QueueSender.IQueueMessageSender.Enqueue
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  name: String
+  nameWithType: String
+  fullName: System.String
+- uid: QueueSender.QueueMessageSender.SetChannelWeight*
+  commentId: Overload:QueueSender.QueueMessageSender.SetChannelWeight
+  name: SetChannelWeight
+  nameWithType: QueueMessageSender.SetChannelWeight
+  fullName: QueueSender.QueueMessageSender.SetChannelWeight
+- uid: QueueSender.IQueueMessageSender.SetChannelWeight(System.Single,System.String)
+  commentId: M:QueueSender.IQueueMessageSender.SetChannelWeight(System.Single,System.String)
+  parent: QueueSender.IQueueMessageSender
+  isExternal: true
+  name: SetChannelWeight(Single, String)
+  nameWithType: IQueueMessageSender.SetChannelWeight(Single, String)
+  fullName: QueueSender.IQueueMessageSender.SetChannelWeight(System.Single, System.String)
+  spec.csharp:
+  - uid: QueueSender.IQueueMessageSender.SetChannelWeight(System.Single,System.String)
+    name: SetChannelWeight
+    nameWithType: IQueueMessageSender.SetChannelWeight
+    fullName: QueueSender.IQueueMessageSender.SetChannelWeight
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Single
+    name: Single
+    nameWithType: Single
+    fullName: System.Single
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: QueueSender.IQueueMessageSender.SetChannelWeight(System.Single,System.String)
+    name: SetChannelWeight
+    nameWithType: IQueueMessageSender.SetChannelWeight
+    fullName: QueueSender.IQueueMessageSender.SetChannelWeight
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Single
+    name: Single
+    nameWithType: Single
+    fullName: System.Single
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Single
+  commentId: T:System.Single
+  parent: System
+  isExternal: true
+  name: Single
+  nameWithType: Single
+  fullName: System.Single
+- uid: QueueSender.QueueMessageSender.WaitForIdle*
+  commentId: Overload:QueueSender.QueueMessageSender.WaitForIdle
+  name: WaitForIdle
+  nameWithType: QueueMessageSender.WaitForIdle
+  fullName: QueueSender.QueueMessageSender.WaitForIdle
+- uid: QueueSender.IQueueMessageSender.WaitForIdle
+  commentId: M:QueueSender.IQueueMessageSender.WaitForIdle
+  parent: QueueSender.IQueueMessageSender
+  name: WaitForIdle()
+  nameWithType: IQueueMessageSender.WaitForIdle()
+  fullName: QueueSender.IQueueMessageSender.WaitForIdle()
+  spec.csharp:
+  - uid: QueueSender.IQueueMessageSender.WaitForIdle
+    name: WaitForIdle
+    nameWithType: IQueueMessageSender.WaitForIdle
+    fullName: QueueSender.IQueueMessageSender.WaitForIdle
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: QueueSender.IQueueMessageSender.WaitForIdle
+    name: WaitForIdle
+    nameWithType: IQueueMessageSender.WaitForIdle
+    fullName: QueueSender.IQueueMessageSender.WaitForIdle
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: QueueSender.QueueMessageSender.Dispose*
+  commentId: Overload:QueueSender.QueueMessageSender.Dispose
+  name: Dispose
+  nameWithType: QueueMessageSender.Dispose
+  fullName: QueueSender.QueueMessageSender.Dispose
+- uid: System.IDisposable.Dispose
+  commentId: M:System.IDisposable.Dispose
+  parent: System.IDisposable
+  isExternal: true
+  name: Dispose()
+  nameWithType: IDisposable.Dispose()
+  fullName: System.IDisposable.Dispose()
+  spec.csharp:
+  - uid: System.IDisposable.Dispose
+    name: Dispose
+    nameWithType: IDisposable.Dispose
+    fullName: System.IDisposable.Dispose
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.IDisposable.Dispose
+    name: Dispose
+    nameWithType: IDisposable.Dispose
+    fullName: System.IDisposable.Dispose
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: QueueSender.QueueMessageSender.GetPendingMessageCount*
+  commentId: Overload:QueueSender.QueueMessageSender.GetPendingMessageCount
+  name: GetPendingMessageCount
+  nameWithType: QueueMessageSender.GetPendingMessageCount
+  fullName: QueueSender.QueueMessageSender.GetPendingMessageCount

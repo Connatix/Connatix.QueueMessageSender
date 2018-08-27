@@ -1,0 +1,487 @@
+### YamlMime:ManagedReference
+items:
+- uid: QueueSender.QueueSenderAppSettings
+  commentId: T:QueueSender.QueueSenderAppSettings
+  id: QueueSenderAppSettings
+  parent: QueueSender
+  children:
+  - QueueSender.QueueSenderAppSettings.MaxThreadCount
+  - QueueSender.QueueSenderAppSettings.RequestsPerThread
+  - QueueSender.QueueSenderAppSettings.StatisticsEnabled
+  langs:
+  - csharp
+  - vb
+  name: QueueSenderAppSettings
+  nameWithType: QueueSenderAppSettings
+  fullName: QueueSender.QueueSenderAppSettings
+  type: Class
+  source:
+    remote:
+      path: src/QueueSender/QueueSenderAppSettings.cs
+      branch: master
+      repo: git@github.com:Connatix/QueueMessageSender.git
+    id: QueueSenderAppSettings
+    path: src/QueueSender/QueueSenderAppSettings.cs
+    startLine: 5
+  assemblies:
+  - QueueSender
+  namespace: QueueSender
+  summary: "\nThe configuration class for the QueueMessageSender.  \n"
+  example: []
+  syntax:
+    content: public class QueueSenderAppSettings
+    content.vb: Public Class QueueSenderAppSettings
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+  modifiers.csharp:
+  - public
+  - class
+  modifiers.vb:
+  - Public
+  - Class
+- uid: QueueSender.QueueSenderAppSettings.StatisticsEnabled
+  commentId: P:QueueSender.QueueSenderAppSettings.StatisticsEnabled
+  id: StatisticsEnabled
+  parent: QueueSender.QueueSenderAppSettings
+  langs:
+  - csharp
+  - vb
+  name: StatisticsEnabled
+  nameWithType: QueueSenderAppSettings.StatisticsEnabled
+  fullName: QueueSender.QueueSenderAppSettings.StatisticsEnabled
+  type: Property
+  source:
+    remote:
+      path: src/QueueSender/QueueSenderAppSettings.cs
+      branch: master
+      repo: git@github.com:Connatix/QueueMessageSender.git
+    id: StatisticsEnabled
+    path: src/QueueSender/QueueSenderAppSettings.cs
+    startLine: 10
+  assemblies:
+  - QueueSender
+  namespace: QueueSender
+  summary: "\nIf enabled then the QueueMessageSender records usage statistics\n"
+  example: []
+  syntax:
+    content: public bool StatisticsEnabled { get; set; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public Property StatisticsEnabled As Boolean
+  overload: QueueSender.QueueSenderAppSettings.StatisticsEnabled*
+  modifiers.csharp:
+  - public
+  - get
+  - set
+  modifiers.vb:
+  - Public
+- uid: QueueSender.QueueSenderAppSettings.MaxThreadCount
+  commentId: P:QueueSender.QueueSenderAppSettings.MaxThreadCount
+  id: MaxThreadCount
+  parent: QueueSender.QueueSenderAppSettings
+  langs:
+  - csharp
+  - vb
+  name: MaxThreadCount
+  nameWithType: QueueSenderAppSettings.MaxThreadCount
+  fullName: QueueSender.QueueSenderAppSettings.MaxThreadCount
+  type: Property
+  source:
+    remote:
+      path: src/QueueSender/QueueSenderAppSettings.cs
+      branch: master
+      repo: git@github.com:Connatix/QueueMessageSender.git
+    id: MaxThreadCount
+    path: src/QueueSender/QueueSenderAppSettings.cs
+    startLine: 14
+  assemblies:
+  - QueueSender
+  namespace: QueueSender
+  summary: "\nThe max number of threads to be used by this component\n"
+  example: []
+  syntax:
+    content: public int MaxThreadCount { get; set; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public Property MaxThreadCount As Integer
+  overload: QueueSender.QueueSenderAppSettings.MaxThreadCount*
+  modifiers.csharp:
+  - public
+  - get
+  - set
+  modifiers.vb:
+  - Public
+- uid: QueueSender.QueueSenderAppSettings.RequestsPerThread
+  commentId: P:QueueSender.QueueSenderAppSettings.RequestsPerThread
+  id: RequestsPerThread
+  parent: QueueSender.QueueSenderAppSettings
+  langs:
+  - csharp
+  - vb
+  name: RequestsPerThread
+  nameWithType: QueueSenderAppSettings.RequestsPerThread
+  fullName: QueueSender.QueueSenderAppSettings.RequestsPerThread
+  type: Property
+  source:
+    remote:
+      path: src/QueueSender/QueueSenderAppSettings.cs
+      branch: master
+      repo: git@github.com:Connatix/QueueMessageSender.git
+    id: RequestsPerThread
+    path: src/QueueSender/QueueSenderAppSettings.cs
+    startLine: 18
+  assemblies:
+  - QueueSender
+  namespace: QueueSender
+  summary: "\nMax number of messages to be handled by a single thread. New messages will be directed to new threads.\n"
+  example: []
+  syntax:
+    content: public int RequestsPerThread { get; set; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public Property RequestsPerThread As Integer
+  overload: QueueSender.QueueSenderAppSettings.RequestsPerThread*
+  modifiers.csharp:
+  - public
+  - get
+  - set
+  modifiers.vb:
+  - Public
+references:
+- uid: QueueSender
+  commentId: N:QueueSender
+  name: QueueSender
+  nameWithType: QueueSender
+  fullName: QueueSender
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object)
+  nameWithType: Object.Equals(Object)
+  fullName: System.Object.Equals(System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object, Object)
+  nameWithType: Object.Equals(Object, Object)
+  fullName: System.Object.Equals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  name: GetHashCode()
+  nameWithType: Object.GetHashCode()
+  fullName: System.Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  name: GetType()
+  nameWithType: Object.GetType()
+  fullName: System.Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  name: MemberwiseClone()
+  nameWithType: Object.MemberwiseClone()
+  fullName: System.Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: ReferenceEquals(Object, Object)
+  nameWithType: Object.ReferenceEquals(Object, Object)
+  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  name: ToString()
+  nameWithType: Object.ToString()
+  fullName: System.Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: QueueSender.QueueSenderAppSettings.StatisticsEnabled*
+  commentId: Overload:QueueSender.QueueSenderAppSettings.StatisticsEnabled
+  name: StatisticsEnabled
+  nameWithType: QueueSenderAppSettings.StatisticsEnabled
+  fullName: QueueSender.QueueSenderAppSettings.StatisticsEnabled
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  name: Boolean
+  nameWithType: Boolean
+  fullName: System.Boolean
+- uid: QueueSender.QueueSenderAppSettings.MaxThreadCount*
+  commentId: Overload:QueueSender.QueueSenderAppSettings.MaxThreadCount
+  name: MaxThreadCount
+  nameWithType: QueueSenderAppSettings.MaxThreadCount
+  fullName: QueueSender.QueueSenderAppSettings.MaxThreadCount
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  name: Int32
+  nameWithType: Int32
+  fullName: System.Int32
+- uid: QueueSender.QueueSenderAppSettings.RequestsPerThread*
+  commentId: Overload:QueueSender.QueueSenderAppSettings.RequestsPerThread
+  name: RequestsPerThread
+  nameWithType: QueueSenderAppSettings.RequestsPerThread
+  fullName: QueueSender.QueueSenderAppSettings.RequestsPerThread

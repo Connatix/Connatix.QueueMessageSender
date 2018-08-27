@@ -55,7 +55,7 @@ namespace QueueSender
         
         /// <summary>
         ///     This function assigns a message handler for all the enqueued messages. For further details,
-        ///     see <see cref="GlobalMessageHandler" /> as the 
+        ///     see <see cref="GlobalMessageHandler" /> 
         /// </summary>
         /// <param name="msgHandler"></param>
         public void AddMessageHandler(GlobalMessageHandler msgHandler)
@@ -85,7 +85,7 @@ namespace QueueSender
 
         /// <summary>
         ///     This function assigns a message handler for all the enqueued messages. For further details,
-        ///     see <see cref="ChannelSpecificMessageHandler" /> as the 
+        ///     see <see cref="ChannelSpecificMessageHandler" />
         /// </summary>
         /// <param name="msgHandler"></param>
         public void AddMessageHandler(ChannelSpecificMessageHandler msgHandler)
@@ -114,7 +114,7 @@ namespace QueueSender
 
         /// <summary>
         ///     This function assigns a message handler for all the enqueued messages. For further details,
-        ///     see <see cref="CustomMessageHandler" /> as the 
+        ///     see <see cref="CustomMessageHandler" /> 
         /// </summary>
         /// <param name="msgHandler"></param>
         public void AddMessageHandler(CustomMessageHandler msgHandler)
@@ -228,7 +228,7 @@ namespace QueueSender
         }
 
         /// <summary>
-        ///     Waits for completing all the messages to be processed
+        ///     Waits for all the messages to be sent by the message handler
         /// </summary>
         public void WaitForIdle()
         {

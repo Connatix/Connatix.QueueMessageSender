@@ -1,0 +1,618 @@
+### YamlMime:ManagedReference
+items:
+- uid: QueueSender.Tests.QueueMessageSenderTests
+  commentId: T:QueueSender.Tests.QueueMessageSenderTests
+  id: QueueMessageSenderTests
+  parent: QueueSender.Tests
+  children:
+  - QueueSender.Tests.QueueMessageSenderTests.ChannelSpecificHandler
+  - QueueSender.Tests.QueueMessageSenderTests.LargeNumberOfMessagesAreHandled
+  - QueueSender.Tests.QueueMessageSenderTests.LargeNumberOfMessagesWithRetries
+  - QueueSender.Tests.QueueMessageSenderTests.MessagesAreSent
+  - QueueSender.Tests.QueueMessageSenderTests.MultipleThreadsToEnqueue
+  - QueueSender.Tests.QueueMessageSenderTests.TwoChannelsDifferentWeightManyMessages
+  langs:
+  - csharp
+  - vb
+  name: QueueMessageSenderTests
+  nameWithType: QueueMessageSenderTests
+  fullName: QueueSender.Tests.QueueMessageSenderTests
+  type: Class
+  source:
+    remote:
+      path: src/QueueSender.Tests/QueueMessageSenderTests.cs
+      branch: master
+      repo: git@github.com:Connatix/QueueMessageSender.git
+    id: QueueMessageSenderTests
+    path: src/QueueSender.Tests/QueueMessageSenderTests.cs
+    startLine: 8
+  assemblies:
+  - QueueSender.Tests
+  namespace: QueueSender.Tests
+  syntax:
+    content: public class QueueMessageSenderTests
+    content.vb: Public Class QueueMessageSenderTests
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+  modifiers.csharp:
+  - public
+  - class
+  modifiers.vb:
+  - Public
+  - Class
+- uid: QueueSender.Tests.QueueMessageSenderTests.LargeNumberOfMessagesAreHandled
+  commentId: M:QueueSender.Tests.QueueMessageSenderTests.LargeNumberOfMessagesAreHandled
+  id: LargeNumberOfMessagesAreHandled
+  parent: QueueSender.Tests.QueueMessageSenderTests
+  langs:
+  - csharp
+  - vb
+  name: LargeNumberOfMessagesAreHandled()
+  nameWithType: QueueMessageSenderTests.LargeNumberOfMessagesAreHandled()
+  fullName: QueueSender.Tests.QueueMessageSenderTests.LargeNumberOfMessagesAreHandled()
+  type: Method
+  source:
+    remote:
+      path: src/QueueSender.Tests/QueueMessageSenderTests.cs
+      branch: master
+      repo: git@github.com:Connatix/QueueMessageSender.git
+    id: LargeNumberOfMessagesAreHandled
+    path: src/QueueSender.Tests/QueueMessageSenderTests.cs
+    startLine: 19
+  assemblies:
+  - QueueSender.Tests
+  namespace: QueueSender.Tests
+  syntax:
+    content: >-
+      [Fact]
+
+      public void LargeNumberOfMessagesAreHandled()
+    content.vb: >-
+      <Fact>
+
+      Public Sub LargeNumberOfMessagesAreHandled
+  overload: QueueSender.Tests.QueueMessageSenderTests.LargeNumberOfMessagesAreHandled*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: QueueSender.Tests.QueueMessageSenderTests.ChannelSpecificHandler
+  commentId: M:QueueSender.Tests.QueueMessageSenderTests.ChannelSpecificHandler
+  id: ChannelSpecificHandler
+  parent: QueueSender.Tests.QueueMessageSenderTests
+  langs:
+  - csharp
+  - vb
+  name: ChannelSpecificHandler()
+  nameWithType: QueueMessageSenderTests.ChannelSpecificHandler()
+  fullName: QueueSender.Tests.QueueMessageSenderTests.ChannelSpecificHandler()
+  type: Method
+  source:
+    remote:
+      path: src/QueueSender.Tests/QueueMessageSenderTests.cs
+      branch: master
+      repo: git@github.com:Connatix/QueueMessageSender.git
+    id: ChannelSpecificHandler
+    path: src/QueueSender.Tests/QueueMessageSenderTests.cs
+    startLine: 48
+  assemblies:
+  - QueueSender.Tests
+  namespace: QueueSender.Tests
+  syntax:
+    content: >-
+      [Fact]
+
+      public void ChannelSpecificHandler()
+    content.vb: >-
+      <Fact>
+
+      Public Sub ChannelSpecificHandler
+  overload: QueueSender.Tests.QueueMessageSenderTests.ChannelSpecificHandler*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: QueueSender.Tests.QueueMessageSenderTests.LargeNumberOfMessagesWithRetries
+  commentId: M:QueueSender.Tests.QueueMessageSenderTests.LargeNumberOfMessagesWithRetries
+  id: LargeNumberOfMessagesWithRetries
+  parent: QueueSender.Tests.QueueMessageSenderTests
+  langs:
+  - csharp
+  - vb
+  name: LargeNumberOfMessagesWithRetries()
+  nameWithType: QueueMessageSenderTests.LargeNumberOfMessagesWithRetries()
+  fullName: QueueSender.Tests.QueueMessageSenderTests.LargeNumberOfMessagesWithRetries()
+  type: Method
+  source:
+    remote:
+      path: src/QueueSender.Tests/QueueMessageSenderTests.cs
+      branch: master
+      repo: git@github.com:Connatix/QueueMessageSender.git
+    id: LargeNumberOfMessagesWithRetries
+    path: src/QueueSender.Tests/QueueMessageSenderTests.cs
+    startLine: 79
+  assemblies:
+  - QueueSender.Tests
+  namespace: QueueSender.Tests
+  syntax:
+    content: >-
+      [Fact]
+
+      public void LargeNumberOfMessagesWithRetries()
+    content.vb: >-
+      <Fact>
+
+      Public Sub LargeNumberOfMessagesWithRetries
+  overload: QueueSender.Tests.QueueMessageSenderTests.LargeNumberOfMessagesWithRetries*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: QueueSender.Tests.QueueMessageSenderTests.MessagesAreSent
+  commentId: M:QueueSender.Tests.QueueMessageSenderTests.MessagesAreSent
+  id: MessagesAreSent
+  parent: QueueSender.Tests.QueueMessageSenderTests
+  langs:
+  - csharp
+  - vb
+  name: MessagesAreSent()
+  nameWithType: QueueMessageSenderTests.MessagesAreSent()
+  fullName: QueueSender.Tests.QueueMessageSenderTests.MessagesAreSent()
+  type: Method
+  source:
+    remote:
+      path: src/QueueSender.Tests/QueueMessageSenderTests.cs
+      branch: master
+      repo: git@github.com:Connatix/QueueMessageSender.git
+    id: MessagesAreSent
+    path: src/QueueSender.Tests/QueueMessageSenderTests.cs
+    startLine: 126
+  assemblies:
+  - QueueSender.Tests
+  namespace: QueueSender.Tests
+  syntax:
+    content: >-
+      [Fact]
+
+      public void MessagesAreSent()
+    content.vb: >-
+      <Fact>
+
+      Public Sub MessagesAreSent
+  overload: QueueSender.Tests.QueueMessageSenderTests.MessagesAreSent*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: QueueSender.Tests.QueueMessageSenderTests.MultipleThreadsToEnqueue
+  commentId: M:QueueSender.Tests.QueueMessageSenderTests.MultipleThreadsToEnqueue
+  id: MultipleThreadsToEnqueue
+  parent: QueueSender.Tests.QueueMessageSenderTests
+  langs:
+  - csharp
+  - vb
+  name: MultipleThreadsToEnqueue()
+  nameWithType: QueueMessageSenderTests.MultipleThreadsToEnqueue()
+  fullName: QueueSender.Tests.QueueMessageSenderTests.MultipleThreadsToEnqueue()
+  type: Method
+  source:
+    remote:
+      path: src/QueueSender.Tests/QueueMessageSenderTests.cs
+      branch: master
+      repo: git@github.com:Connatix/QueueMessageSender.git
+    id: MultipleThreadsToEnqueue
+    path: src/QueueSender.Tests/QueueMessageSenderTests.cs
+    startLine: 151
+  assemblies:
+  - QueueSender.Tests
+  namespace: QueueSender.Tests
+  syntax:
+    content: >-
+      [Fact]
+
+      public void MultipleThreadsToEnqueue()
+    content.vb: >-
+      <Fact>
+
+      Public Sub MultipleThreadsToEnqueue
+  overload: QueueSender.Tests.QueueMessageSenderTests.MultipleThreadsToEnqueue*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: QueueSender.Tests.QueueMessageSenderTests.TwoChannelsDifferentWeightManyMessages
+  commentId: M:QueueSender.Tests.QueueMessageSenderTests.TwoChannelsDifferentWeightManyMessages
+  id: TwoChannelsDifferentWeightManyMessages
+  parent: QueueSender.Tests.QueueMessageSenderTests
+  langs:
+  - csharp
+  - vb
+  name: TwoChannelsDifferentWeightManyMessages()
+  nameWithType: QueueMessageSenderTests.TwoChannelsDifferentWeightManyMessages()
+  fullName: QueueSender.Tests.QueueMessageSenderTests.TwoChannelsDifferentWeightManyMessages()
+  type: Method
+  source:
+    remote:
+      path: src/QueueSender.Tests/QueueMessageSenderTests.cs
+      branch: master
+      repo: git@github.com:Connatix/QueueMessageSender.git
+    id: TwoChannelsDifferentWeightManyMessages
+    path: src/QueueSender.Tests/QueueMessageSenderTests.cs
+    startLine: 186
+  assemblies:
+  - QueueSender.Tests
+  namespace: QueueSender.Tests
+  syntax:
+    content: >-
+      [Fact]
+
+      public void TwoChannelsDifferentWeightManyMessages()
+    content.vb: >-
+      <Fact>
+
+      Public Sub TwoChannelsDifferentWeightManyMessages
+  overload: QueueSender.Tests.QueueMessageSenderTests.TwoChannelsDifferentWeightManyMessages*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+references:
+- uid: QueueSender.Tests
+  commentId: N:QueueSender.Tests
+  name: QueueSender.Tests
+  nameWithType: QueueSender.Tests
+  fullName: QueueSender.Tests
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object)
+  nameWithType: Object.Equals(Object)
+  fullName: System.Object.Equals(System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object, Object)
+  nameWithType: Object.Equals(Object, Object)
+  fullName: System.Object.Equals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  name: GetHashCode()
+  nameWithType: Object.GetHashCode()
+  fullName: System.Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  name: GetType()
+  nameWithType: Object.GetType()
+  fullName: System.Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  name: MemberwiseClone()
+  nameWithType: Object.MemberwiseClone()
+  fullName: System.Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: ReferenceEquals(Object, Object)
+  nameWithType: Object.ReferenceEquals(Object, Object)
+  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  name: ToString()
+  nameWithType: Object.ToString()
+  fullName: System.Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: QueueSender.Tests.QueueMessageSenderTests.LargeNumberOfMessagesAreHandled*
+  commentId: Overload:QueueSender.Tests.QueueMessageSenderTests.LargeNumberOfMessagesAreHandled
+  name: LargeNumberOfMessagesAreHandled
+  nameWithType: QueueMessageSenderTests.LargeNumberOfMessagesAreHandled
+  fullName: QueueSender.Tests.QueueMessageSenderTests.LargeNumberOfMessagesAreHandled
+- uid: QueueSender.Tests.QueueMessageSenderTests.ChannelSpecificHandler*
+  commentId: Overload:QueueSender.Tests.QueueMessageSenderTests.ChannelSpecificHandler
+  name: ChannelSpecificHandler
+  nameWithType: QueueMessageSenderTests.ChannelSpecificHandler
+  fullName: QueueSender.Tests.QueueMessageSenderTests.ChannelSpecificHandler
+- uid: QueueSender.Tests.QueueMessageSenderTests.LargeNumberOfMessagesWithRetries*
+  commentId: Overload:QueueSender.Tests.QueueMessageSenderTests.LargeNumberOfMessagesWithRetries
+  name: LargeNumberOfMessagesWithRetries
+  nameWithType: QueueMessageSenderTests.LargeNumberOfMessagesWithRetries
+  fullName: QueueSender.Tests.QueueMessageSenderTests.LargeNumberOfMessagesWithRetries
+- uid: QueueSender.Tests.QueueMessageSenderTests.MessagesAreSent*
+  commentId: Overload:QueueSender.Tests.QueueMessageSenderTests.MessagesAreSent
+  name: MessagesAreSent
+  nameWithType: QueueMessageSenderTests.MessagesAreSent
+  fullName: QueueSender.Tests.QueueMessageSenderTests.MessagesAreSent
+- uid: QueueSender.Tests.QueueMessageSenderTests.MultipleThreadsToEnqueue*
+  commentId: Overload:QueueSender.Tests.QueueMessageSenderTests.MultipleThreadsToEnqueue
+  name: MultipleThreadsToEnqueue
+  nameWithType: QueueMessageSenderTests.MultipleThreadsToEnqueue
+  fullName: QueueSender.Tests.QueueMessageSenderTests.MultipleThreadsToEnqueue
+- uid: QueueSender.Tests.QueueMessageSenderTests.TwoChannelsDifferentWeightManyMessages*
+  commentId: Overload:QueueSender.Tests.QueueMessageSenderTests.TwoChannelsDifferentWeightManyMessages
+  name: TwoChannelsDifferentWeightManyMessages
+  nameWithType: QueueMessageSenderTests.TwoChannelsDifferentWeightManyMessages
+  fullName: QueueSender.Tests.QueueMessageSenderTests.TwoChannelsDifferentWeightManyMessages
