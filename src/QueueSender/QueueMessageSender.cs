@@ -9,14 +9,14 @@ using Microsoft.Extensions.Logging;
 namespace QueueSender
 {
     /// <summary>
-    ///     This class provides a thread-safe mechanism to send messages to an external stream provider, such as Kinesis or
-    ///     RabbitMQ
+    ///     This class provides a thread-safe mechanism to send messages to a external stream writer 
+    ///     such as AWS Kinesis or RabbitMQ
     /// </summary>
     /// <seealso cref="System.IDisposable" />
     public class QueueMessageSender : IQueueMessageSender
     {
         private const int MIN_THREADS = 1;
-        private Func<List<QueueMessage>, string, Task<List<QueueMessage>>> m_batchAction;
+        private Func<List<Message>, string, Task<List<Message>>> m_batchAction;
         private readonly CancellationTokenSource m_cancellationTokenSource = new CancellationTokenSource();
         private readonly AutoResetEvent m_coreInUseFreedFlag;
         private readonly Dictionary<Guid, int> m_coresInUse = new Dictionary<Guid, int>();
@@ -27,8 +27,8 @@ namespace QueueSender
         private readonly ManualResetEvent m_idle;        
         private readonly TimeSpan m_sendLoopCycleDuration = TimeSpan.FromMilliseconds(20);
 
-        private readonly ConcurrentDictionary<string, QueueShard> m_shardQueues
-            = new ConcurrentDictionary<string, QueueShard>();
+        private readonly ConcurrentDictionary<string, Channel> m_channels
+            = new ConcurrentDictionary<string, Channel>();
 
         private readonly Task m_taskRunner;
         private int m_enqueuedMessageCount;
@@ -52,7 +52,12 @@ namespace QueueSender
             m_settings = settings;
             m_logger = logger;
         }
-
+        
+        /// <summary>
+        ///     This function assigns a message handler for all the enqueued messages. For further details,
+        ///     see <see cref="GlobalMessageHandler" /> as the 
+        /// </summary>
+        /// <param name="msgHandler"></param>
         public void AddMessageHandler(GlobalMessageHandler msgHandler)
         {
             m_batchAction = async (list, s) =>
@@ -60,7 +65,7 @@ namespace QueueSender
                 try
                 {
                     await msgHandler.Action(list);
-                    return new List<QueueMessage>();
+                    return new List<Message>();
                 }
                 catch (Exception)
                 {
@@ -78,6 +83,11 @@ namespace QueueSender
             };
         }
 
+        /// <summary>
+        ///     This function assigns a message handler for all the enqueued messages. For further details,
+        ///     see <see cref="ChannelSpecificMessageHandler" /> as the 
+        /// </summary>
+        /// <param name="msgHandler"></param>
         public void AddMessageHandler(ChannelSpecificMessageHandler msgHandler)
         {
             m_batchAction = async (list, s) =>
@@ -85,7 +95,7 @@ namespace QueueSender
                 try
                 {
                     await msgHandler.Action(list, s);
-                    return new List<QueueMessage>();
+                    return new List<Message>();
                 }
                 catch (Exception)
                 {
@@ -101,12 +111,17 @@ namespace QueueSender
                 }
             };
         }
-        
+
+        /// <summary>
+        ///     This function assigns a message handler for all the enqueued messages. For further details,
+        ///     see <see cref="CustomMessageHandler" /> as the 
+        /// </summary>
+        /// <param name="msgHandler"></param>
         public void AddMessageHandler(CustomMessageHandler msgHandler)
         {
             m_batchAction = async (list, s) =>
             {
-                List<QueueMessage> failedMessages =new List<QueueMessage>();
+                List<Message> failedMessages =new List<Message>();
                 try
                 {
                     failedMessages.AddRange(await msgHandler.Func(list, s));
@@ -127,58 +142,83 @@ namespace QueueSender
             };
         }
        
+        /// <summary>
+        ///     This field keeps the count of all messages that were successfully sent
+        /// </summary>
+        /// <remarks>
+        ///     If the configuration flag StatisticsEnabled is set to false then SentMessageCount value is 0
+        /// </remarks>
         public int SentMessageCount
         {
             get => m_sentMessageCount;
             private set => m_sentMessageCount = value;
         }
 
+        /// <summary>
+        ///     This field keeps the count of the enqueued messages
+        /// </summary>
+        /// <remarks>
+        ///     If the configuration flag StatisticsEnabled is set to false then SentMessageCount value is 0
+        /// </remarks>
         public int EnqueuedMessageCount => m_enqueuedMessageCount;
 
+        /// <summary>
+        ///     This field keeps the count of all messages that failed to be sent
+        /// </summary>
+        /// <remarks>
+        ///     If the configuration flag StatisticsEnabled is set to false then SentMessageCount value is 0
+        /// </remarks>
         public int FailedMessageCount => m_failedMessageCount;
 
         /// <summary>
-        ///     Enqueues a payload to be delivered to a stream, such as kinesis
+        ///     Enqueues a message to be delivered to a named writer stream
         /// </summary>
-        /// <param name="payload">The payload.</param>
-        /// <param name="shardName">Name of the shard.</param>
-        public void Enqueue(object payload, string shardName)
+        /// <param name="message">The payload.</param>
+        /// <param name="channelName">Name of the channel.</param>
+        public void Enqueue(object message, string channelName)
         {
             m_idle.Reset();
-            if (!m_shardQueues.TryGetValue(shardName, out var shardQueue))
+            if (!m_channels.TryGetValue(channelName, out var channel))
                 lock (m_enqueueSync)
                 {
-                    shardQueue = new QueueShard(shardName, 1);
-                    var newOrExistingQueueShard = m_shardQueues.GetOrAdd(shardName, shardQueue);
-                    if (newOrExistingQueueShard.GetHashCode() == shardQueue.GetHashCode())
+                    channel = new Channel(channelName, 1);
+                    var newOrExisting = m_channels.GetOrAdd(channelName, channel);
+                    if (newOrExisting.GetHashCode() == channel.GetHashCode())
                         lock (m_flagsSync)
                         {
-                            m_flags.Add(shardQueue.HasMessages);
+                            m_flags.Add(channel.HasMessages);
                         }
 
-                    newOrExistingQueueShard.Enqueue(payload);
+                    newOrExisting.Enqueue(message);
                 }
             else
-                shardQueue.Enqueue(payload);
+                channel.Enqueue(message);
         }
 
-        public void SetShardWeight(float weight, string shardName)
+        /// <summary>
+        /// Each new channel has a default weight of 1. If you need to increase or decrease the threads allocated
+        /// to a specific channel, use this function. The higher the number the more resources are dedicated to
+        /// a channel. Bear in mind that the MaxThreadCount setting (default is 2) is still considered. 
+        /// </summary>
+        /// <param name="weight"></param>
+        /// <param name="channelName"></param>
+        public void SetChannelWeight(float weight, string channelName)
         {
-            if (!m_shardQueues.TryGetValue(shardName, out var shardQueue))
+            if (!m_channels.TryGetValue(channelName, out var channel))
                 lock (m_enqueueSync)
                 {
-                    shardQueue = new QueueShard(shardName, weight);
-                    var newOrExistingQueueShard = m_shardQueues.GetOrAdd(shardName, shardQueue);
-                    if (newOrExistingQueueShard.GetHashCode() != shardQueue.GetHashCode()) 
+                    channel = new Channel(channelName, weight);
+                    var newOrExistingChannel = m_channels.GetOrAdd(channelName, channel);
+                    if (newOrExistingChannel.GetHashCode() != channel.GetHashCode()) 
                         return;
                     
                     lock (m_flagsSync)
                     {
-                        m_flags.Add(shardQueue.HasMessages);
+                        m_flags.Add(channel.HasMessages);
                     }
                 }
             else
-                shardQueue.Weight = weight;
+                channel.Weight = weight;
         }
 
         /// <summary>
@@ -212,14 +252,15 @@ namespace QueueSender
 
             m_idle.Dispose();
             m_coreInUseFreedFlag.Dispose();
-            foreach (var shardQueue in m_shardQueues.Values)
-                shardQueue.Dispose();
-            m_shardQueues.Clear();
+            foreach (var channel in m_channels.Values)
+                channel.Dispose();
+            m_channels.Clear();
             m_cancellationTokenSource.Dispose();
         }
 
         /// <summary>
-        ///     The long running task that executes the QueueShard callback whenever the messages are available
+        ///     The long running task that executes the Channel action callback  (and error handler when required)
+        ///     whenever the messages are available
         /// </summary>
         private void TaskRunner()
         {
@@ -232,7 +273,7 @@ namespace QueueSender
                         return;
 
                     //count all the messages so that the thread affinity is chosen
-                    var totalMessages = m_shardQueues.Values.Sum(queue => queue.GetSize());
+                    var totalMessages = m_channels.Values.Sum(queue => queue.GetSize());
                     if (totalMessages == 0)
                     {
                         lock (m_coresInUseSync)
@@ -244,13 +285,13 @@ namespace QueueSender
                         continue;
                     }
 
-                    //get all the shards that have at least one batch to send
-                    var shards = m_shardQueues.Values.Where(x => x.GetSize() > 0).ToList();
-                    //calculate the sum of weights for the shards that have at least one batch to send                    
-                    var totalWeight = shards.Sum(x => x.Weight);
-                    foreach (var shard in m_shardQueues.Values)
+                    //get all the channels that have at least one batch to send
+                    var channels = m_channels.Values.Where(x => x.GetSize() > 0).ToList();
+                    //calculate the sum of weights for the channels that have at least one batch to send                    
+                    var totalWeight = channels.Sum(x => x.Weight);
+                    foreach (var channel in m_channels.Values)
                     {
-                        var options = GetParallelDegree(totalMessages, shard, totalWeight);
+                        var options = GetParallelDegree(totalMessages, channel, totalWeight);
                         //check if cancellation requested                            
                         if (null == options)
                             return;
@@ -263,22 +304,21 @@ namespace QueueSender
 
                         Task.Factory.StartNew(state =>
                             {
-                                Parallel.ForEach(shard.TakeBatches(), options, shardBatch =>
+                                Parallel.ForEach(channel.TakeBatches(), options, batch =>
                                 {
-                                    var failedMessages =  ExecuteBatchAction(shardBatch.Item2, shardBatch.Item1.Name);
+                                    var failedMessages =  ExecuteBatchAction(batch.Item2, batch.Item1.Name);
                                     if (m_settings.StatisticsEnabled)                                     
-                                        Interlocked.Add(ref m_enqueuedMessageCount, shardBatch.Item2.Count);
+                                        Interlocked.Add(ref m_enqueuedMessageCount, batch.Item2.Count);
                                     if (failedMessages.Count > 0)
                                     {                                        
                                         if (m_settings.StatisticsEnabled)
-                                            Interlocked.Add(ref m_failedMessageCount, failedMessages.Count);
-                                        //TODO: later, use a max retry, or a message expiration so that it can be moved to a dead-letter queue
-                                        shardBatch.Item1.AddFailedRequests(failedMessages);
+                                            Interlocked.Add(ref m_failedMessageCount, failedMessages.Count);                                        
+                                        batch.Item1.AddFailedRequests(failedMessages);
                                     }
                                     
                                     if (m_settings.StatisticsEnabled)
                                         Interlocked.Add(ref m_sentMessageCount,
-                                            shardBatch.Item2.Count - failedMessages.Count);
+                                            batch.Item2.Count - failedMessages.Count);
                                 });
                             }, taskGuid)
                             .ContinueWith(task =>
@@ -309,15 +349,14 @@ namespace QueueSender
         ///     so they are all returned as failed messages
         /// </summary>
         /// <param name="batch">list of messages to be processed</param>
-        /// <param name="shardName">the name of the shard</param>
+        /// <param name="channelName">the name of the channel</param>
         /// <returns>The messages that failed to be delivered</returns>
-        private List<QueueMessage> ExecuteBatchAction(
-            List<QueueMessage> batch, string shardName)
+        private List<Message> ExecuteBatchAction(List<Message> batch, string channelName)
         {
-            var failedMessages = new List<QueueMessage>();
+            var failedMessages = new List<Message>();
             try
             {
-                var task = m_batchAction(batch, shardName);
+                var task = m_batchAction(batch, channelName);
                 task.Wait();
                 failedMessages = task.Result;
             }
@@ -325,7 +364,7 @@ namespace QueueSender
             {
                 foreach (var msg in batch)
                 {
-                    var messageToAddBack = new QueueMessage
+                    var messageToAddBack = new Message
                     {
                         LastErrorMessage = e.Message,
                         Payload = msg.Payload,
@@ -339,21 +378,23 @@ namespace QueueSender
         }
 
         /// <summary>
-        ///     Decides the number of threads to be used, based on the number of messages waiting to be delivered, weight of the
-        ///     queueShard and other shards that have batches to send.
+        ///     Decides the number of threads to be used. The following criteria are considered:
+        ///         - the number of messages waiting to be delivered,
+        ///         - weight of the channel
+        ///         - count of other channels that have batches to send.
         /// </summary>
         /// <remarks>
         ///     If there are no cores left, the function waits for the completion of other tasks.
         /// </remarks>
         /// <param name="messageCount">The message count.</param>
-        /// <param name="queueShard"></param>
-        /// <param name="queueShardsTotalWeight"></param>
+        /// <param name="channel"></param>
+        /// <param name="channelsTotalWeight"></param>
         /// <returns></returns>
-        private ParallelOptions GetParallelDegree(int messageCount, QueueShard queueShard, float queueShardsTotalWeight)
+        private ParallelOptions GetParallelDegree(int messageCount, Channel channel, float channelsTotalWeight)
         {            
             var maxThreadCount = m_settings.MaxThreadCount;
-            //calculate the number of needed cores based on the weight of the QueueShard
-            var requiredThreadCount = Math.Ceiling(queueShard.Weight / queueShardsTotalWeight) * maxThreadCount;         
+            //calculate the number of needed cores based on the weight of the Channel
+            var requiredThreadCount = Math.Ceiling(channel.Weight / channelsTotalWeight) * maxThreadCount;         
             var requestsPerThread = m_settings.RequestsPerThread;
 
             //requestedThreadCount is a number between MinThreads and the requiredThreadCount number
@@ -384,6 +425,11 @@ namespace QueueSender
             };
         }
 
+        /// <summary>
+        /// Returns the number of threads that are available for channels.
+        /// </summary>
+        /// <param name="requestedThreadCount"></param>
+        /// <returns></returns>
         private int GetRemainingThreadCount(int requestedThreadCount)
         {
             int remainingThreadCount;
@@ -401,12 +447,12 @@ namespace QueueSender
 
 
         /// <summary>
-        ///     Gets the queue size all shards
+        ///     Gets the queue size all channels
         /// </summary>
         /// <returns></returns>
         public int GetPendingMessageCount()
         {
-            return m_shardQueues.Values.Sum(queue => queue.GetSize());
+            return m_channels.Values.Sum(queue => queue.GetSize());
         }
     }
 
@@ -414,16 +460,16 @@ namespace QueueSender
     ///     Provides batch mode and thread-safe access to messages about to be delivered to a channel
     /// </summary>
     /// <seealso cref="System.IDisposable" />
-    public class QueueShard : IDisposable
+    internal class Channel : IDisposable
     {
         private const int MAX_BATCH_SIZE = 500;
-        private readonly List<QueueMessage> m_messages;
+        private readonly List<Message> m_messages;
         private readonly object m_sync;
 
-        public QueueShard(string name, float weight)
+        public Channel(string name, float weight)
         {
             m_sync = new object();
-            m_messages = new List<QueueMessage>();
+            m_messages = new List<Message>();
             HasMessages = new ManualResetEvent(false);
             Name = name;
             Weight = weight;
@@ -454,7 +500,7 @@ namespace QueueSender
         {
             lock (m_sync)
             {
-                m_messages.Add(new QueueMessage
+                m_messages.Add(new Message
                 {
                     Payload = payload,
                     RetryCount = 0
@@ -468,7 +514,7 @@ namespace QueueSender
         ///     Adds the failed requests to the message list
         /// </summary>
         /// <param name="failedMessages">The failed messages.</param>
-        public void AddFailedRequests(List<QueueMessage> failedMessages)
+        public void AddFailedRequests(List<Message> failedMessages)
         {
             lock (m_sync)
             {
@@ -480,9 +526,9 @@ namespace QueueSender
         ///     Removes the messages and returns a batch list, each batch having a max size of 500
         /// </summary>
         /// <returns>Tuple of the object itself and batch list</returns>
-        public List<Tuple<QueueShard, List<QueueMessage>>> TakeBatches()
+        public List<Tuple<Channel, List<Message>>> TakeBatches()
         {
-            List<List<QueueMessage>> result;
+            List<List<Message>> result;
             lock (m_sync)
             {
                 result = Split(m_messages, MAX_BATCH_SIZE);
@@ -492,7 +538,7 @@ namespace QueueSender
 
             return result
                 .Where(x => x.Count > 0)
-                .Select(x => new Tuple<QueueShard, List<QueueMessage>>(this, x)).ToList();
+                .Select(x => new Tuple<Channel, List<Message>>(this, x)).ToList();
         }
 
         /// <summary>
@@ -507,12 +553,20 @@ namespace QueueSender
             }
         }
 
-        private static List<List<QueueMessage>> Split(List<QueueMessage> collection, int size)
+        /// <summary>
+        /// Splits a list of messages into multiple list of lists. each sub-list has the length = "size",
+        /// except for the last sub-list, which can be smaller
+        /// </summary>
+        /// <param name="collection"></param>
+        /// <param name="size"></param>
+        /// <returns></returns>
+        /// <exception cref="ArgumentException"></exception>
+        private static List<List<Message>> Split(List<Message> collection, int size)
         {   
             if (size == 0)
                 throw new ArgumentException();
             
-            var chunks = new List<List<QueueMessage>>();
+            var chunks = new List<List<Message>>();
             var chunkCount = collection.Count / size;
 
             if (collection.Count % size > 0)
@@ -525,7 +579,11 @@ namespace QueueSender
         }
     }    
 
-    public class QueueMessage
+    /// <summary>
+    /// This class encapsulates an enqueued message. It also tracks the retry count and the last error
+    /// of the message handler action.
+    /// </summary>
+    public class Message
     {
         public int RetryCount { get; set; }
         public object Payload { get; set; }

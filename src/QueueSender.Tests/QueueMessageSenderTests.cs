@@ -22,8 +22,8 @@ namespace QueueSender.Tests
         {
             var writeHasBeenCalled = false;
             const int msgCount = 30000;
-            m_proxy.Setup(x => x.WriteAsync(It.IsAny<List<QueueMessage>>(), It.IsAny<string>()))
-                .ReturnsAsync(new List<QueueMessage>());
+            m_proxy.Setup(x => x.WriteAsync(It.IsAny<List<Message>>(), It.IsAny<string>()))
+                .ReturnsAsync(new List<Message>());
 
             m_sut = new QueueMessageSender(m_settings, m_logger.Object);            
             m_sut.AddMessageHandler(new GlobalMessageHandler
@@ -51,8 +51,8 @@ namespace QueueSender.Tests
         {
             var writeHasBeenCalled = false;
             const int msgCount = 30000;
-            m_proxy.Setup(x => x.WriteAsync(It.IsAny<List<QueueMessage>>(), It.IsAny<string>()))
-                .ReturnsAsync(new List<QueueMessage>());
+            m_proxy.Setup(x => x.WriteAsync(It.IsAny<List<Message>>(), It.IsAny<string>()))
+                .ReturnsAsync(new List<Message>());
 
             m_sut = new QueueMessageSender( m_settings, m_logger.Object);            
             m_sut.AddMessageHandler(new ChannelSpecificMessageHandler
@@ -82,14 +82,14 @@ namespace QueueSender.Tests
         {
             var messagesFailed = false;
             var writeHasBeenCalled = false;
-            var tempList = new List<QueueMessage>();
+            var tempList = new List<Message>();
             const int msgCount = 30000;
             const int failedMsgCount = 500;
             const int retryCount = 2;
-            for (var i = 0; i < failedMsgCount; i++) tempList.Add(new QueueMessage {Payload = "payload"});
+            for (var i = 0; i < failedMsgCount; i++) tempList.Add(new Message {Payload = "payload"});
 
             var iteration = 0;
-            m_proxy.Setup(x => x.WriteAsync(It.IsAny<List<QueueMessage>>(), It.IsAny<string>()))
+            m_proxy.Setup(x => x.WriteAsync(It.IsAny<List<Message>>(), It.IsAny<string>()))
                 .ReturnsAsync(() =>
                 {
                     if (iteration++ < retryCount)
@@ -98,7 +98,7 @@ namespace QueueSender.Tests
                         return tempList;
                     }
 
-                    return new List<QueueMessage>();
+                    return new List<Message>();
                 });
 
             m_sut = new QueueMessageSender(m_settings, m_logger.Object);            
@@ -128,8 +128,8 @@ namespace QueueSender.Tests
         public void MessagesAreSent()
         {
             var sendToKinesisHasBeenCalled = false;
-            m_proxy.Setup(x => x.WriteAsync(It.IsAny<List<QueueMessage>>(), It.IsAny<string>()))
-                .ReturnsAsync(new List<QueueMessage>());
+            m_proxy.Setup(x => x.WriteAsync(It.IsAny<List<Message>>(), It.IsAny<string>()))
+                .ReturnsAsync(new List<Message>());
 
             m_sut = new QueueMessageSender(m_settings, m_logger.Object);            
             m_sut.AddMessageHandler(new GlobalMessageHandler
@@ -154,8 +154,8 @@ namespace QueueSender.Tests
         {
             var sendToKinesisHasBeenCalled = false;
             const int msgCount = 30000;
-            m_proxy.Setup(x => x.WriteAsync(It.IsAny<List<QueueMessage>>(), It.IsAny<string>()))
-                .ReturnsAsync(new List<QueueMessage>());
+            m_proxy.Setup(x => x.WriteAsync(It.IsAny<List<Message>>(), It.IsAny<string>()))
+                .ReturnsAsync(new List<Message>());
 
             m_sut = new QueueMessageSender(m_settings, m_logger.Object);            
             m_sut.AddMessageHandler(new GlobalMessageHandler()
@@ -185,12 +185,12 @@ namespace QueueSender.Tests
         }
 
         [Fact]
-        public void TwoShardsDifferentWeightManyMessages()
+        public void TwoChannelsDifferentWeightManyMessages()
         {
             var sendToKinesisHasBeenCalled = false;
             const int msgCount = 10000;
-            m_proxy.Setup(x => x.WriteAsync(It.IsAny<List<QueueMessage>>(), It.IsAny<string>()))
-                .ReturnsAsync(new List<QueueMessage>());
+            m_proxy.Setup(x => x.WriteAsync(It.IsAny<List<Message>>(), It.IsAny<string>()))
+                .ReturnsAsync(new List<Message>());
 
             m_sut = new QueueMessageSender(m_settings, m_logger.Object);            
             m_sut.AddMessageHandler(new ChannelSpecificMessageHandler
@@ -203,8 +203,8 @@ namespace QueueSender.Tests
                 }
             });
 
-            m_sut.SetShardWeight(1.5f, "kinesis");
-            m_sut.SetShardWeight(2, "another_kinesis");
+            m_sut.SetChannelWeight(1.5f, "kinesis");
+            m_sut.SetChannelWeight(2, "another_kinesis");
             Parallel.For(0, msgCount, (i, state) =>
             {
                 // ReSharper disable once AccessToDisposedClosure

@@ -8,10 +8,10 @@ namespace QueueSender
         int SentMessageCount { get; }
         int FailedMessageCount { get; }
 
-        void Enqueue(object payload, string shardName);
+        void Enqueue(object message, string channelName);
 
         void WaitForIdle();
-        void SetShardWeight(float weight, string shardName);
+        void SetChannelWeight(float weight, string channelName);
     }
 }
 

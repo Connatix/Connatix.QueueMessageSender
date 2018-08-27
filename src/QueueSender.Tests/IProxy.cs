@@ -6,6 +6,6 @@ namespace QueueSender.Tests
 {
     public interface IProxy : IDisposable
     {
-        Task<List<QueueMessage>> WriteAsync(List<QueueMessage> messages, string streamName);
+        Task<List<Message>> WriteAsync(List<Message> messages, string streamName);
     }
 }
