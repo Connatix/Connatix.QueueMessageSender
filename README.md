@@ -13,22 +13,6 @@ This class provides a thread-safe mechanism to send messages to a external strea
 
 ## Classes
 
-#### ChannelSpecificMessageHandler
-
-This class encapsulates a write stream action for messages. Besides a list of message, the action receives as argument the channel name, thus allowing to differentiate what to do for a specific channel (write to a file, send to AWS, RabbitMQ, etc) It also encapsulates an error handler for the action. The channel is also provided as argument.
-
-#### CustomMessageHandler
-
-This class encapsulates a write stream action for messages. Besides a list of message, the action receives as argument the channel name, thus allowing to differentiate what to do for a specific channel (write to a file, send to AWS, RabbitMQ, etc). The action must return a list of messages that failed to be sent. If all of them were successfully sent then the action must return an empty message list. It also encapsulates an error handler for the action. The channel is also provided as argument.
-
-#### GlobalMessageHandler
-
-This class encapsulates a global write stream action for messages from all named channels. It also encapsulates a global error handler for the action
-
-#### Message
-
-This class encapsulates an enqueued message. It also tracks the retry count and the last error of the message handler action.
-
 #### QueueMessageSender
 
 This class provides a thread-safe mechanism to send messages to a external stream writer such as AWS Kinesis or RabbitMQ
@@ -70,6 +54,23 @@ _Properties_
 `RequestsPerThread` Max number of messages to be handled by a single thread. New messages will be directed to new threads.
 
 `StatisticsEnabled` If enabled then the QueueMessageSender records usage statistics
+
+
+#### ChannelSpecificMessageHandler
+
+This class encapsulates a write stream action for messages. Besides a list of message, the action receives as argument the channel name, thus allowing to differentiate what to do for a specific channel (write to a file, send to AWS, RabbitMQ, etc) It also encapsulates an error handler for the action. The channel is also provided as argument.
+
+#### CustomMessageHandler
+
+This class encapsulates a write stream action for messages. Besides a list of message, the action receives as argument the channel name, thus allowing to differentiate what to do for a specific channel (write to a file, send to AWS, RabbitMQ, etc). The action must return a list of messages that failed to be sent. If all of them were successfully sent then the action must return an empty message list. It also encapsulates an error handler for the action. The channel is also provided as argument.
+
+#### GlobalMessageHandler
+
+This class encapsulates a global write stream action for messages from all named channels. It also encapsulates a global error handler for the action
+
+#### Message
+
+This class encapsulates an enqueued message. It also tracks the retry count and the last error of the message handler action.
 
 
 ### Interfaces
