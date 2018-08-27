@@ -1,36 +1,36 @@
 ### YamlMime:ManagedReference
 items:
-- uid: QueueSender.QueueSenderAppSettings
-  commentId: T:QueueSender.QueueSenderAppSettings
-  id: QueueSenderAppSettings
-  parent: QueueSender
+- uid: QueueMessageSender.QueueMessageSenderAppSettings
+  commentId: T:QueueMessageSender.QueueMessageSenderAppSettings
+  id: QueueMessageSenderAppSettings
+  parent: QueueMessageSender
   children:
-  - QueueSender.QueueSenderAppSettings.MaxThreadCount
-  - QueueSender.QueueSenderAppSettings.RequestsPerThread
-  - QueueSender.QueueSenderAppSettings.StatisticsEnabled
+  - QueueMessageSender.QueueMessageSenderAppSettings.MaxThreadCount
+  - QueueMessageSender.QueueMessageSenderAppSettings.RequestsPerThread
+  - QueueMessageSender.QueueMessageSenderAppSettings.StatisticsEnabled
   langs:
   - csharp
   - vb
-  name: QueueSenderAppSettings
-  nameWithType: QueueSenderAppSettings
-  fullName: QueueSender.QueueSenderAppSettings
+  name: QueueMessageSenderAppSettings
+  nameWithType: QueueMessageSenderAppSettings
+  fullName: QueueMessageSender.QueueMessageSenderAppSettings
   type: Class
   source:
     remote:
-      path: src/QueueSender/QueueSenderAppSettings.cs
+      path: src/QueueMessageSender/QueueMessageSenderAppSettings.cs
       branch: master
       repo: git@github.com:Connatix/QueueMessageSender.git
-    id: QueueSenderAppSettings
-    path: src/QueueSender/QueueSenderAppSettings.cs
+    id: QueueMessageSenderAppSettings
+    path: src/QueueMessageSender/QueueMessageSenderAppSettings.cs
     startLine: 5
   assemblies:
-  - QueueSender
-  namespace: QueueSender
+  - QueueMessageSender
+  namespace: QueueMessageSender
   summary: "\nThe configuration class for the QueueMessageSender.  \n"
   example: []
   syntax:
-    content: public class QueueSenderAppSettings
-    content.vb: Public Class QueueSenderAppSettings
+    content: public class QueueMessageSenderAppSettings
+    content.vb: Public Class QueueMessageSenderAppSettings
   inheritance:
   - System.Object
   inheritedMembers:
@@ -47,28 +47,28 @@ items:
   modifiers.vb:
   - Public
   - Class
-- uid: QueueSender.QueueSenderAppSettings.StatisticsEnabled
-  commentId: P:QueueSender.QueueSenderAppSettings.StatisticsEnabled
+- uid: QueueMessageSender.QueueMessageSenderAppSettings.StatisticsEnabled
+  commentId: P:QueueMessageSender.QueueMessageSenderAppSettings.StatisticsEnabled
   id: StatisticsEnabled
-  parent: QueueSender.QueueSenderAppSettings
+  parent: QueueMessageSender.QueueMessageSenderAppSettings
   langs:
   - csharp
   - vb
   name: StatisticsEnabled
-  nameWithType: QueueSenderAppSettings.StatisticsEnabled
-  fullName: QueueSender.QueueSenderAppSettings.StatisticsEnabled
+  nameWithType: QueueMessageSenderAppSettings.StatisticsEnabled
+  fullName: QueueMessageSender.QueueMessageSenderAppSettings.StatisticsEnabled
   type: Property
   source:
     remote:
-      path: src/QueueSender/QueueSenderAppSettings.cs
+      path: src/QueueMessageSender/QueueMessageSenderAppSettings.cs
       branch: master
       repo: git@github.com:Connatix/QueueMessageSender.git
     id: StatisticsEnabled
-    path: src/QueueSender/QueueSenderAppSettings.cs
+    path: src/QueueMessageSender/QueueMessageSenderAppSettings.cs
     startLine: 10
   assemblies:
-  - QueueSender
-  namespace: QueueSender
+  - QueueMessageSender
+  namespace: QueueMessageSender
   summary: "\nIf enabled then the QueueMessageSender records usage statistics\n"
   example: []
   syntax:
@@ -77,35 +77,35 @@ items:
     return:
       type: System.Boolean
     content.vb: Public Property StatisticsEnabled As Boolean
-  overload: QueueSender.QueueSenderAppSettings.StatisticsEnabled*
+  overload: QueueMessageSender.QueueMessageSenderAppSettings.StatisticsEnabled*
   modifiers.csharp:
   - public
   - get
   - set
   modifiers.vb:
   - Public
-- uid: QueueSender.QueueSenderAppSettings.MaxThreadCount
-  commentId: P:QueueSender.QueueSenderAppSettings.MaxThreadCount
+- uid: QueueMessageSender.QueueMessageSenderAppSettings.MaxThreadCount
+  commentId: P:QueueMessageSender.QueueMessageSenderAppSettings.MaxThreadCount
   id: MaxThreadCount
-  parent: QueueSender.QueueSenderAppSettings
+  parent: QueueMessageSender.QueueMessageSenderAppSettings
   langs:
   - csharp
   - vb
   name: MaxThreadCount
-  nameWithType: QueueSenderAppSettings.MaxThreadCount
-  fullName: QueueSender.QueueSenderAppSettings.MaxThreadCount
+  nameWithType: QueueMessageSenderAppSettings.MaxThreadCount
+  fullName: QueueMessageSender.QueueMessageSenderAppSettings.MaxThreadCount
   type: Property
   source:
     remote:
-      path: src/QueueSender/QueueSenderAppSettings.cs
+      path: src/QueueMessageSender/QueueMessageSenderAppSettings.cs
       branch: master
       repo: git@github.com:Connatix/QueueMessageSender.git
     id: MaxThreadCount
-    path: src/QueueSender/QueueSenderAppSettings.cs
+    path: src/QueueMessageSender/QueueMessageSenderAppSettings.cs
     startLine: 14
   assemblies:
-  - QueueSender
-  namespace: QueueSender
+  - QueueMessageSender
+  namespace: QueueMessageSender
   summary: "\nThe max number of threads to be used by this component\n"
   example: []
   syntax:
@@ -114,35 +114,35 @@ items:
     return:
       type: System.Int32
     content.vb: Public Property MaxThreadCount As Integer
-  overload: QueueSender.QueueSenderAppSettings.MaxThreadCount*
+  overload: QueueMessageSender.QueueMessageSenderAppSettings.MaxThreadCount*
   modifiers.csharp:
   - public
   - get
   - set
   modifiers.vb:
   - Public
-- uid: QueueSender.QueueSenderAppSettings.RequestsPerThread
-  commentId: P:QueueSender.QueueSenderAppSettings.RequestsPerThread
+- uid: QueueMessageSender.QueueMessageSenderAppSettings.RequestsPerThread
+  commentId: P:QueueMessageSender.QueueMessageSenderAppSettings.RequestsPerThread
   id: RequestsPerThread
-  parent: QueueSender.QueueSenderAppSettings
+  parent: QueueMessageSender.QueueMessageSenderAppSettings
   langs:
   - csharp
   - vb
   name: RequestsPerThread
-  nameWithType: QueueSenderAppSettings.RequestsPerThread
-  fullName: QueueSender.QueueSenderAppSettings.RequestsPerThread
+  nameWithType: QueueMessageSenderAppSettings.RequestsPerThread
+  fullName: QueueMessageSender.QueueMessageSenderAppSettings.RequestsPerThread
   type: Property
   source:
     remote:
-      path: src/QueueSender/QueueSenderAppSettings.cs
+      path: src/QueueMessageSender/QueueMessageSenderAppSettings.cs
       branch: master
       repo: git@github.com:Connatix/QueueMessageSender.git
     id: RequestsPerThread
-    path: src/QueueSender/QueueSenderAppSettings.cs
+    path: src/QueueMessageSender/QueueMessageSenderAppSettings.cs
     startLine: 18
   assemblies:
-  - QueueSender
-  namespace: QueueSender
+  - QueueMessageSender
+  namespace: QueueMessageSender
   summary: "\nMax number of messages to be handled by a single thread. New messages will be directed to new threads.\n"
   example: []
   syntax:
@@ -151,7 +151,7 @@ items:
     return:
       type: System.Int32
     content.vb: Public Property RequestsPerThread As Integer
-  overload: QueueSender.QueueSenderAppSettings.RequestsPerThread*
+  overload: QueueMessageSender.QueueMessageSenderAppSettings.RequestsPerThread*
   modifiers.csharp:
   - public
   - get
@@ -159,11 +159,11 @@ items:
   modifiers.vb:
   - Public
 references:
-- uid: QueueSender
-  commentId: N:QueueSender
-  name: QueueSender
-  nameWithType: QueueSender
-  fullName: QueueSender
+- uid: QueueMessageSender
+  commentId: N:QueueMessageSender
+  name: QueueMessageSender
+  nameWithType: QueueMessageSender
+  fullName: QueueMessageSender
 - uid: System.Object
   commentId: T:System.Object
   parent: System
@@ -456,11 +456,11 @@ references:
   name: System
   nameWithType: System
   fullName: System
-- uid: QueueSender.QueueSenderAppSettings.StatisticsEnabled*
-  commentId: Overload:QueueSender.QueueSenderAppSettings.StatisticsEnabled
+- uid: QueueMessageSender.QueueMessageSenderAppSettings.StatisticsEnabled*
+  commentId: Overload:QueueMessageSender.QueueMessageSenderAppSettings.StatisticsEnabled
   name: StatisticsEnabled
-  nameWithType: QueueSenderAppSettings.StatisticsEnabled
-  fullName: QueueSender.QueueSenderAppSettings.StatisticsEnabled
+  nameWithType: QueueMessageSenderAppSettings.StatisticsEnabled
+  fullName: QueueMessageSender.QueueMessageSenderAppSettings.StatisticsEnabled
 - uid: System.Boolean
   commentId: T:System.Boolean
   parent: System
@@ -468,11 +468,11 @@ references:
   name: Boolean
   nameWithType: Boolean
   fullName: System.Boolean
-- uid: QueueSender.QueueSenderAppSettings.MaxThreadCount*
-  commentId: Overload:QueueSender.QueueSenderAppSettings.MaxThreadCount
+- uid: QueueMessageSender.QueueMessageSenderAppSettings.MaxThreadCount*
+  commentId: Overload:QueueMessageSender.QueueMessageSenderAppSettings.MaxThreadCount
   name: MaxThreadCount
-  nameWithType: QueueSenderAppSettings.MaxThreadCount
-  fullName: QueueSender.QueueSenderAppSettings.MaxThreadCount
+  nameWithType: QueueMessageSenderAppSettings.MaxThreadCount
+  fullName: QueueMessageSender.QueueMessageSenderAppSettings.MaxThreadCount
 - uid: System.Int32
   commentId: T:System.Int32
   parent: System
@@ -480,8 +480,8 @@ references:
   name: Int32
   nameWithType: Int32
   fullName: System.Int32
-- uid: QueueSender.QueueSenderAppSettings.RequestsPerThread*
-  commentId: Overload:QueueSender.QueueSenderAppSettings.RequestsPerThread
+- uid: QueueMessageSender.QueueMessageSenderAppSettings.RequestsPerThread*
+  commentId: Overload:QueueMessageSender.QueueMessageSenderAppSettings.RequestsPerThread
   name: RequestsPerThread
-  nameWithType: QueueSenderAppSettings.RequestsPerThread
-  fullName: QueueSender.QueueSenderAppSettings.RequestsPerThread
+  nameWithType: QueueMessageSenderAppSettings.RequestsPerThread
+  fullName: QueueMessageSender.QueueMessageSenderAppSettings.RequestsPerThread

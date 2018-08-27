@@ -4,14 +4,14 @@ using Microsoft.Extensions.Logging;
 using Moq;
 using Xunit;
 
-namespace QueueSender.Tests
+namespace QueueMessageSender.Tests
 {
     public class QueueMessageSenderTests
     {
         private QueueMessageSender m_sut;
         private readonly Mock<IProxy> m_proxy = new Mock<IProxy>();                
         private readonly Mock<ILogger> m_logger = new Mock<ILogger>();
-        private readonly QueueSenderAppSettings m_settings = new QueueSenderAppSettings {
+        private readonly QueueMessageSenderAppSettings m_settings = new QueueMessageSenderAppSettings {
             StatisticsEnabled = true,
             MaxThreadCount = 2,
             RequestsPerThread = 100

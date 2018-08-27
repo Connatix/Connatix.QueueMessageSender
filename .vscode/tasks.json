@@ -7,7 +7,7 @@
             "type": "process",
             "args": [
                 "build",
-                "${workspaceFolder}/src/QueueSender.Tests/QueueSender.Tests.csproj"
+                "${workspaceFolder}/src/QueueMessageSender.Tests/QueueMessageSender.Tests.csproj"
             ],
             "problemMatcher": "$msCompile"
         }

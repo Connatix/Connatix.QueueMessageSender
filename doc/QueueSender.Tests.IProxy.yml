@@ -1,29 +1,29 @@
 ### YamlMime:ManagedReference
 items:
-- uid: QueueSender.Tests.IProxy
-  commentId: T:QueueSender.Tests.IProxy
+- uid: QueueMessageSender.Tests.IProxy
+  commentId: T:QueueMessageSender.Tests.IProxy
   id: IProxy
-  parent: QueueSender.Tests
+  parent: QueueMessageSender.Tests
   children:
-  - QueueSender.Tests.IProxy.WriteAsync(System.Collections.Generic.List{QueueSender.Message},System.String)
+  - QueueMessageSender.Tests.IProxy.WriteAsync(System.Collections.Generic.List{QueueMessageSender.Message},System.String)
   langs:
   - csharp
   - vb
   name: IProxy
   nameWithType: IProxy
-  fullName: QueueSender.Tests.IProxy
+  fullName: QueueMessageSender.Tests.IProxy
   type: Interface
   source:
     remote:
-      path: src/QueueSender.Tests/IProxy.cs
+      path: src/QueueMessageSender.Tests/IProxy.cs
       branch: master
       repo: git@github.com:Connatix/QueueMessageSender.git
     id: IProxy
-    path: src/QueueSender.Tests/IProxy.cs
+    path: src/QueueMessageSender.Tests/IProxy.cs
     startLine: 6
   assemblies:
-  - QueueSender.Tests
-  namespace: QueueSender.Tests
+  - QueueMessageSender.Tests
+  namespace: QueueMessageSender.Tests
   syntax:
     content: 'public interface IProxy : IDisposable'
     content.vb: >-
@@ -38,48 +38,48 @@ items:
   modifiers.vb:
   - Public
   - Interface
-- uid: QueueSender.Tests.IProxy.WriteAsync(System.Collections.Generic.List{QueueSender.Message},System.String)
-  commentId: M:QueueSender.Tests.IProxy.WriteAsync(System.Collections.Generic.List{QueueSender.Message},System.String)
-  id: WriteAsync(System.Collections.Generic.List{QueueSender.Message},System.String)
-  parent: QueueSender.Tests.IProxy
+- uid: QueueMessageSender.Tests.IProxy.WriteAsync(System.Collections.Generic.List{QueueMessageSender.Message},System.String)
+  commentId: M:QueueMessageSender.Tests.IProxy.WriteAsync(System.Collections.Generic.List{QueueMessageSender.Message},System.String)
+  id: WriteAsync(System.Collections.Generic.List{QueueMessageSender.Message},System.String)
+  parent: QueueMessageSender.Tests.IProxy
   langs:
   - csharp
   - vb
   name: WriteAsync(List<Message>, String)
   nameWithType: IProxy.WriteAsync(List<Message>, String)
-  fullName: QueueSender.Tests.IProxy.WriteAsync(System.Collections.Generic.List<QueueSender.Message>, System.String)
+  fullName: QueueMessageSender.Tests.IProxy.WriteAsync(System.Collections.Generic.List<QueueMessageSender.Message>, System.String)
   type: Method
   source:
     remote:
-      path: src/QueueSender.Tests/IProxy.cs
+      path: src/QueueMessageSender.Tests/IProxy.cs
       branch: master
       repo: git@github.com:Connatix/QueueMessageSender.git
     id: WriteAsync
-    path: src/QueueSender.Tests/IProxy.cs
+    path: src/QueueMessageSender.Tests/IProxy.cs
     startLine: 8
   assemblies:
-  - QueueSender.Tests
-  namespace: QueueSender.Tests
+  - QueueMessageSender.Tests
+  namespace: QueueMessageSender.Tests
   syntax:
     content: Task<List<Message>> WriteAsync(List<Message> messages, string streamName)
     parameters:
     - id: messages
-      type: System.Collections.Generic.List{QueueSender.Message}
+      type: System.Collections.Generic.List{QueueMessageSender.Message}
     - id: streamName
       type: System.String
     return:
-      type: System.Threading.Tasks.Task{System.Collections.Generic.List{QueueSender.Message}}
+      type: System.Threading.Tasks.Task{System.Collections.Generic.List{QueueMessageSender.Message}}
     content.vb: Function WriteAsync(messages As List(Of Message), streamName As String) As Task(Of List(Of Message))
-  overload: QueueSender.Tests.IProxy.WriteAsync*
+  overload: QueueMessageSender.Tests.IProxy.WriteAsync*
   nameWithType.vb: IProxy.WriteAsync(List(Of Message), String)
-  fullName.vb: QueueSender.Tests.IProxy.WriteAsync(System.Collections.Generic.List(Of QueueSender.Message), System.String)
+  fullName.vb: QueueMessageSender.Tests.IProxy.WriteAsync(System.Collections.Generic.List(Of QueueMessageSender.Message), System.String)
   name.vb: WriteAsync(List(Of Message), String)
 references:
-- uid: QueueSender.Tests
-  commentId: N:QueueSender.Tests
-  name: QueueSender.Tests
-  nameWithType: QueueSender.Tests
-  fullName: QueueSender.Tests
+- uid: QueueMessageSender.Tests
+  commentId: N:QueueMessageSender.Tests
+  name: QueueMessageSender.Tests
+  nameWithType: QueueMessageSender.Tests
+  fullName: QueueMessageSender.Tests
 - uid: System.IDisposable.Dispose
   commentId: M:System.IDisposable.Dispose
   parent: System.IDisposable
@@ -124,20 +124,20 @@ references:
   name: System
   nameWithType: System
   fullName: System
-- uid: QueueSender.Tests.IProxy.WriteAsync*
-  commentId: Overload:QueueSender.Tests.IProxy.WriteAsync
+- uid: QueueMessageSender.Tests.IProxy.WriteAsync*
+  commentId: Overload:QueueMessageSender.Tests.IProxy.WriteAsync
   name: WriteAsync
   nameWithType: IProxy.WriteAsync
-  fullName: QueueSender.Tests.IProxy.WriteAsync
-- uid: System.Collections.Generic.List{QueueSender.Message}
-  commentId: T:System.Collections.Generic.List{QueueSender.Message}
+  fullName: QueueMessageSender.Tests.IProxy.WriteAsync
+- uid: System.Collections.Generic.List{QueueMessageSender.Message}
+  commentId: T:System.Collections.Generic.List{QueueMessageSender.Message}
   parent: System.Collections.Generic
   definition: System.Collections.Generic.List`1
   name: List<Message>
   nameWithType: List<Message>
-  fullName: System.Collections.Generic.List<QueueSender.Message>
+  fullName: System.Collections.Generic.List<QueueMessageSender.Message>
   nameWithType.vb: List(Of Message)
-  fullName.vb: System.Collections.Generic.List(Of QueueSender.Message)
+  fullName.vb: System.Collections.Generic.List(Of QueueMessageSender.Message)
   name.vb: List(Of Message)
   spec.csharp:
   - uid: System.Collections.Generic.List`1
@@ -148,10 +148,10 @@ references:
   - name: <
     nameWithType: <
     fullName: <
-  - uid: QueueSender.Message
+  - uid: QueueMessageSender.Message
     name: Message
     nameWithType: Message
-    fullName: QueueSender.Message
+    fullName: QueueMessageSender.Message
   - name: '>'
     nameWithType: '>'
     fullName: '>'
@@ -164,10 +164,10 @@ references:
   - name: '(Of '
     nameWithType: '(Of '
     fullName: '(Of '
-  - uid: QueueSender.Message
+  - uid: QueueMessageSender.Message
     name: Message
     nameWithType: Message
-    fullName: QueueSender.Message
+    fullName: QueueMessageSender.Message
   - name: )
     nameWithType: )
     fullName: )
@@ -178,15 +178,15 @@ references:
   name: String
   nameWithType: String
   fullName: System.String
-- uid: System.Threading.Tasks.Task{System.Collections.Generic.List{QueueSender.Message}}
-  commentId: T:System.Threading.Tasks.Task{System.Collections.Generic.List{QueueSender.Message}}
+- uid: System.Threading.Tasks.Task{System.Collections.Generic.List{QueueMessageSender.Message}}
+  commentId: T:System.Threading.Tasks.Task{System.Collections.Generic.List{QueueMessageSender.Message}}
   parent: System.Threading.Tasks
   definition: System.Threading.Tasks.Task`1
   name: Task<List<Message>>
   nameWithType: Task<List<Message>>
-  fullName: System.Threading.Tasks.Task<System.Collections.Generic.List<QueueSender.Message>>
+  fullName: System.Threading.Tasks.Task<System.Collections.Generic.List<QueueMessageSender.Message>>
   nameWithType.vb: Task(Of List(Of Message))
-  fullName.vb: System.Threading.Tasks.Task(Of System.Collections.Generic.List(Of QueueSender.Message))
+  fullName.vb: System.Threading.Tasks.Task(Of System.Collections.Generic.List(Of QueueMessageSender.Message))
   name.vb: Task(Of List(Of Message))
   spec.csharp:
   - uid: System.Threading.Tasks.Task`1
@@ -205,10 +205,10 @@ references:
   - name: <
     nameWithType: <
     fullName: <
-  - uid: QueueSender.Message
+  - uid: QueueMessageSender.Message
     name: Message
     nameWithType: Message
-    fullName: QueueSender.Message
+    fullName: QueueMessageSender.Message
   - name: '>'
     nameWithType: '>'
     fullName: '>'
@@ -232,10 +232,10 @@ references:
   - name: '(Of '
     nameWithType: '(Of '
     fullName: '(Of '
-  - uid: QueueSender.Message
+  - uid: QueueMessageSender.Message
     name: Message
     nameWithType: Message
-    fullName: QueueSender.Message
+    fullName: QueueMessageSender.Message
   - name: )
     nameWithType: )
     fullName: )

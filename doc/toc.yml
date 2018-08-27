@@ -1,25 +1,25 @@
 ### YamlMime:TableOfContent
-- uid: QueueSender
-  name: QueueSender
+- uid: QueueMessageSender
+  name: QueueMessageSender
   items:
-  - uid: QueueSender.ChannelSpecificMessageHandler
+  - uid: QueueMessageSender.ChannelSpecificMessageHandler
     name: ChannelSpecificMessageHandler
-  - uid: QueueSender.CustomMessageHandler
+  - uid: QueueMessageSender.CustomMessageHandler
     name: CustomMessageHandler
-  - uid: QueueSender.GlobalMessageHandler
+  - uid: QueueMessageSender.GlobalMessageHandler
     name: GlobalMessageHandler
-  - uid: QueueSender.IQueueMessageSender
+  - uid: QueueMessageSender.IQueueMessageSender
     name: IQueueMessageSender
-  - uid: QueueSender.Message
+  - uid: QueueMessageSender.Message
     name: Message
-  - uid: QueueSender.QueueMessageSender
+  - uid: QueueMessageSender.QueueMessageSender
     name: QueueMessageSender
-  - uid: QueueSender.QueueSenderAppSettings
-    name: QueueSenderAppSettings
-- uid: QueueSender.Tests
-  name: QueueSender.Tests
+  - uid: QueueMessageSender.QueueMessageSenderAppSettings
+    name: QueueMessageSenderAppSettings
+- uid: QueueMessageSender.Tests
+  name: QueueMessageSender.Tests
   items:
-  - uid: QueueSender.Tests.IProxy
+  - uid: QueueMessageSender.Tests.IProxy
     name: IProxy
-  - uid: QueueSender.Tests.QueueMessageSenderTests
+  - uid: QueueMessageSender.Tests.QueueMessageSenderTests
     name: QueueMessageSenderTests

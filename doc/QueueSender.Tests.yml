@@ -1,28 +1,28 @@
 ### YamlMime:ManagedReference
 items:
-- uid: QueueSender.Tests
-  commentId: N:QueueSender.Tests
-  id: QueueSender.Tests
+- uid: QueueMessageSender.Tests
+  commentId: N:QueueMessageSender.Tests
+  id: QueueMessageSender.Tests
   children:
-  - QueueSender.Tests.IProxy
-  - QueueSender.Tests.QueueMessageSenderTests
+  - QueueMessageSender.Tests.IProxy
+  - QueueMessageSender.Tests.QueueMessageSenderTests
   langs:
   - csharp
   - vb
-  name: QueueSender.Tests
-  nameWithType: QueueSender.Tests
-  fullName: QueueSender.Tests
+  name: QueueMessageSender.Tests
+  nameWithType: QueueMessageSender.Tests
+  fullName: QueueMessageSender.Tests
   type: Namespace
   assemblies:
-  - QueueSender.Tests
+  - QueueMessageSender.Tests
 references:
-- uid: QueueSender.Tests.IProxy
-  commentId: T:QueueSender.Tests.IProxy
+- uid: QueueMessageSender.Tests.IProxy
+  commentId: T:QueueMessageSender.Tests.IProxy
   name: IProxy
   nameWithType: IProxy
-  fullName: QueueSender.Tests.IProxy
-- uid: QueueSender.Tests.QueueMessageSenderTests
-  commentId: T:QueueSender.Tests.QueueMessageSenderTests
+  fullName: QueueMessageSender.Tests.IProxy
+- uid: QueueMessageSender.Tests.QueueMessageSenderTests
+  commentId: T:QueueMessageSender.Tests.QueueMessageSenderTests
   name: QueueMessageSenderTests
   nameWithType: QueueMessageSenderTests
-  fullName: QueueSender.Tests.QueueMessageSenderTests
+  fullName: QueueMessageSender.Tests.QueueMessageSenderTests

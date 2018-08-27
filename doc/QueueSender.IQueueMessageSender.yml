@@ -1,34 +1,34 @@
 ### YamlMime:ManagedReference
 items:
-- uid: QueueSender.IQueueMessageSender
-  commentId: T:QueueSender.IQueueMessageSender
+- uid: QueueMessageSender.IQueueMessageSender
+  commentId: T:QueueMessageSender.IQueueMessageSender
   id: IQueueMessageSender
-  parent: QueueSender
+  parent: QueueMessageSender
   children:
-  - QueueSender.IQueueMessageSender.Enqueue(System.Object,System.String)
-  - QueueSender.IQueueMessageSender.EnqueuedMessageCount
-  - QueueSender.IQueueMessageSender.FailedMessageCount
-  - QueueSender.IQueueMessageSender.SentMessageCount
-  - QueueSender.IQueueMessageSender.SetChannelWeight(System.Single,System.String)
-  - QueueSender.IQueueMessageSender.WaitForIdle
+  - QueueMessageSender.IQueueMessageSender.Enqueue(System.Object,System.String)
+  - QueueMessageSender.IQueueMessageSender.EnqueuedMessageCount
+  - QueueMessageSender.IQueueMessageSender.FailedMessageCount
+  - QueueMessageSender.IQueueMessageSender.SentMessageCount
+  - QueueMessageSender.IQueueMessageSender.SetChannelWeight(System.Single,System.String)
+  - QueueMessageSender.IQueueMessageSender.WaitForIdle
   langs:
   - csharp
   - vb
   name: IQueueMessageSender
   nameWithType: IQueueMessageSender
-  fullName: QueueSender.IQueueMessageSender
+  fullName: QueueMessageSender.IQueueMessageSender
   type: Interface
   source:
     remote:
-      path: src/QueueSender/IQueueMessageSender.cs
+      path: src/QueueMessageSender/IQueueMessageSender.cs
       branch: master
       repo: git@github.com:Connatix/QueueMessageSender.git
     id: IQueueMessageSender
-    path: src/QueueSender/IQueueMessageSender.cs
+    path: src/QueueMessageSender/IQueueMessageSender.cs
     startLine: 7
   assemblies:
-  - QueueSender
-  namespace: QueueSender
+  - QueueMessageSender
+  namespace: QueueMessageSender
   summary: "\nThis interface is the abstraction of the QueueMessageSender class \n"
   example: []
   syntax:
@@ -45,28 +45,28 @@ items:
   modifiers.vb:
   - Public
   - Interface
-- uid: QueueSender.IQueueMessageSender.EnqueuedMessageCount
-  commentId: P:QueueSender.IQueueMessageSender.EnqueuedMessageCount
+- uid: QueueMessageSender.IQueueMessageSender.EnqueuedMessageCount
+  commentId: P:QueueMessageSender.IQueueMessageSender.EnqueuedMessageCount
   id: EnqueuedMessageCount
-  parent: QueueSender.IQueueMessageSender
+  parent: QueueMessageSender.IQueueMessageSender
   langs:
   - csharp
   - vb
   name: EnqueuedMessageCount
   nameWithType: IQueueMessageSender.EnqueuedMessageCount
-  fullName: QueueSender.IQueueMessageSender.EnqueuedMessageCount
+  fullName: QueueMessageSender.IQueueMessageSender.EnqueuedMessageCount
   type: Property
   source:
     remote:
-      path: src/QueueSender/IQueueMessageSender.cs
+      path: src/QueueMessageSender/IQueueMessageSender.cs
       branch: master
       repo: git@github.com:Connatix/QueueMessageSender.git
     id: EnqueuedMessageCount
-    path: src/QueueSender/IQueueMessageSender.cs
+    path: src/QueueMessageSender/IQueueMessageSender.cs
     startLine: 12
   assemblies:
-  - QueueSender
-  namespace: QueueSender
+  - QueueMessageSender
+  namespace: QueueMessageSender
   summary: "\nThis field keeps the count of the enqueued messages\n"
   example: []
   syntax:
@@ -75,33 +75,33 @@ items:
     return:
       type: System.Int32
     content.vb: ReadOnly Property EnqueuedMessageCount As Integer
-  overload: QueueSender.IQueueMessageSender.EnqueuedMessageCount*
+  overload: QueueMessageSender.IQueueMessageSender.EnqueuedMessageCount*
   modifiers.csharp:
   - get
   modifiers.vb:
   - ReadOnly
-- uid: QueueSender.IQueueMessageSender.SentMessageCount
-  commentId: P:QueueSender.IQueueMessageSender.SentMessageCount
+- uid: QueueMessageSender.IQueueMessageSender.SentMessageCount
+  commentId: P:QueueMessageSender.IQueueMessageSender.SentMessageCount
   id: SentMessageCount
-  parent: QueueSender.IQueueMessageSender
+  parent: QueueMessageSender.IQueueMessageSender
   langs:
   - csharp
   - vb
   name: SentMessageCount
   nameWithType: IQueueMessageSender.SentMessageCount
-  fullName: QueueSender.IQueueMessageSender.SentMessageCount
+  fullName: QueueMessageSender.IQueueMessageSender.SentMessageCount
   type: Property
   source:
     remote:
-      path: src/QueueSender/IQueueMessageSender.cs
+      path: src/QueueMessageSender/IQueueMessageSender.cs
       branch: master
       repo: git@github.com:Connatix/QueueMessageSender.git
     id: SentMessageCount
-    path: src/QueueSender/IQueueMessageSender.cs
+    path: src/QueueMessageSender/IQueueMessageSender.cs
     startLine: 17
   assemblies:
-  - QueueSender
-  namespace: QueueSender
+  - QueueMessageSender
+  namespace: QueueMessageSender
   summary: "\nThis field keeps the count of all messages that were successfully sent\n"
   example: []
   syntax:
@@ -110,33 +110,33 @@ items:
     return:
       type: System.Int32
     content.vb: ReadOnly Property SentMessageCount As Integer
-  overload: QueueSender.IQueueMessageSender.SentMessageCount*
+  overload: QueueMessageSender.IQueueMessageSender.SentMessageCount*
   modifiers.csharp:
   - get
   modifiers.vb:
   - ReadOnly
-- uid: QueueSender.IQueueMessageSender.FailedMessageCount
-  commentId: P:QueueSender.IQueueMessageSender.FailedMessageCount
+- uid: QueueMessageSender.IQueueMessageSender.FailedMessageCount
+  commentId: P:QueueMessageSender.IQueueMessageSender.FailedMessageCount
   id: FailedMessageCount
-  parent: QueueSender.IQueueMessageSender
+  parent: QueueMessageSender.IQueueMessageSender
   langs:
   - csharp
   - vb
   name: FailedMessageCount
   nameWithType: IQueueMessageSender.FailedMessageCount
-  fullName: QueueSender.IQueueMessageSender.FailedMessageCount
+  fullName: QueueMessageSender.IQueueMessageSender.FailedMessageCount
   type: Property
   source:
     remote:
-      path: src/QueueSender/IQueueMessageSender.cs
+      path: src/QueueMessageSender/IQueueMessageSender.cs
       branch: master
       repo: git@github.com:Connatix/QueueMessageSender.git
     id: FailedMessageCount
-    path: src/QueueSender/IQueueMessageSender.cs
+    path: src/QueueMessageSender/IQueueMessageSender.cs
     startLine: 22
   assemblies:
-  - QueueSender
-  namespace: QueueSender
+  - QueueMessageSender
+  namespace: QueueMessageSender
   summary: "\nThis field keeps the count of all messages that failed to be sent\n"
   example: []
   syntax:
@@ -145,33 +145,33 @@ items:
     return:
       type: System.Int32
     content.vb: ReadOnly Property FailedMessageCount As Integer
-  overload: QueueSender.IQueueMessageSender.FailedMessageCount*
+  overload: QueueMessageSender.IQueueMessageSender.FailedMessageCount*
   modifiers.csharp:
   - get
   modifiers.vb:
   - ReadOnly
-- uid: QueueSender.IQueueMessageSender.Enqueue(System.Object,System.String)
-  commentId: M:QueueSender.IQueueMessageSender.Enqueue(System.Object,System.String)
+- uid: QueueMessageSender.IQueueMessageSender.Enqueue(System.Object,System.String)
+  commentId: M:QueueMessageSender.IQueueMessageSender.Enqueue(System.Object,System.String)
   id: Enqueue(System.Object,System.String)
-  parent: QueueSender.IQueueMessageSender
+  parent: QueueMessageSender.IQueueMessageSender
   langs:
   - csharp
   - vb
   name: Enqueue(Object, String)
   nameWithType: IQueueMessageSender.Enqueue(Object, String)
-  fullName: QueueSender.IQueueMessageSender.Enqueue(System.Object, System.String)
+  fullName: QueueMessageSender.IQueueMessageSender.Enqueue(System.Object, System.String)
   type: Method
   source:
     remote:
-      path: src/QueueSender/IQueueMessageSender.cs
+      path: src/QueueMessageSender/IQueueMessageSender.cs
       branch: master
       repo: git@github.com:Connatix/QueueMessageSender.git
     id: Enqueue
-    path: src/QueueSender/IQueueMessageSender.cs
+    path: src/QueueMessageSender/IQueueMessageSender.cs
     startLine: 29
   assemblies:
-  - QueueSender
-  namespace: QueueSender
+  - QueueMessageSender
+  namespace: QueueMessageSender
   summary: "\nEnqueues a message to be delivered to a named writer stream\n"
   example: []
   syntax:
@@ -184,57 +184,57 @@ items:
       type: System.String
       description: Name of the channel.
     content.vb: Sub Enqueue(message As Object, channelName As String)
-  overload: QueueSender.IQueueMessageSender.Enqueue*
-- uid: QueueSender.IQueueMessageSender.WaitForIdle
-  commentId: M:QueueSender.IQueueMessageSender.WaitForIdle
+  overload: QueueMessageSender.IQueueMessageSender.Enqueue*
+- uid: QueueMessageSender.IQueueMessageSender.WaitForIdle
+  commentId: M:QueueMessageSender.IQueueMessageSender.WaitForIdle
   id: WaitForIdle
-  parent: QueueSender.IQueueMessageSender
+  parent: QueueMessageSender.IQueueMessageSender
   langs:
   - csharp
   - vb
   name: WaitForIdle()
   nameWithType: IQueueMessageSender.WaitForIdle()
-  fullName: QueueSender.IQueueMessageSender.WaitForIdle()
+  fullName: QueueMessageSender.IQueueMessageSender.WaitForIdle()
   type: Method
   source:
     remote:
-      path: src/QueueSender/IQueueMessageSender.cs
+      path: src/QueueMessageSender/IQueueMessageSender.cs
       branch: master
       repo: git@github.com:Connatix/QueueMessageSender.git
     id: WaitForIdle
-    path: src/QueueSender/IQueueMessageSender.cs
+    path: src/QueueMessageSender/IQueueMessageSender.cs
     startLine: 34
   assemblies:
-  - QueueSender
-  namespace: QueueSender
+  - QueueMessageSender
+  namespace: QueueMessageSender
   summary: "\nWaits for all the messages to be sent by the message handler\n"
   example: []
   syntax:
     content: void WaitForIdle()
     content.vb: Sub WaitForIdle
-  overload: QueueSender.IQueueMessageSender.WaitForIdle*
-- uid: QueueSender.IQueueMessageSender.SetChannelWeight(System.Single,System.String)
-  commentId: M:QueueSender.IQueueMessageSender.SetChannelWeight(System.Single,System.String)
+  overload: QueueMessageSender.IQueueMessageSender.WaitForIdle*
+- uid: QueueMessageSender.IQueueMessageSender.SetChannelWeight(System.Single,System.String)
+  commentId: M:QueueMessageSender.IQueueMessageSender.SetChannelWeight(System.Single,System.String)
   id: SetChannelWeight(System.Single,System.String)
-  parent: QueueSender.IQueueMessageSender
+  parent: QueueMessageSender.IQueueMessageSender
   langs:
   - csharp
   - vb
   name: SetChannelWeight(Single, String)
   nameWithType: IQueueMessageSender.SetChannelWeight(Single, String)
-  fullName: QueueSender.IQueueMessageSender.SetChannelWeight(System.Single, System.String)
+  fullName: QueueMessageSender.IQueueMessageSender.SetChannelWeight(System.Single, System.String)
   type: Method
   source:
     remote:
-      path: src/QueueSender/IQueueMessageSender.cs
+      path: src/QueueMessageSender/IQueueMessageSender.cs
       branch: master
       repo: git@github.com:Connatix/QueueMessageSender.git
     id: SetChannelWeight
-    path: src/QueueSender/IQueueMessageSender.cs
+    path: src/QueueMessageSender/IQueueMessageSender.cs
     startLine: 43
   assemblies:
-  - QueueSender
-  namespace: QueueSender
+  - QueueMessageSender
+  namespace: QueueMessageSender
   summary: "\nEach new channel has a default weight of 1. If you need to increase or decrease the threads allocated\nto a specific channel, use this function. The higher the number the more resources are dedicated to\na channel. Bear in mind that the MaxThreadCount setting (default is 2) is still considered. \n"
   example: []
   syntax:
@@ -247,13 +247,13 @@ items:
       type: System.String
       description: ''
     content.vb: Sub SetChannelWeight(weight As Single, channelName As String)
-  overload: QueueSender.IQueueMessageSender.SetChannelWeight*
+  overload: QueueMessageSender.IQueueMessageSender.SetChannelWeight*
 references:
-- uid: QueueSender
-  commentId: N:QueueSender
-  name: QueueSender
-  nameWithType: QueueSender
-  fullName: QueueSender
+- uid: QueueMessageSender
+  commentId: N:QueueMessageSender
+  name: QueueMessageSender
+  nameWithType: QueueMessageSender
+  fullName: QueueMessageSender
 - uid: System.IDisposable.Dispose
   commentId: M:System.IDisposable.Dispose
   parent: System.IDisposable
@@ -298,11 +298,11 @@ references:
   name: System
   nameWithType: System
   fullName: System
-- uid: QueueSender.IQueueMessageSender.EnqueuedMessageCount*
-  commentId: Overload:QueueSender.IQueueMessageSender.EnqueuedMessageCount
+- uid: QueueMessageSender.IQueueMessageSender.EnqueuedMessageCount*
+  commentId: Overload:QueueMessageSender.IQueueMessageSender.EnqueuedMessageCount
   name: EnqueuedMessageCount
   nameWithType: IQueueMessageSender.EnqueuedMessageCount
-  fullName: QueueSender.IQueueMessageSender.EnqueuedMessageCount
+  fullName: QueueMessageSender.IQueueMessageSender.EnqueuedMessageCount
 - uid: System.Int32
   commentId: T:System.Int32
   parent: System
@@ -310,21 +310,21 @@ references:
   name: Int32
   nameWithType: Int32
   fullName: System.Int32
-- uid: QueueSender.IQueueMessageSender.SentMessageCount*
-  commentId: Overload:QueueSender.IQueueMessageSender.SentMessageCount
+- uid: QueueMessageSender.IQueueMessageSender.SentMessageCount*
+  commentId: Overload:QueueMessageSender.IQueueMessageSender.SentMessageCount
   name: SentMessageCount
   nameWithType: IQueueMessageSender.SentMessageCount
-  fullName: QueueSender.IQueueMessageSender.SentMessageCount
-- uid: QueueSender.IQueueMessageSender.FailedMessageCount*
-  commentId: Overload:QueueSender.IQueueMessageSender.FailedMessageCount
+  fullName: QueueMessageSender.IQueueMessageSender.SentMessageCount
+- uid: QueueMessageSender.IQueueMessageSender.FailedMessageCount*
+  commentId: Overload:QueueMessageSender.IQueueMessageSender.FailedMessageCount
   name: FailedMessageCount
   nameWithType: IQueueMessageSender.FailedMessageCount
-  fullName: QueueSender.IQueueMessageSender.FailedMessageCount
-- uid: QueueSender.IQueueMessageSender.Enqueue*
-  commentId: Overload:QueueSender.IQueueMessageSender.Enqueue
+  fullName: QueueMessageSender.IQueueMessageSender.FailedMessageCount
+- uid: QueueMessageSender.IQueueMessageSender.Enqueue*
+  commentId: Overload:QueueMessageSender.IQueueMessageSender.Enqueue
   name: Enqueue
   nameWithType: IQueueMessageSender.Enqueue
-  fullName: QueueSender.IQueueMessageSender.Enqueue
+  fullName: QueueMessageSender.IQueueMessageSender.Enqueue
 - uid: System.Object
   commentId: T:System.Object
   parent: System
@@ -339,16 +339,16 @@ references:
   name: String
   nameWithType: String
   fullName: System.String
-- uid: QueueSender.IQueueMessageSender.WaitForIdle*
-  commentId: Overload:QueueSender.IQueueMessageSender.WaitForIdle
+- uid: QueueMessageSender.IQueueMessageSender.WaitForIdle*
+  commentId: Overload:QueueMessageSender.IQueueMessageSender.WaitForIdle
   name: WaitForIdle
   nameWithType: IQueueMessageSender.WaitForIdle
-  fullName: QueueSender.IQueueMessageSender.WaitForIdle
-- uid: QueueSender.IQueueMessageSender.SetChannelWeight*
-  commentId: Overload:QueueSender.IQueueMessageSender.SetChannelWeight
+  fullName: QueueMessageSender.IQueueMessageSender.WaitForIdle
+- uid: QueueMessageSender.IQueueMessageSender.SetChannelWeight*
+  commentId: Overload:QueueMessageSender.IQueueMessageSender.SetChannelWeight
   name: SetChannelWeight
   nameWithType: IQueueMessageSender.SetChannelWeight
-  fullName: QueueSender.IQueueMessageSender.SetChannelWeight
+  fullName: QueueMessageSender.IQueueMessageSender.SetChannelWeight
 - uid: System.Single
   commentId: T:System.Single
   parent: System

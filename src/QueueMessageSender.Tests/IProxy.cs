@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace QueueSender.Tests
+namespace QueueMessageSender.Tests
 {
     public interface IProxy : IDisposable
     {

@@ -1,31 +1,31 @@
 ### YamlMime:ManagedReference
 items:
-- uid: QueueSender.Message
-  commentId: T:QueueSender.Message
+- uid: QueueMessageSender.Message
+  commentId: T:QueueMessageSender.Message
   id: Message
-  parent: QueueSender
+  parent: QueueMessageSender
   children:
-  - QueueSender.Message.LastErrorMessage
-  - QueueSender.Message.Payload
-  - QueueSender.Message.RetryCount
+  - QueueMessageSender.Message.LastErrorMessage
+  - QueueMessageSender.Message.Payload
+  - QueueMessageSender.Message.RetryCount
   langs:
   - csharp
   - vb
   name: Message
   nameWithType: Message
-  fullName: QueueSender.Message
+  fullName: QueueMessageSender.Message
   type: Class
   source:
     remote:
-      path: src/QueueSender/QueueMessageSender.cs
+      path: src/QueueMessageSender/QueueMessageSender.cs
       branch: master
       repo: git@github.com:Connatix/QueueMessageSender.git
     id: Message
-    path: src/QueueSender/QueueMessageSender.cs
+    path: src/QueueMessageSender/QueueMessageSender.cs
     startLine: 594
   assemblies:
-  - QueueSender
-  namespace: QueueSender
+  - QueueMessageSender
+  namespace: QueueMessageSender
   summary: "\nThis class encapsulates an enqueued message. It also tracks the retry count and the last error\nof the message handler action.\n"
   example: []
   syntax:
@@ -47,105 +47,105 @@ items:
   modifiers.vb:
   - Public
   - Class
-- uid: QueueSender.Message.RetryCount
-  commentId: P:QueueSender.Message.RetryCount
+- uid: QueueMessageSender.Message.RetryCount
+  commentId: P:QueueMessageSender.Message.RetryCount
   id: RetryCount
-  parent: QueueSender.Message
+  parent: QueueMessageSender.Message
   langs:
   - csharp
   - vb
   name: RetryCount
   nameWithType: Message.RetryCount
-  fullName: QueueSender.Message.RetryCount
+  fullName: QueueMessageSender.Message.RetryCount
   type: Property
   source:
     remote:
-      path: src/QueueSender/QueueMessageSender.cs
+      path: src/QueueMessageSender/QueueMessageSender.cs
       branch: master
       repo: git@github.com:Connatix/QueueMessageSender.git
     id: RetryCount
-    path: src/QueueSender/QueueMessageSender.cs
+    path: src/QueueMessageSender/QueueMessageSender.cs
     startLine: 596
   assemblies:
-  - QueueSender
-  namespace: QueueSender
+  - QueueMessageSender
+  namespace: QueueMessageSender
   syntax:
     content: public int RetryCount { get; set; }
     parameters: []
     return:
       type: System.Int32
     content.vb: Public Property RetryCount As Integer
-  overload: QueueSender.Message.RetryCount*
+  overload: QueueMessageSender.Message.RetryCount*
   modifiers.csharp:
   - public
   - get
   - set
   modifiers.vb:
   - Public
-- uid: QueueSender.Message.Payload
-  commentId: P:QueueSender.Message.Payload
+- uid: QueueMessageSender.Message.Payload
+  commentId: P:QueueMessageSender.Message.Payload
   id: Payload
-  parent: QueueSender.Message
+  parent: QueueMessageSender.Message
   langs:
   - csharp
   - vb
   name: Payload
   nameWithType: Message.Payload
-  fullName: QueueSender.Message.Payload
+  fullName: QueueMessageSender.Message.Payload
   type: Property
   source:
     remote:
-      path: src/QueueSender/QueueMessageSender.cs
+      path: src/QueueMessageSender/QueueMessageSender.cs
       branch: master
       repo: git@github.com:Connatix/QueueMessageSender.git
     id: Payload
-    path: src/QueueSender/QueueMessageSender.cs
+    path: src/QueueMessageSender/QueueMessageSender.cs
     startLine: 597
   assemblies:
-  - QueueSender
-  namespace: QueueSender
+  - QueueMessageSender
+  namespace: QueueMessageSender
   syntax:
     content: public object Payload { get; set; }
     parameters: []
     return:
       type: System.Object
     content.vb: Public Property Payload As Object
-  overload: QueueSender.Message.Payload*
+  overload: QueueMessageSender.Message.Payload*
   modifiers.csharp:
   - public
   - get
   - set
   modifiers.vb:
   - Public
-- uid: QueueSender.Message.LastErrorMessage
-  commentId: P:QueueSender.Message.LastErrorMessage
+- uid: QueueMessageSender.Message.LastErrorMessage
+  commentId: P:QueueMessageSender.Message.LastErrorMessage
   id: LastErrorMessage
-  parent: QueueSender.Message
+  parent: QueueMessageSender.Message
   langs:
   - csharp
   - vb
   name: LastErrorMessage
   nameWithType: Message.LastErrorMessage
-  fullName: QueueSender.Message.LastErrorMessage
+  fullName: QueueMessageSender.Message.LastErrorMessage
   type: Property
   source:
     remote:
-      path: src/QueueSender/QueueMessageSender.cs
+      path: src/QueueMessageSender/QueueMessageSender.cs
       branch: master
       repo: git@github.com:Connatix/QueueMessageSender.git
     id: LastErrorMessage
-    path: src/QueueSender/QueueMessageSender.cs
+    path: src/QueueMessageSender/QueueMessageSender.cs
     startLine: 598
   assemblies:
-  - QueueSender
-  namespace: QueueSender
+  - QueueMessageSender
+  namespace: QueueMessageSender
   syntax:
     content: public string LastErrorMessage { get; set; }
     parameters: []
     return:
       type: System.String
     content.vb: Public Property LastErrorMessage As String
-  overload: QueueSender.Message.LastErrorMessage*
+  overload: QueueMessageSender.Message.LastErrorMessage*
   modifiers.csharp:
   - public
   - get
@@ -153,11 +153,11 @@ items:
   modifiers.vb:
   - Public
 references:
-- uid: QueueSender
-  commentId: N:QueueSender
-  name: QueueSender
-  nameWithType: QueueSender
-  fullName: QueueSender
+- uid: QueueMessageSender
+  commentId: N:QueueMessageSender
+  name: QueueMessageSender
+  nameWithType: QueueMessageSender
+  fullName: QueueMessageSender
 - uid: System.Object
   commentId: T:System.Object
   parent: System
@@ -450,11 +450,11 @@ references:
   name: System
   nameWithType: System
   fullName: System
-- uid: QueueSender.Message.RetryCount*
-  commentId: Overload:QueueSender.Message.RetryCount
+- uid: QueueMessageSender.Message.RetryCount*
+  commentId: Overload:QueueMessageSender.Message.RetryCount
   name: RetryCount
   nameWithType: Message.RetryCount
-  fullName: QueueSender.Message.RetryCount
+  fullName: QueueMessageSender.Message.RetryCount
 - uid: System.Int32
   commentId: T:System.Int32
   parent: System
@@ -462,16 +462,16 @@ references:
   name: Int32
   nameWithType: Int32
   fullName: System.Int32
-- uid: QueueSender.Message.Payload*
-  commentId: Overload:QueueSender.Message.Payload
+- uid: QueueMessageSender.Message.Payload*
+  commentId: Overload:QueueMessageSender.Message.Payload
   name: Payload
   nameWithType: Message.Payload
-  fullName: QueueSender.Message.Payload
-- uid: QueueSender.Message.LastErrorMessage*
-  commentId: Overload:QueueSender.Message.LastErrorMessage
+  fullName: QueueMessageSender.Message.Payload
+- uid: QueueMessageSender.Message.LastErrorMessage*
+  commentId: Overload:QueueMessageSender.Message.LastErrorMessage
   name: LastErrorMessage
   nameWithType: Message.LastErrorMessage
-  fullName: QueueSender.Message.LastErrorMessage
+  fullName: QueueMessageSender.Message.LastErrorMessage
 - uid: System.String
   commentId: T:System.String
   parent: System

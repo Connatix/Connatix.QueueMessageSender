@@ -1,9 +1,9 @@
-namespace QueueSender
+namespace QueueMessageSender
 {
     /// <summary>
     ///     The configuration class for the QueueMessageSender.  
     /// </summary>
-    public class QueueSenderAppSettings
+    public class QueueMessageSenderAppSettings
     {
         /// <summary>
         /// If enabled then the QueueMessageSender records usage statistics

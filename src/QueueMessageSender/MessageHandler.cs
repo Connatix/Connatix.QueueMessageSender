@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace QueueSender
+namespace QueueMessageSender
 {
     /// <summary>
     /// This class encapsulates a global write stream action for messages from all named channels.

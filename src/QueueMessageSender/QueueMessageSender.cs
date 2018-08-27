@@ -6,7 +6,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
 
-namespace QueueSender
+namespace QueueMessageSender
 {
     /// <summary>
     ///     This class provides a thread-safe mechanism to send messages to a external stream writer 
@@ -34,7 +34,7 @@ namespace QueueSender
         private int m_enqueuedMessageCount;
         private int m_failedMessageCount;
         private int m_sentMessageCount;
-        private readonly QueueSenderAppSettings m_settings;
+        private readonly QueueMessageSenderAppSettings m_settings;
         private readonly ILogger m_logger;
 
         /// <summary>
@@ -42,7 +42,7 @@ namespace QueueSender
         /// </summary>        
         /// <param name="settings"></param>
         /// <param name="logger"></param>        
-        public QueueMessageSender(QueueSenderAppSettings settings, ILogger logger)
+        public QueueMessageSender(QueueMessageSenderAppSettings settings, ILogger logger)
         {            
             m_flags.Add(m_cancellationTokenSource.Token.WaitHandle);
             m_idle = new ManualResetEvent(true);

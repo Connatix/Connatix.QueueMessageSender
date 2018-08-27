@@ -1,34 +1,34 @@
 ### YamlMime:ManagedReference
 items:
-- uid: QueueSender.Tests.QueueMessageSenderTests
-  commentId: T:QueueSender.Tests.QueueMessageSenderTests
+- uid: QueueMessageSender.Tests.QueueMessageSenderTests
+  commentId: T:QueueMessageSender.Tests.QueueMessageSenderTests
   id: QueueMessageSenderTests
-  parent: QueueSender.Tests
+  parent: QueueMessageSender.Tests
   children:
-  - QueueSender.Tests.QueueMessageSenderTests.ChannelSpecificHandler
-  - QueueSender.Tests.QueueMessageSenderTests.LargeNumberOfMessagesAreHandled
-  - QueueSender.Tests.QueueMessageSenderTests.LargeNumberOfMessagesWithRetries
-  - QueueSender.Tests.QueueMessageSenderTests.MessagesAreSent
-  - QueueSender.Tests.QueueMessageSenderTests.MultipleThreadsToEnqueue
-  - QueueSender.Tests.QueueMessageSenderTests.TwoChannelsDifferentWeightManyMessages
+  - QueueMessageSender.Tests.QueueMessageSenderTests.ChannelSpecificHandler
+  - QueueMessageSender.Tests.QueueMessageSenderTests.LargeNumberOfMessagesAreHandled
+  - QueueMessageSender.Tests.QueueMessageSenderTests.LargeNumberOfMessagesWithRetries
+  - QueueMessageSender.Tests.QueueMessageSenderTests.MessagesAreSent
+  - QueueMessageSender.Tests.QueueMessageSenderTests.MultipleThreadsToEnqueue
+  - QueueMessageSender.Tests.QueueMessageSenderTests.TwoChannelsDifferentWeightManyMessages
   langs:
   - csharp
   - vb
   name: QueueMessageSenderTests
   nameWithType: QueueMessageSenderTests
-  fullName: QueueSender.Tests.QueueMessageSenderTests
+  fullName: QueueMessageSender.Tests.QueueMessageSenderTests
   type: Class
   source:
     remote:
-      path: src/QueueSender.Tests/QueueMessageSenderTests.cs
+      path: src/QueueMessageSender.Tests/QueueMessageSenderTests.cs
       branch: master
       repo: git@github.com:Connatix/QueueMessageSender.git
     id: QueueMessageSenderTests
-    path: src/QueueSender.Tests/QueueMessageSenderTests.cs
+    path: src/QueueMessageSender.Tests/QueueMessageSenderTests.cs
     startLine: 8
   assemblies:
-  - QueueSender.Tests
-  namespace: QueueSender.Tests
+  - QueueMessageSender.Tests
+  namespace: QueueMessageSender.Tests
   syntax:
     content: public class QueueMessageSenderTests
     content.vb: Public Class QueueMessageSenderTests
@@ -48,28 +48,28 @@ items:
   modifiers.vb:
   - Public
   - Class
-- uid: QueueSender.Tests.QueueMessageSenderTests.LargeNumberOfMessagesAreHandled
-  commentId: M:QueueSender.Tests.QueueMessageSenderTests.LargeNumberOfMessagesAreHandled
+- uid: QueueMessageSender.Tests.QueueMessageSenderTests.LargeNumberOfMessagesAreHandled
+  commentId: M:QueueMessageSender.Tests.QueueMessageSenderTests.LargeNumberOfMessagesAreHandled
   id: LargeNumberOfMessagesAreHandled
-  parent: QueueSender.Tests.QueueMessageSenderTests
+  parent: QueueMessageSender.Tests.QueueMessageSenderTests
   langs:
   - csharp
   - vb
   name: LargeNumberOfMessagesAreHandled()
   nameWithType: QueueMessageSenderTests.LargeNumberOfMessagesAreHandled()
-  fullName: QueueSender.Tests.QueueMessageSenderTests.LargeNumberOfMessagesAreHandled()
+  fullName: QueueMessageSender.Tests.QueueMessageSenderTests.LargeNumberOfMessagesAreHandled()
   type: Method
   source:
     remote:
-      path: src/QueueSender.Tests/QueueMessageSenderTests.cs
+      path: src/QueueMessageSender.Tests/QueueMessageSenderTests.cs
       branch: master
       repo: git@github.com:Connatix/QueueMessageSender.git
     id: LargeNumberOfMessagesAreHandled
-    path: src/QueueSender.Tests/QueueMessageSenderTests.cs
+    path: src/QueueMessageSender.Tests/QueueMessageSenderTests.cs
     startLine: 19
   assemblies:
-  - QueueSender.Tests
-  namespace: QueueSender.Tests
+  - QueueMessageSender.Tests
+  namespace: QueueMessageSender.Tests
   syntax:
     content: >-
       [Fact]
@@ -79,7 +79,7 @@ items:
       <Fact>
 
       Public Sub LargeNumberOfMessagesAreHandled
-  overload: QueueSender.Tests.QueueMessageSenderTests.LargeNumberOfMessagesAreHandled*
+  overload: QueueMessageSender.Tests.QueueMessageSenderTests.LargeNumberOfMessagesAreHandled*
   attributes:
   - type: Xunit.FactAttribute
     ctor: Xunit.FactAttribute.#ctor
@@ -88,28 +88,28 @@ items:
   - public
   modifiers.vb:
   - Public
-- uid: QueueSender.Tests.QueueMessageSenderTests.ChannelSpecificHandler
-  commentId: M:QueueSender.Tests.QueueMessageSenderTests.ChannelSpecificHandler
+- uid: QueueMessageSender.Tests.QueueMessageSenderTests.ChannelSpecificHandler
+  commentId: M:QueueMessageSender.Tests.QueueMessageSenderTests.ChannelSpecificHandler
   id: ChannelSpecificHandler
-  parent: QueueSender.Tests.QueueMessageSenderTests
+  parent: QueueMessageSender.Tests.QueueMessageSenderTests
   langs:
   - csharp
   - vb
   name: ChannelSpecificHandler()
   nameWithType: QueueMessageSenderTests.ChannelSpecificHandler()
-  fullName: QueueSender.Tests.QueueMessageSenderTests.ChannelSpecificHandler()
+  fullName: QueueMessageSender.Tests.QueueMessageSenderTests.ChannelSpecificHandler()
   type: Method
   source:
     remote:
-      path: src/QueueSender.Tests/QueueMessageSenderTests.cs
+      path: src/QueueMessageSender.Tests/QueueMessageSenderTests.cs
       branch: master
       repo: git@github.com:Connatix/QueueMessageSender.git
     id: ChannelSpecificHandler
-    path: src/QueueSender.Tests/QueueMessageSenderTests.cs
+    path: src/QueueMessageSender.Tests/QueueMessageSenderTests.cs
     startLine: 48
   assemblies:
-  - QueueSender.Tests
-  namespace: QueueSender.Tests
+  - QueueMessageSender.Tests
+  namespace: QueueMessageSender.Tests
   syntax:
     content: >-
       [Fact]
@@ -119,7 +119,7 @@ items:
       <Fact>
 
       Public Sub ChannelSpecificHandler
-  overload: QueueSender.Tests.QueueMessageSenderTests.ChannelSpecificHandler*
+  overload: QueueMessageSender.Tests.QueueMessageSenderTests.ChannelSpecificHandler*
   attributes:
   - type: Xunit.FactAttribute
     ctor: Xunit.FactAttribute.#ctor
@@ -128,28 +128,28 @@ items:
   - public
   modifiers.vb:
   - Public
-- uid: QueueSender.Tests.QueueMessageSenderTests.LargeNumberOfMessagesWithRetries
-  commentId: M:QueueSender.Tests.QueueMessageSenderTests.LargeNumberOfMessagesWithRetries
+- uid: QueueMessageSender.Tests.QueueMessageSenderTests.LargeNumberOfMessagesWithRetries
+  commentId: M:QueueMessageSender.Tests.QueueMessageSenderTests.LargeNumberOfMessagesWithRetries
   id: LargeNumberOfMessagesWithRetries
-  parent: QueueSender.Tests.QueueMessageSenderTests
+  parent: QueueMessageSender.Tests.QueueMessageSenderTests
   langs:
   - csharp
   - vb
   name: LargeNumberOfMessagesWithRetries()
   nameWithType: QueueMessageSenderTests.LargeNumberOfMessagesWithRetries()
-  fullName: QueueSender.Tests.QueueMessageSenderTests.LargeNumberOfMessagesWithRetries()
+  fullName: QueueMessageSender.Tests.QueueMessageSenderTests.LargeNumberOfMessagesWithRetries()
   type: Method
   source:
     remote:
-      path: src/QueueSender.Tests/QueueMessageSenderTests.cs
+      path: src/QueueMessageSender.Tests/QueueMessageSenderTests.cs
       branch: master
       repo: git@github.com:Connatix/QueueMessageSender.git
     id: LargeNumberOfMessagesWithRetries
-    path: src/QueueSender.Tests/QueueMessageSenderTests.cs
+    path: src/QueueMessageSender.Tests/QueueMessageSenderTests.cs
     startLine: 79
   assemblies:
-  - QueueSender.Tests
-  namespace: QueueSender.Tests
+  - QueueMessageSender.Tests
+  namespace: QueueMessageSender.Tests
   syntax:
     content: >-
       [Fact]
@@ -159,7 +159,7 @@ items:
       <Fact>
 
       Public Sub LargeNumberOfMessagesWithRetries
-  overload: QueueSender.Tests.QueueMessageSenderTests.LargeNumberOfMessagesWithRetries*
+  overload: QueueMessageSender.Tests.QueueMessageSenderTests.LargeNumberOfMessagesWithRetries*
   attributes:
   - type: Xunit.FactAttribute
     ctor: Xunit.FactAttribute.#ctor
@@ -168,28 +168,28 @@ items:
   - public
   modifiers.vb:
   - Public
-- uid: QueueSender.Tests.QueueMessageSenderTests.MessagesAreSent
-  commentId: M:QueueSender.Tests.QueueMessageSenderTests.MessagesAreSent
+- uid: QueueMessageSender.Tests.QueueMessageSenderTests.MessagesAreSent
+  commentId: M:QueueMessageSender.Tests.QueueMessageSenderTests.MessagesAreSent
   id: MessagesAreSent
-  parent: QueueSender.Tests.QueueMessageSenderTests
+  parent: QueueMessageSender.Tests.QueueMessageSenderTests
   langs:
   - csharp
   - vb
   name: MessagesAreSent()
   nameWithType: QueueMessageSenderTests.MessagesAreSent()
-  fullName: QueueSender.Tests.QueueMessageSenderTests.MessagesAreSent()
+  fullName: QueueMessageSender.Tests.QueueMessageSenderTests.MessagesAreSent()
   type: Method
   source:
     remote:
-      path: src/QueueSender.Tests/QueueMessageSenderTests.cs
+      path: src/QueueMessageSender.Tests/QueueMessageSenderTests.cs
       branch: master
       repo: git@github.com:Connatix/QueueMessageSender.git
     id: MessagesAreSent
-    path: src/QueueSender.Tests/QueueMessageSenderTests.cs
+    path: src/QueueMessageSender.Tests/QueueMessageSenderTests.cs
     startLine: 126
   assemblies:
-  - QueueSender.Tests
-  namespace: QueueSender.Tests
+  - QueueMessageSender.Tests
+  namespace: QueueMessageSender.Tests
   syntax:
     content: >-
       [Fact]
@@ -199,7 +199,7 @@ items:
       <Fact>
 
       Public Sub MessagesAreSent
-  overload: QueueSender.Tests.QueueMessageSenderTests.MessagesAreSent*
+  overload: QueueMessageSender.Tests.QueueMessageSenderTests.MessagesAreSent*
   attributes:
   - type: Xunit.FactAttribute
     ctor: Xunit.FactAttribute.#ctor
@@ -208,28 +208,28 @@ items:
   - public
   modifiers.vb:
   - Public
-- uid: QueueSender.Tests.QueueMessageSenderTests.MultipleThreadsToEnqueue
-  commentId: M:QueueSender.Tests.QueueMessageSenderTests.MultipleThreadsToEnqueue
+- uid: QueueMessageSender.Tests.QueueMessageSenderTests.MultipleThreadsToEnqueue
+  commentId: M:QueueMessageSender.Tests.QueueMessageSenderTests.MultipleThreadsToEnqueue
   id: MultipleThreadsToEnqueue
-  parent: QueueSender.Tests.QueueMessageSenderTests
+  parent: QueueMessageSender.Tests.QueueMessageSenderTests
   langs:
   - csharp
   - vb
   name: MultipleThreadsToEnqueue()
   nameWithType: QueueMessageSenderTests.MultipleThreadsToEnqueue()
-  fullName: QueueSender.Tests.QueueMessageSenderTests.MultipleThreadsToEnqueue()
+  fullName: QueueMessageSender.Tests.QueueMessageSenderTests.MultipleThreadsToEnqueue()
   type: Method
   source:
     remote:
-      path: src/QueueSender.Tests/QueueMessageSenderTests.cs
+      path: src/QueueMessageSender.Tests/QueueMessageSenderTests.cs
       branch: master
       repo: git@github.com:Connatix/QueueMessageSender.git
     id: MultipleThreadsToEnqueue
-    path: src/QueueSender.Tests/QueueMessageSenderTests.cs
+    path: src/QueueMessageSender.Tests/QueueMessageSenderTests.cs
     startLine: 151
   assemblies:
-  - QueueSender.Tests
-  namespace: QueueSender.Tests
+  - QueueMessageSender.Tests
+  namespace: QueueMessageSender.Tests
   syntax:
     content: >-
       [Fact]
@@ -239,7 +239,7 @@ items:
       <Fact>
 
       Public Sub MultipleThreadsToEnqueue
-  overload: QueueSender.Tests.QueueMessageSenderTests.MultipleThreadsToEnqueue*
+  overload: QueueMessageSender.Tests.QueueMessageSenderTests.MultipleThreadsToEnqueue*
   attributes:
   - type: Xunit.FactAttribute
     ctor: Xunit.FactAttribute.#ctor
@@ -248,28 +248,28 @@ items:
   - public
   modifiers.vb:
   - Public
-- uid: QueueSender.Tests.QueueMessageSenderTests.TwoChannelsDifferentWeightManyMessages
-  commentId: M:QueueSender.Tests.QueueMessageSenderTests.TwoChannelsDifferentWeightManyMessages
+- uid: QueueMessageSender.Tests.QueueMessageSenderTests.TwoChannelsDifferentWeightManyMessages
+  commentId: M:QueueMessageSender.Tests.QueueMessageSenderTests.TwoChannelsDifferentWeightManyMessages
   id: TwoChannelsDifferentWeightManyMessages
-  parent: QueueSender.Tests.QueueMessageSenderTests
+  parent: QueueMessageSender.Tests.QueueMessageSenderTests
   langs:
   - csharp
   - vb
   name: TwoChannelsDifferentWeightManyMessages()
   nameWithType: QueueMessageSenderTests.TwoChannelsDifferentWeightManyMessages()
-  fullName: QueueSender.Tests.QueueMessageSenderTests.TwoChannelsDifferentWeightManyMessages()
+  fullName: QueueMessageSender.Tests.QueueMessageSenderTests.TwoChannelsDifferentWeightManyMessages()
   type: Method
   source:
     remote:
-      path: src/QueueSender.Tests/QueueMessageSenderTests.cs
+      path: src/QueueMessageSender.Tests/QueueMessageSenderTests.cs
       branch: master
       repo: git@github.com:Connatix/QueueMessageSender.git
     id: TwoChannelsDifferentWeightManyMessages
-    path: src/QueueSender.Tests/QueueMessageSenderTests.cs
+    path: src/QueueMessageSender.Tests/QueueMessageSenderTests.cs
     startLine: 186
   assemblies:
-  - QueueSender.Tests
-  namespace: QueueSender.Tests
+  - QueueMessageSender.Tests
+  namespace: QueueMessageSender.Tests
   syntax:
     content: >-
       [Fact]
@@ -279,7 +279,7 @@ items:
       <Fact>
 
       Public Sub TwoChannelsDifferentWeightManyMessages
-  overload: QueueSender.Tests.QueueMessageSenderTests.TwoChannelsDifferentWeightManyMessages*
+  overload: QueueMessageSender.Tests.QueueMessageSenderTests.TwoChannelsDifferentWeightManyMessages*
   attributes:
   - type: Xunit.FactAttribute
     ctor: Xunit.FactAttribute.#ctor
@@ -289,11 +289,11 @@ items:
   modifiers.vb:
   - Public
 references:
-- uid: QueueSender.Tests
-  commentId: N:QueueSender.Tests
-  name: QueueSender.Tests
-  nameWithType: QueueSender.Tests
-  fullName: QueueSender.Tests
+- uid: QueueMessageSender.Tests
+  commentId: N:QueueMessageSender.Tests
+  name: QueueMessageSender.Tests
+  nameWithType: QueueMessageSender.Tests
+  fullName: QueueMessageSender.Tests
 - uid: System.Object
   commentId: T:System.Object
   parent: System
@@ -586,33 +586,33 @@ references:
   name: System
   nameWithType: System
   fullName: System
-- uid: QueueSender.Tests.QueueMessageSenderTests.LargeNumberOfMessagesAreHandled*
-  commentId: Overload:QueueSender.Tests.QueueMessageSenderTests.LargeNumberOfMessagesAreHandled
+- uid: QueueMessageSender.Tests.QueueMessageSenderTests.LargeNumberOfMessagesAreHandled*
+  commentId: Overload:QueueMessageSender.Tests.QueueMessageSenderTests.LargeNumberOfMessagesAreHandled
   name: LargeNumberOfMessagesAreHandled
   nameWithType: QueueMessageSenderTests.LargeNumberOfMessagesAreHandled
-  fullName: QueueSender.Tests.QueueMessageSenderTests.LargeNumberOfMessagesAreHandled
-- uid: QueueSender.Tests.QueueMessageSenderTests.ChannelSpecificHandler*
-  commentId: Overload:QueueSender.Tests.QueueMessageSenderTests.ChannelSpecificHandler
+  fullName: QueueMessageSender.Tests.QueueMessageSenderTests.LargeNumberOfMessagesAreHandled
+- uid: QueueMessageSender.Tests.QueueMessageSenderTests.ChannelSpecificHandler*
+  commentId: Overload:QueueMessageSender.Tests.QueueMessageSenderTests.ChannelSpecificHandler
   name: ChannelSpecificHandler
   nameWithType: QueueMessageSenderTests.ChannelSpecificHandler
-  fullName: QueueSender.Tests.QueueMessageSenderTests.ChannelSpecificHandler
-- uid: QueueSender.Tests.QueueMessageSenderTests.LargeNumberOfMessagesWithRetries*
-  commentId: Overload:QueueSender.Tests.QueueMessageSenderTests.LargeNumberOfMessagesWithRetries
+  fullName: QueueMessageSender.Tests.QueueMessageSenderTests.ChannelSpecificHandler
+- uid: QueueMessageSender.Tests.QueueMessageSenderTests.LargeNumberOfMessagesWithRetries*
+  commentId: Overload:QueueMessageSender.Tests.QueueMessageSenderTests.LargeNumberOfMessagesWithRetries
   name: LargeNumberOfMessagesWithRetries
   nameWithType: QueueMessageSenderTests.LargeNumberOfMessagesWithRetries
-  fullName: QueueSender.Tests.QueueMessageSenderTests.LargeNumberOfMessagesWithRetries
-- uid: QueueSender.Tests.QueueMessageSenderTests.MessagesAreSent*
-  commentId: Overload:QueueSender.Tests.QueueMessageSenderTests.MessagesAreSent
+  fullName: QueueMessageSender.Tests.QueueMessageSenderTests.LargeNumberOfMessagesWithRetries
+- uid: QueueMessageSender.Tests.QueueMessageSenderTests.MessagesAreSent*
+  commentId: Overload:QueueMessageSender.Tests.QueueMessageSenderTests.MessagesAreSent
   name: MessagesAreSent
   nameWithType: QueueMessageSenderTests.MessagesAreSent
-  fullName: QueueSender.Tests.QueueMessageSenderTests.MessagesAreSent
-- uid: QueueSender.Tests.QueueMessageSenderTests.MultipleThreadsToEnqueue*
-  commentId: Overload:QueueSender.Tests.QueueMessageSenderTests.MultipleThreadsToEnqueue
+  fullName: QueueMessageSender.Tests.QueueMessageSenderTests.MessagesAreSent
+- uid: QueueMessageSender.Tests.QueueMessageSenderTests.MultipleThreadsToEnqueue*
+  commentId: Overload:QueueMessageSender.Tests.QueueMessageSenderTests.MultipleThreadsToEnqueue
   name: MultipleThreadsToEnqueue
   nameWithType: QueueMessageSenderTests.MultipleThreadsToEnqueue
-  fullName: QueueSender.Tests.QueueMessageSenderTests.MultipleThreadsToEnqueue
-- uid: QueueSender.Tests.QueueMessageSenderTests.TwoChannelsDifferentWeightManyMessages*
-  commentId: Overload:QueueSender.Tests.QueueMessageSenderTests.TwoChannelsDifferentWeightManyMessages
+  fullName: QueueMessageSender.Tests.QueueMessageSenderTests.MultipleThreadsToEnqueue
+- uid: QueueMessageSender.Tests.QueueMessageSenderTests.TwoChannelsDifferentWeightManyMessages*
+  commentId: Overload:QueueMessageSender.Tests.QueueMessageSenderTests.TwoChannelsDifferentWeightManyMessages
   name: TwoChannelsDifferentWeightManyMessages
   nameWithType: QueueMessageSenderTests.TwoChannelsDifferentWeightManyMessages
-  fullName: QueueSender.Tests.QueueMessageSenderTests.TwoChannelsDifferentWeightManyMessages
+  fullName: QueueMessageSender.Tests.QueueMessageSenderTests.TwoChannelsDifferentWeightManyMessages

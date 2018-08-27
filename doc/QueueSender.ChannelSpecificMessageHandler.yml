@@ -1,30 +1,30 @@
 ### YamlMime:ManagedReference
 items:
-- uid: QueueSender.ChannelSpecificMessageHandler
-  commentId: T:QueueSender.ChannelSpecificMessageHandler
+- uid: QueueMessageSender.ChannelSpecificMessageHandler
+  commentId: T:QueueMessageSender.ChannelSpecificMessageHandler
   id: ChannelSpecificMessageHandler
-  parent: QueueSender
+  parent: QueueMessageSender
   children:
-  - QueueSender.ChannelSpecificMessageHandler.Action
-  - QueueSender.ChannelSpecificMessageHandler.HandleError
+  - QueueMessageSender.ChannelSpecificMessageHandler.Action
+  - QueueMessageSender.ChannelSpecificMessageHandler.HandleError
   langs:
   - csharp
   - vb
   name: ChannelSpecificMessageHandler
   nameWithType: ChannelSpecificMessageHandler
-  fullName: QueueSender.ChannelSpecificMessageHandler
+  fullName: QueueMessageSender.ChannelSpecificMessageHandler
   type: Class
   source:
     remote:
-      path: src/QueueSender/MessageHandler.cs
+      path: src/QueueMessageSender/MessageHandler.cs
       branch: master
       repo: git@github.com:Connatix/QueueMessageSender.git
     id: ChannelSpecificMessageHandler
-    path: src/QueueSender/MessageHandler.cs
+    path: src/QueueMessageSender/MessageHandler.cs
     startLine: 24
   assemblies:
-  - QueueSender
-  namespace: QueueSender
+  - QueueMessageSender
+  namespace: QueueMessageSender
   summary: "\nThis class encapsulates a write stream action for messages. Besides a list of message,\nthe action receives as argument the channel name, thus allowing to differentiate what to do for a specific\nchannel (write to a file, send to AWS, RabbitMQ, etc) \nIt also encapsulates an error handler for the action. The channel is also provided as argument.\n"
   example: []
   syntax:
@@ -46,70 +46,70 @@ items:
   modifiers.vb:
   - Public
   - Class
-- uid: QueueSender.ChannelSpecificMessageHandler.Action
-  commentId: P:QueueSender.ChannelSpecificMessageHandler.Action
+- uid: QueueMessageSender.ChannelSpecificMessageHandler.Action
+  commentId: P:QueueMessageSender.ChannelSpecificMessageHandler.Action
   id: Action
-  parent: QueueSender.ChannelSpecificMessageHandler
+  parent: QueueMessageSender.ChannelSpecificMessageHandler
   langs:
   - csharp
   - vb
   name: Action
   nameWithType: ChannelSpecificMessageHandler.Action
-  fullName: QueueSender.ChannelSpecificMessageHandler.Action
+  fullName: QueueMessageSender.ChannelSpecificMessageHandler.Action
   type: Property
   source:
     remote:
-      path: src/QueueSender/MessageHandler.cs
+      path: src/QueueMessageSender/MessageHandler.cs
       branch: master
       repo: git@github.com:Connatix/QueueMessageSender.git
     id: Action
-    path: src/QueueSender/MessageHandler.cs
+    path: src/QueueMessageSender/MessageHandler.cs
     startLine: 26
   assemblies:
-  - QueueSender
-  namespace: QueueSender
+  - QueueMessageSender
+  namespace: QueueMessageSender
   syntax:
     content: public Func<List<Message>, string, Task> Action { get; set; }
     parameters: []
     return:
-      type: System.Func{System.Collections.Generic.List{QueueSender.Message},System.String,System.Threading.Tasks.Task}
+      type: System.Func{System.Collections.Generic.List{QueueMessageSender.Message},System.String,System.Threading.Tasks.Task}
     content.vb: Public Property Action As Func(Of List(Of Message), String, Task)
-  overload: QueueSender.ChannelSpecificMessageHandler.Action*
+  overload: QueueMessageSender.ChannelSpecificMessageHandler.Action*
   modifiers.csharp:
   - public
   - get
   - set
   modifiers.vb:
   - Public
-- uid: QueueSender.ChannelSpecificMessageHandler.HandleError
-  commentId: P:QueueSender.ChannelSpecificMessageHandler.HandleError
+- uid: QueueMessageSender.ChannelSpecificMessageHandler.HandleError
+  commentId: P:QueueMessageSender.ChannelSpecificMessageHandler.HandleError
   id: HandleError
-  parent: QueueSender.ChannelSpecificMessageHandler
+  parent: QueueMessageSender.ChannelSpecificMessageHandler
   langs:
   - csharp
   - vb
   name: HandleError
   nameWithType: ChannelSpecificMessageHandler.HandleError
-  fullName: QueueSender.ChannelSpecificMessageHandler.HandleError
+  fullName: QueueMessageSender.ChannelSpecificMessageHandler.HandleError
   type: Property
   source:
     remote:
-      path: src/QueueSender/MessageHandler.cs
+      path: src/QueueMessageSender/MessageHandler.cs
       branch: master
       repo: git@github.com:Connatix/QueueMessageSender.git
     id: HandleError
-    path: src/QueueSender/MessageHandler.cs
+    path: src/QueueMessageSender/MessageHandler.cs
     startLine: 28
   assemblies:
-  - QueueSender
-  namespace: QueueSender
+  - QueueMessageSender
+  namespace: QueueMessageSender
   syntax:
     content: public Func<List<Message>, string, Task> HandleError { get; set; }
     parameters: []
     return:
-      type: System.Func{System.Collections.Generic.List{QueueSender.Message},System.String,System.Threading.Tasks.Task}
+      type: System.Func{System.Collections.Generic.List{QueueMessageSender.Message},System.String,System.Threading.Tasks.Task}
     content.vb: Public Property HandleError As Func(Of List(Of Message), String, Task)
-  overload: QueueSender.ChannelSpecificMessageHandler.HandleError*
+  overload: QueueMessageSender.ChannelSpecificMessageHandler.HandleError*
   modifiers.csharp:
   - public
   - get
@@ -117,11 +117,11 @@ items:
   modifiers.vb:
   - Public
 references:
-- uid: QueueSender
-  commentId: N:QueueSender
-  name: QueueSender
-  nameWithType: QueueSender
-  fullName: QueueSender
+- uid: QueueMessageSender
+  commentId: N:QueueMessageSender
+  name: QueueMessageSender
+  nameWithType: QueueMessageSender
+  fullName: QueueMessageSender
 - uid: System.Object
   commentId: T:System.Object
   parent: System
@@ -414,20 +414,20 @@ references:
   name: System
   nameWithType: System
   fullName: System
-- uid: QueueSender.ChannelSpecificMessageHandler.Action*
-  commentId: Overload:QueueSender.ChannelSpecificMessageHandler.Action
+- uid: QueueMessageSender.ChannelSpecificMessageHandler.Action*
+  commentId: Overload:QueueMessageSender.ChannelSpecificMessageHandler.Action
   name: Action
   nameWithType: ChannelSpecificMessageHandler.Action
-  fullName: QueueSender.ChannelSpecificMessageHandler.Action
-- uid: System.Func{System.Collections.Generic.List{QueueSender.Message},System.String,System.Threading.Tasks.Task}
-  commentId: T:System.Func{System.Collections.Generic.List{QueueSender.Message},System.String,System.Threading.Tasks.Task}
+  fullName: QueueMessageSender.ChannelSpecificMessageHandler.Action
+- uid: System.Func{System.Collections.Generic.List{QueueMessageSender.Message},System.String,System.Threading.Tasks.Task}
+  commentId: T:System.Func{System.Collections.Generic.List{QueueMessageSender.Message},System.String,System.Threading.Tasks.Task}
   parent: System
   definition: System.Func`3
   name: Func<List<Message>, String, Task>
   nameWithType: Func<List<Message>, String, Task>
-  fullName: System.Func<System.Collections.Generic.List<QueueSender.Message>, System.String, System.Threading.Tasks.Task>
+  fullName: System.Func<System.Collections.Generic.List<QueueMessageSender.Message>, System.String, System.Threading.Tasks.Task>
   nameWithType.vb: Func(Of List(Of Message), String, Task)
-  fullName.vb: System.Func(Of System.Collections.Generic.List(Of QueueSender.Message), System.String, System.Threading.Tasks.Task)
+  fullName.vb: System.Func(Of System.Collections.Generic.List(Of QueueMessageSender.Message), System.String, System.Threading.Tasks.Task)
   name.vb: Func(Of List(Of Message), String, Task)
   spec.csharp:
   - uid: System.Func`3
@@ -446,10 +446,10 @@ references:
   - name: <
     nameWithType: <
     fullName: <
-  - uid: QueueSender.Message
+  - uid: QueueMessageSender.Message
     name: Message
     nameWithType: Message
-    fullName: QueueSender.Message
+    fullName: QueueMessageSender.Message
   - name: '>'
     nameWithType: '>'
     fullName: '>'
@@ -489,10 +489,10 @@ references:
   - name: '(Of '
     nameWithType: '(Of '
     fullName: '(Of '
-  - uid: QueueSender.Message
+  - uid: QueueMessageSender.Message
     name: Message
     nameWithType: Message
-    fullName: QueueSender.Message
+    fullName: QueueMessageSender.Message
   - name: )
     nameWithType: )
     fullName: )
@@ -578,8 +578,8 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: QueueSender.ChannelSpecificMessageHandler.HandleError*
-  commentId: Overload:QueueSender.ChannelSpecificMessageHandler.HandleError
+- uid: QueueMessageSender.ChannelSpecificMessageHandler.HandleError*
+  commentId: Overload:QueueMessageSender.ChannelSpecificMessageHandler.HandleError
   name: HandleError
   nameWithType: ChannelSpecificMessageHandler.HandleError
-  fullName: QueueSender.ChannelSpecificMessageHandler.HandleError
+  fullName: QueueMessageSender.ChannelSpecificMessageHandler.HandleError

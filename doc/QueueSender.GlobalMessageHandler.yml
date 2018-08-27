@@ -1,30 +1,30 @@
 ### YamlMime:ManagedReference
 items:
-- uid: QueueSender.GlobalMessageHandler
-  commentId: T:QueueSender.GlobalMessageHandler
+- uid: QueueMessageSender.GlobalMessageHandler
+  commentId: T:QueueMessageSender.GlobalMessageHandler
   id: GlobalMessageHandler
-  parent: QueueSender
+  parent: QueueMessageSender
   children:
-  - QueueSender.GlobalMessageHandler.Action
-  - QueueSender.GlobalMessageHandler.HandleError
+  - QueueMessageSender.GlobalMessageHandler.Action
+  - QueueMessageSender.GlobalMessageHandler.HandleError
   langs:
   - csharp
   - vb
   name: GlobalMessageHandler
   nameWithType: GlobalMessageHandler
-  fullName: QueueSender.GlobalMessageHandler
+  fullName: QueueMessageSender.GlobalMessageHandler
   type: Class
   source:
     remote:
-      path: src/QueueSender/MessageHandler.cs
+      path: src/QueueMessageSender/MessageHandler.cs
       branch: master
       repo: git@github.com:Connatix/QueueMessageSender.git
     id: GlobalMessageHandler
-    path: src/QueueSender/MessageHandler.cs
+    path: src/QueueMessageSender/MessageHandler.cs
     startLine: 10
   assemblies:
-  - QueueSender
-  namespace: QueueSender
+  - QueueMessageSender
+  namespace: QueueMessageSender
   summary: "\nThis class encapsulates a global write stream action for messages from all named channels.\nIt also encapsulates a global error handler for the action\n"
   example: []
   syntax:
@@ -46,70 +46,70 @@ items:
   modifiers.vb:
   - Public
   - Class
-- uid: QueueSender.GlobalMessageHandler.Action
-  commentId: P:QueueSender.GlobalMessageHandler.Action
+- uid: QueueMessageSender.GlobalMessageHandler.Action
+  commentId: P:QueueMessageSender.GlobalMessageHandler.Action
   id: Action
-  parent: QueueSender.GlobalMessageHandler
+  parent: QueueMessageSender.GlobalMessageHandler
   langs:
   - csharp
   - vb
   name: Action
   nameWithType: GlobalMessageHandler.Action
-  fullName: QueueSender.GlobalMessageHandler.Action
+  fullName: QueueMessageSender.GlobalMessageHandler.Action
   type: Property
   source:
     remote:
-      path: src/QueueSender/MessageHandler.cs
+      path: src/QueueMessageSender/MessageHandler.cs
       branch: master
       repo: git@github.com:Connatix/QueueMessageSender.git
     id: Action
-    path: src/QueueSender/MessageHandler.cs
+    path: src/QueueMessageSender/MessageHandler.cs
     startLine: 12
   assemblies:
-  - QueueSender
-  namespace: QueueSender
+  - QueueMessageSender
+  namespace: QueueMessageSender
   syntax:
     content: public Func<List<Message>, Task> Action { get; set; }
     parameters: []
     return:
-      type: System.Func{System.Collections.Generic.List{QueueSender.Message},System.Threading.Tasks.Task}
+      type: System.Func{System.Collections.Generic.List{QueueMessageSender.Message},System.Threading.Tasks.Task}
     content.vb: Public Property Action As Func(Of List(Of Message), Task)
-  overload: QueueSender.GlobalMessageHandler.Action*
+  overload: QueueMessageSender.GlobalMessageHandler.Action*
   modifiers.csharp:
   - public
   - get
   - set
   modifiers.vb:
   - Public
-- uid: QueueSender.GlobalMessageHandler.HandleError
-  commentId: P:QueueSender.GlobalMessageHandler.HandleError
+- uid: QueueMessageSender.GlobalMessageHandler.HandleError
+  commentId: P:QueueMessageSender.GlobalMessageHandler.HandleError
   id: HandleError
-  parent: QueueSender.GlobalMessageHandler
+  parent: QueueMessageSender.GlobalMessageHandler
   langs:
   - csharp
   - vb
   name: HandleError
   nameWithType: GlobalMessageHandler.HandleError
-  fullName: QueueSender.GlobalMessageHandler.HandleError
+  fullName: QueueMessageSender.GlobalMessageHandler.HandleError
   type: Property
   source:
     remote:
-      path: src/QueueSender/MessageHandler.cs
+      path: src/QueueMessageSender/MessageHandler.cs
       branch: master
       repo: git@github.com:Connatix/QueueMessageSender.git
     id: HandleError
-    path: src/QueueSender/MessageHandler.cs
+    path: src/QueueMessageSender/MessageHandler.cs
     startLine: 14
   assemblies:
-  - QueueSender
-  namespace: QueueSender
+  - QueueMessageSender
+  namespace: QueueMessageSender
   syntax:
     content: public Func<List<Message>, Task> HandleError { get; set; }
     parameters: []
     return:
-      type: System.Func{System.Collections.Generic.List{QueueSender.Message},System.Threading.Tasks.Task}
+      type: System.Func{System.Collections.Generic.List{QueueMessageSender.Message},System.Threading.Tasks.Task}
     content.vb: Public Property HandleError As Func(Of List(Of Message), Task)
-  overload: QueueSender.GlobalMessageHandler.HandleError*
+  overload: QueueMessageSender.GlobalMessageHandler.HandleError*
   modifiers.csharp:
   - public
   - get
@@ -117,11 +117,11 @@ items:
   modifiers.vb:
   - Public
 references:
-- uid: QueueSender
-  commentId: N:QueueSender
-  name: QueueSender
-  nameWithType: QueueSender
-  fullName: QueueSender
+- uid: QueueMessageSender
+  commentId: N:QueueMessageSender
+  name: QueueMessageSender
+  nameWithType: QueueMessageSender
+  fullName: QueueMessageSender
 - uid: System.Object
   commentId: T:System.Object
   parent: System
@@ -414,20 +414,20 @@ references:
   name: System
   nameWithType: System
   fullName: System
-- uid: QueueSender.GlobalMessageHandler.Action*
-  commentId: Overload:QueueSender.GlobalMessageHandler.Action
+- uid: QueueMessageSender.GlobalMessageHandler.Action*
+  commentId: Overload:QueueMessageSender.GlobalMessageHandler.Action
   name: Action
   nameWithType: GlobalMessageHandler.Action
-  fullName: QueueSender.GlobalMessageHandler.Action
-- uid: System.Func{System.Collections.Generic.List{QueueSender.Message},System.Threading.Tasks.Task}
-  commentId: T:System.Func{System.Collections.Generic.List{QueueSender.Message},System.Threading.Tasks.Task}
+  fullName: QueueMessageSender.GlobalMessageHandler.Action
+- uid: System.Func{System.Collections.Generic.List{QueueMessageSender.Message},System.Threading.Tasks.Task}
+  commentId: T:System.Func{System.Collections.Generic.List{QueueMessageSender.Message},System.Threading.Tasks.Task}
   parent: System
   definition: System.Func`2
   name: Func<List<Message>, Task>
   nameWithType: Func<List<Message>, Task>
-  fullName: System.Func<System.Collections.Generic.List<QueueSender.Message>, System.Threading.Tasks.Task>
+  fullName: System.Func<System.Collections.Generic.List<QueueMessageSender.Message>, System.Threading.Tasks.Task>
   nameWithType.vb: Func(Of List(Of Message), Task)
-  fullName.vb: System.Func(Of System.Collections.Generic.List(Of QueueSender.Message), System.Threading.Tasks.Task)
+  fullName.vb: System.Func(Of System.Collections.Generic.List(Of QueueMessageSender.Message), System.Threading.Tasks.Task)
   name.vb: Func(Of List(Of Message), Task)
   spec.csharp:
   - uid: System.Func`2
@@ -446,10 +446,10 @@ references:
   - name: <
     nameWithType: <
     fullName: <
-  - uid: QueueSender.Message
+  - uid: QueueMessageSender.Message
     name: Message
     nameWithType: Message
-    fullName: QueueSender.Message
+    fullName: QueueMessageSender.Message
   - name: '>'
     nameWithType: '>'
     fullName: '>'
@@ -481,10 +481,10 @@ references:
   - name: '(Of '
     nameWithType: '(Of '
     fullName: '(Of '
-  - uid: QueueSender.Message
+  - uid: QueueMessageSender.Message
     name: Message
     nameWithType: Message
-    fullName: QueueSender.Message
+    fullName: QueueMessageSender.Message
   - name: )
     nameWithType: )
     fullName: )
@@ -550,8 +550,8 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: QueueSender.GlobalMessageHandler.HandleError*
-  commentId: Overload:QueueSender.GlobalMessageHandler.HandleError
+- uid: QueueMessageSender.GlobalMessageHandler.HandleError*
+  commentId: Overload:QueueMessageSender.GlobalMessageHandler.HandleError
   name: HandleError
   nameWithType: GlobalMessageHandler.HandleError
-  fullName: QueueSender.GlobalMessageHandler.HandleError
+  fullName: QueueMessageSender.GlobalMessageHandler.HandleError

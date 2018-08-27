@@ -3,17 +3,19 @@
   <metadata>
     <id>Connatix.QueueMessageSender</id>
     <version>1.0.0</version>
-    <authors>Connatix.QueueMessageSender</authors>
-    <owners>Connatix.QueueMessageSender</owners>
-    <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>A thread-safe mechanism to send messages to a external stream writer such as AWS Kinesis or RabbitMQ</description>
-    <dependencies>
+    <authors>Connatix</authors>
+    <projectUrl>https://github.com/Connatix/Connatix.QueueMessageSender</projectUrl>
+    <iconUrl>http://i.connatix.com/logos/logo-black.png</iconUrl>
+    <owners>Connatix</owners>
+    <copyright>Copyright 2018 (c) Connatix. All rights reserved.</copyright>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+   <dependencies>
       <group targetFramework=".NETStandard2.0">
         <dependency id="Microsoft.Extensions.Logging" version="2.1.0" exclude="Build,Analyzers" />        
       </group>
     </dependencies>
   </metadata>
   <files>
-    <file src=>
   </files>
 </package>

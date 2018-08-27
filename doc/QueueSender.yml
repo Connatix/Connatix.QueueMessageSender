@@ -1,68 +1,68 @@
 ### YamlMime:ManagedReference
 items:
-- uid: QueueSender
-  commentId: N:QueueSender
-  id: QueueSender
+- uid: QueueMessageSender
+  commentId: N:QueueMessageSender
+  id: QueueMessageSender
   children:
-  - QueueSender.ChannelSpecificMessageHandler
-  - QueueSender.CustomMessageHandler
-  - QueueSender.GlobalMessageHandler
-  - QueueSender.IQueueMessageSender
-  - QueueSender.Message
-  - QueueSender.QueueMessageSender
-  - QueueSender.QueueSenderAppSettings
+  - QueueMessageSender.ChannelSpecificMessageHandler
+  - QueueMessageSender.CustomMessageHandler
+  - QueueMessageSender.GlobalMessageHandler
+  - QueueMessageSender.IQueueMessageSender
+  - QueueMessageSender.Message
+  - QueueMessageSender.QueueMessageSender
+  - QueueMessageSender.QueueMessageSenderAppSettings
   langs:
   - csharp
   - vb
-  name: QueueSender
-  nameWithType: QueueSender
-  fullName: QueueSender
-  type: Namespace
-  assemblies:
-  - QueueSender
-references:
-- uid: QueueSender.IQueueMessageSender
-  commentId: T:QueueSender.IQueueMessageSender
-  parent: QueueSender
-  name: IQueueMessageSender
-  nameWithType: IQueueMessageSender
-  fullName: QueueSender.IQueueMessageSender
-- uid: QueueSender.GlobalMessageHandler
-  commentId: T:QueueSender.GlobalMessageHandler
-  parent: QueueSender
-  name: GlobalMessageHandler
-  nameWithType: GlobalMessageHandler
-  fullName: QueueSender.GlobalMessageHandler
-- uid: QueueSender.ChannelSpecificMessageHandler
-  commentId: T:QueueSender.ChannelSpecificMessageHandler
-  parent: QueueSender
-  name: ChannelSpecificMessageHandler
-  nameWithType: ChannelSpecificMessageHandler
-  fullName: QueueSender.ChannelSpecificMessageHandler
-- uid: QueueSender.CustomMessageHandler
-  commentId: T:QueueSender.CustomMessageHandler
-  parent: QueueSender
-  name: CustomMessageHandler
-  nameWithType: CustomMessageHandler
-  fullName: QueueSender.CustomMessageHandler
-- uid: QueueSender.QueueMessageSender
-  commentId: T:QueueSender.QueueMessageSender
   name: QueueMessageSender
   nameWithType: QueueMessageSender
-  fullName: QueueSender.QueueMessageSender
-- uid: QueueSender.Message
-  commentId: T:QueueSender.Message
+  fullName: QueueMessageSender
+  type: Namespace
+  assemblies:
+  - QueueMessageSender
+references:
+- uid: QueueMessageSender.IQueueMessageSender
+  commentId: T:QueueMessageSender.IQueueMessageSender
+  parent: QueueMessageSender
+  name: IQueueMessageSender
+  nameWithType: IQueueMessageSender
+  fullName: QueueMessageSender.IQueueMessageSender
+- uid: QueueMessageSender.GlobalMessageHandler
+  commentId: T:QueueMessageSender.GlobalMessageHandler
+  parent: QueueMessageSender
+  name: GlobalMessageHandler
+  nameWithType: GlobalMessageHandler
+  fullName: QueueMessageSender.GlobalMessageHandler
+- uid: QueueMessageSender.ChannelSpecificMessageHandler
+  commentId: T:QueueMessageSender.ChannelSpecificMessageHandler
+  parent: QueueMessageSender
+  name: ChannelSpecificMessageHandler
+  nameWithType: ChannelSpecificMessageHandler
+  fullName: QueueMessageSender.ChannelSpecificMessageHandler
+- uid: QueueMessageSender.CustomMessageHandler
+  commentId: T:QueueMessageSender.CustomMessageHandler
+  parent: QueueMessageSender
+  name: CustomMessageHandler
+  nameWithType: CustomMessageHandler
+  fullName: QueueMessageSender.CustomMessageHandler
+- uid: QueueMessageSender.QueueMessageSender
+  commentId: T:QueueMessageSender.QueueMessageSender
+  name: QueueMessageSender
+  nameWithType: QueueMessageSender
+  fullName: QueueMessageSender.QueueMessageSender
+- uid: QueueMessageSender.Message
+  commentId: T:QueueMessageSender.Message
   name: Message
   nameWithType: Message
-  fullName: QueueSender.Message
-- uid: QueueSender.QueueSenderAppSettings
-  commentId: T:QueueSender.QueueSenderAppSettings
-  parent: QueueSender
-  name: QueueSenderAppSettings
-  nameWithType: QueueSenderAppSettings
-  fullName: QueueSender.QueueSenderAppSettings
-- uid: QueueSender
-  commentId: N:QueueSender
-  name: QueueSender
-  nameWithType: QueueSender
-  fullName: QueueSender
+  fullName: QueueMessageSender.Message
+- uid: QueueMessageSender.QueueMessageSenderAppSettings
+  commentId: T:QueueMessageSender.QueueMessageSenderAppSettings
+  parent: QueueMessageSender
+  name: QueueMessageSenderAppSettings
+  nameWithType: QueueMessageSenderAppSettings
+  fullName: QueueMessageSender.QueueMessageSenderAppSettings
+- uid: QueueMessageSender
+  commentId: N:QueueMessageSender
+  name: QueueMessageSender
+  nameWithType: QueueMessageSender
+  fullName: QueueMessageSender
