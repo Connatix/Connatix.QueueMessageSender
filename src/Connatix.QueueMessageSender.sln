@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26124.0
 MinimumVisualStudioVersion = 15.0.26124.0
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QueueMessageSender", "QueueMessageSender\QueueMessageSender.csproj", "{432C6A5A-D3E4-40E8-8CF6-89A92DB9785C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Connatix.QueueMessageSender", "Connatix.QueueMessageSender\QueueMessageSender.csproj", "{432C6A5A-D3E4-40E8-8CF6-89A92DB9785C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QueueMessageSender.Tests", "QueueMessageSender.Tests\QueueMessageSender.Tests.csproj", "{57433A62-85CB-402A-970B-6684B11A56D5}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Connatix.QueueMessageSender.Tests", "Connatix.QueueMessageSender.Tests\QueueMessageSender.Tests.csproj", "{57433A62-85CB-402A-970B-6684B11A56D5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

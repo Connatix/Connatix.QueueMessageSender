@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <package xmlns="http://schemas.microsoft.com/packaging/2013/05/nuspec.xsd">
   <metadata>
-    <id>Connatix.QueueMessageSender</id>
-    <version>1.0.1</version>
+     <id>$id$</id>
+    <version>$version$</version>
     <description>A thread-safe mechanism to send messages to a external stream writer such as AWS Kinesis or RabbitMQ</description>
     <authors>Connatix</authors>
     <projectUrl>https://github.com/Connatix/Connatix.QueueMessageSender</projectUrl>
@@ -12,10 +12,11 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
    <dependencies>
       <group targetFramework=".NETStandard2.0">
-        <dependency id="Microsoft.Extensions.Logging" version="2.*" exclude="Build,Analyzers" />        
+        <dependency id="Microsoft.Extensions.Logging" version="2.1.1" exclude="Build,Analyzers" />        
       </group>
     </dependencies>
   </metadata>
   <files>
+    <file src="bin\$config$\netstandard2.0\$id$.dll" target="lib\netstandard2.0\$id$.dll" />
   </files>
 </package>
