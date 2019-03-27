@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace QueueMessageSender
+namespace Connatix.QueueMessageSender
 {
     /// <summary>
     /// This class encapsulates a global write stream action for messages from all named channels.

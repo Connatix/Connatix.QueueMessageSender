@@ -1,6 +1,6 @@
 using System;
 
-namespace QueueMessageSender
+namespace Connatix.QueueMessageSender
 {
     /// <summary>
     /// This interface is the abstraction of the QueueMessageSender class 

@@ -6,7 +6,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
 
-namespace QueueMessageSender
+namespace Connatix.QueueMessageSender
 {
     /// <summary>
     ///     This class provides a thread-safe mechanism to send messages to a external stream writer 

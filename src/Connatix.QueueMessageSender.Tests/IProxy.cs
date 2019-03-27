@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace QueueMessageSender.Tests
+namespace Connatix.QueueMessageSender.Tests
 {
     public interface IProxy : IDisposable
     {

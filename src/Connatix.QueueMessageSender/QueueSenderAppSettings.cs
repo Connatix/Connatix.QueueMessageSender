@@ -1,4 +1,4 @@
-namespace QueueMessageSender
+namespace Connatix.QueueMessageSender
 {
     /// <summary>
     ///     The configuration class for the QueueMessageSender.  

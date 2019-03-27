@@ -4,7 +4,7 @@ using Microsoft.Extensions.Logging;
 using Moq;
 using Xunit;
 
-namespace QueueMessageSender.Tests
+namespace Connatix.QueueMessageSender.Tests
 {
     public class QueueMessageSenderTests
     {
