@@ -310,22 +310,36 @@ namespace Connatix.QueueMessageSender
 
                         Task.Factory.StartNew(state =>
                             {
-                                Parallel.ForEach(channel.TakeBatches(), options, batch =>
+                                var batches = channel.TakeBatches();
+                                List<Task<List<Message>>> tasks = new List<Task<List<Message>>>();
+
+
+                                foreach (var batch in batches)
                                 {
-                                    var failedMessages =  ExecuteBatchAction(batch.Item2, batch.Item1.Name);
-                                    if (m_settings.StatisticsEnabled)                                     
+                                    tasks.Add(ExecuteBatchAction(batch.Item2, batch.Item1.Name));
+
+                                }
+
+                                Task.WhenAll(tasks);
+
+                                for (var index = 0; index < tasks.Count; index++)
+                                {
+                                    var task = tasks[index];
+                                    var batch = batches[index];
+                                    var failedMessages = task.Result;
+                                    if (m_settings.StatisticsEnabled)
                                         Interlocked.Add(ref m_enqueuedMessageCount, batch.Item2.Count);
                                     if (failedMessages.Count > 0)
-                                    {                                        
+                                    {
                                         if (m_settings.StatisticsEnabled)
-                                            Interlocked.Add(ref m_failedMessageCount, failedMessages.Count);                                        
+                                            Interlocked.Add(ref m_failedMessageCount, failedMessages.Count);
                                         batch.Item1.AddFailedRequests(failedMessages);
                                     }
-                                    
+
                                     if (m_settings.StatisticsEnabled)
                                         Interlocked.Add(ref m_sentMessageCount,
                                             batch.Item2.Count - failedMessages.Count);
-                                });
+                                }
                             }, taskGuid)
                             .ContinueWith(task =>
                             {
@@ -357,7 +371,7 @@ namespace Connatix.QueueMessageSender
         /// <param name="batch">list of messages to be processed</param>
         /// <param name="channelName">the name of the channel</param>
         /// <returns>The messages that failed to be delivered</returns>
-        private List<Message> ExecuteBatchAction(List<Message> batch, string channelName)
+        private async Task<List<Message>> ExecuteBatchAction(List<Message> batch, string channelName)
         {
             if(null == m_batchAction)
                 return new List<Message>();
@@ -365,9 +379,8 @@ namespace Connatix.QueueMessageSender
             var failedMessages = new List<Message>();
             try
             {
-                var task = m_batchAction(batch, channelName);
-                task.Wait();
-                failedMessages = task.Result;
+                var task = m_batchAction(batch, channelName);;
+                return await task;
             }
             catch (Exception e)
             {
