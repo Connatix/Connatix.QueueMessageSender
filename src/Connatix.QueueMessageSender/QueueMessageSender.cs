@@ -19,11 +19,8 @@ namespace Connatix.QueueMessageSender
         private Func<List<Message>, string, Task<List<Message>>> m_batchAction;
         private readonly CancellationTokenSource m_cancellationTokenSource = new CancellationTokenSource();
         private readonly AutoResetEvent m_coreInUseFreedFlag;
-        private readonly Dictionary<Guid, int> m_coresInUse = new Dictionary<Guid, int>();
-        private readonly object m_coresInUseSync = new object();
-        private readonly object m_enqueueSync = new object();
+        private readonly ConcurrentDictionary<Guid, int> m_coresInUse = new ConcurrentDictionary<Guid, int>();
         private readonly List<WaitHandle> m_flags = new List<WaitHandle>();
-        private readonly object m_flagsSync = new object();
         private readonly ManualResetEvent m_idle;        
         private readonly TimeSpan m_sendLoopCycleDuration = TimeSpan.FromMilliseconds(20);
 
@@ -179,24 +176,20 @@ namespace Connatix.QueueMessageSender
         {
             if (null == message)
                 throw new ArgumentException("The argument cannot be null or empty", nameof(message));
-            
-            if(string.IsNullOrEmpty(channelName))
+
+            if (string.IsNullOrEmpty(channelName))
                 throw new ArgumentException("The argument cannot be null or empty", nameof(channelName));
-            
+
             m_idle.Reset();
             if (!m_channels.TryGetValue(channelName, out var channel))
-                lock (m_enqueueSync)
-                {
-                    channel = new Channel(channelName, 1);
-                    var newOrExisting = m_channels.GetOrAdd(channelName, channel);
-                    if (newOrExisting.GetHashCode() == channel.GetHashCode())
-                        lock (m_flagsSync)
-                        {
-                            m_flags.Add(channel.HasMessages);
-                        }
+            {
+                channel = new Channel(channelName, 1);
+                var newOrExisting = m_channels.GetOrAdd(channelName, channel);
+                if (newOrExisting == channel)
+                    m_flags.Add(channel.HasMessages);
 
-                    newOrExisting.Enqueue(message);
-                }
+                newOrExisting.Enqueue(message);
+            }
             else
                 channel.Enqueue(message);
         }
@@ -211,18 +204,14 @@ namespace Connatix.QueueMessageSender
         public void SetChannelWeight(float weight, string channelName)
         {
             if (!m_channels.TryGetValue(channelName, out var channel))
-                lock (m_enqueueSync)
-                {
-                    channel = new Channel(channelName, weight);
-                    var newOrExistingChannel = m_channels.GetOrAdd(channelName, channel);
-                    if (newOrExistingChannel.GetHashCode() != channel.GetHashCode()) 
-                        return;
-                    
-                    lock (m_flagsSync)
-                    {
-                        m_flags.Add(channel.HasMessages);
-                    }
-                }
+            {
+                channel = new Channel(channelName, weight);
+                var newOrExistingChannel = m_channels.GetOrAdd(channelName, channel);
+                if (newOrExistingChannel != channel)
+                    return;
+
+                m_flags.Add(channel.HasMessages);
+            }
             else
                 channel.Weight = weight;
         }
@@ -250,11 +239,8 @@ namespace Connatix.QueueMessageSender
             m_cancellationTokenSource.Cancel();
             m_taskRunner.Wait();
             m_taskRunner.Dispose();
-            
-            lock (m_flagsSync)
-            {
-                m_flags.Clear();
-            }
+
+            m_flags.Clear();
 
             m_idle.Dispose();
             m_coreInUseFreedFlag.Dispose();
@@ -282,12 +268,8 @@ namespace Connatix.QueueMessageSender
                     var totalMessages = m_channels.Values.Sum(queue => queue.GetSize());
                     if (totalMessages == 0)
                     {
-                        lock (m_coresInUseSync)
-                        {
-                            if (m_coresInUse.Count == 0)
-                                m_idle.Set();
-                        }
-
+                        if (m_coresInUse.Count == 0)
+                            m_idle.Set();
                         continue;
                     }
 
@@ -303,52 +285,46 @@ namespace Connatix.QueueMessageSender
                             return;
 
                         var taskGuid = Guid.NewGuid();
-                        lock (m_coresInUseSync)
-                        {
                             m_coresInUse[taskGuid] = options.MaxDegreeOfParallelism;
-                        }
 
-                        Task.Factory.StartNew(state =>
-                            {
-                                var batches = channel.TakeBatches();
-                                List<Task<List<Message>>> tasks = new List<Task<List<Message>>>();
-
-
-                                foreach (var batch in batches)
+                            Task.Factory.StartNew(state =>
                                 {
-                                    tasks.Add(ExecuteBatchAction(batch.Item2, batch.Item1.Name));
+                                    var batches = channel.TakeBatches();
+                                    List<Task<List<Message>>> tasks = new List<Task<List<Message>>>();
 
-                                }
 
-                                Task.WhenAll(tasks);
-
-                                for (var index = 0; index < tasks.Count; index++)
-                                {
-                                    var task = tasks[index];
-                                    var batch = batches[index];
-                                    var failedMessages = task.Result;
-                                    if (m_settings.StatisticsEnabled)
-                                        Interlocked.Add(ref m_enqueuedMessageCount, batch.Item2.Count);
-                                    if (failedMessages.Count > 0)
+                                    foreach (var batch in batches)
                                     {
-                                        if (m_settings.StatisticsEnabled)
-                                            Interlocked.Add(ref m_failedMessageCount, failedMessages.Count);
-                                        batch.Item1.AddFailedRequests(failedMessages);
+                                        tasks.Add(ExecuteBatchAction(batch.Item2, batch.Item1.Name));
+
                                     }
 
-                                    if (m_settings.StatisticsEnabled)
-                                        Interlocked.Add(ref m_sentMessageCount,
-                                            batch.Item2.Count - failedMessages.Count);
-                                }
-                            }, taskGuid)
-                            .ContinueWith(task =>
-                            {
-                                lock (m_coresInUseSync)
+                                    Task.WhenAll(tasks);
+
+                                    for (var index = 0; index < tasks.Count; index++)
+                                    {
+                                        var task = tasks[index];
+                                        var batch = batches[index];
+                                        var failedMessages = task.Result;
+                                        if (m_settings.StatisticsEnabled)
+                                            Interlocked.Add(ref m_enqueuedMessageCount, batch.Item2.Count);
+                                        if (failedMessages.Count > 0)
+                                        {
+                                            if (m_settings.StatisticsEnabled)
+                                                Interlocked.Add(ref m_failedMessageCount, failedMessages.Count);
+                                            batch.Item1.AddFailedRequests(failedMessages);
+                                        }
+
+                                        if (m_settings.StatisticsEnabled)
+                                            Interlocked.Add(ref m_sentMessageCount,
+                                                batch.Item2.Count - failedMessages.Count);
+                                    }
+                                }, taskGuid)
+                                .ContinueWith(task =>
                                 {
-                                    m_coresInUse.Remove((Guid) task.AsyncState);
+                                    m_coresInUse.TryRemove((Guid) task.AsyncState, out _);
                                     m_coreInUseFreedFlag.Set();
-                                }
-                            });
+                                });
                     }
 
                     if (m_cancellationTokenSource.Token.WaitHandle.WaitOne(m_sendLoopCycleDuration))
@@ -454,15 +430,11 @@ namespace Connatix.QueueMessageSender
         /// <returns></returns>
         private int GetRemainingThreadCount(int requestedThreadCount)
         {
-            int remainingThreadCount;
             var maxThreadCount = m_settings.MaxThreadCount;
-            lock (m_coresInUseSync)
-            {
-                var totalCoresInUse = m_coresInUse.Sum(x => x.Value);
+            var totalCoresInUse = m_coresInUse.Sum(x => x.Value);
 
-                remainingThreadCount = Math.Min(maxThreadCount - totalCoresInUse,
-                    requestedThreadCount);
-            }
+            var remainingThreadCount = Math.Min(maxThreadCount - totalCoresInUse,
+                requestedThreadCount);
 
             return remainingThreadCount;
         }
@@ -506,11 +478,7 @@ namespace Connatix.QueueMessageSender
         /// </summary>
         public void Dispose()
         {
-            lock (m_sync)
-            {
-                m_messages.Clear();
-            }
-
+            m_messages.Clear();
             HasMessages?.Dispose();
         }
 
@@ -520,14 +488,11 @@ namespace Connatix.QueueMessageSender
         /// <param name="payload">The payload.</param>
         public void Enqueue(object payload)
         {
-            lock (m_sync)
+            m_messages.Add(new Message
             {
-                m_messages.Add(new Message
-                {
-                    Payload = payload,
-                    RetryCount = 0
-                });
-            }
+                Payload = payload,
+                RetryCount = 0
+            });
 
             HasMessages.Set();
         }
@@ -538,10 +503,7 @@ namespace Connatix.QueueMessageSender
         /// <param name="failedMessages">The failed messages.</param>
         public void AddFailedRequests(List<Message> failedMessages)
         {
-            lock (m_sync)
-            {
-                m_messages.AddRange(failedMessages);
-            }
+            m_messages.AddRange(failedMessages);
         }
 
         /// <summary>
@@ -569,10 +531,7 @@ namespace Connatix.QueueMessageSender
         /// <returns></returns>
         public int GetSize()
         {
-            lock (m_sync)
-            {
-                return m_messages.Count;
-            }
+            return m_messages.Count;
         }
 
         /// <summary>
